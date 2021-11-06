@@ -1,0 +1,38 @@
+%flex__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%buttons {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: calc(15 / 12 * 100%);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+
+  color: $main-text-color;
+  background: $bg-image-darkening;
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color $anim-duration $anim-timing-function;
+
+  width: 260px;
+  height: 48px;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $main-orange-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 354px;
+    height: 70px;
+  }
+}

@@ -1,0 +1,11 @@
+// @each $icon in twitter, facebook, linkedin {
+//   .#{$icon}__social {
+//     background-image: url('../images/social/#{$icon}.svg');
+//     border-radius: 20%;
+//     &:focus,
+//     &:hover {
+//       fill: $main-orange-color;
+//       transform: scale(1.2);
+//     }
+//   }
+// }
