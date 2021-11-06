@@ -1,28 +1,28 @@
 {
-  "name": "parcel-project-template",
+  "name": "project-fimoteka",
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://goitacademy.github.io/parcel-project-template",
+  "homepage": "https://vtyshchenko.github.io/project-fimoteka",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "build": "parcel build src/*.html --public-url /project-fimoteka/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/vtyshchenko/project-fimoteka.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Volodymyr Tyshchenko <mamay.ukr.1977@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goitacademy/parcel-project-template/issues"
+    "url": "https://github.com/vtyshchenko/project-fimoteka/issues"
   },
-  "devDependencies": {
+  "dependencies": {
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
-    "posthtml-include": "^1.6.2",
-    "sass": "^1.32.8"
+    "posthtml-include": "^1.7.2",
+    "saas": "^1.0.0"
   }
 }
