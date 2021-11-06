@@ -3,20 +3,20 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://vtyshchenko.github.io/project-fimoteka",
+  "homepage": "https://vtyshchenko.github.io/project-filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /project-fimoteka/"
+    "build": "parcel build src/*.html --public-url /project-filmoteka/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vtyshchenko/project-fimoteka.git"
+    "url": "git+https://github.com/vtyshchenko/project-filmoteka.git"
   },
   "keywords": [],
   "author": "Volodymyr Tyshchenko <mamay.ukr.1977@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vtyshchenko/project-fimoteka/issues"
+    "url": "https://github.com/vtyshchenko/project-filmoteka/issues"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
