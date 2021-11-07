@@ -1,0 +1,37 @@
+.team-modal-wrapper {
+  position: relative;
+}
+
+.team__modal__button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  z-index: 1500;
+}
+
+.team__modal__icon {
+  width: 14px;
+  height: 14px;
+  fill: black;
+}
+
+.team__modal__form {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.team__modal__list {
+  list-style: none;
+}
+
+.photo-photo {
+  width: 300px;
+  height: 300px;
+}
