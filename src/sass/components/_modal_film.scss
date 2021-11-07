@@ -10,6 +10,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 .close-btn_icon {
   width: 14px;
@@ -23,8 +24,10 @@
   left: 50%;
   transform: translate(-50%, 0);
   min-width: 280px;
-  //   max-height: 609px;
   background-color: $main-text-color;
-  //   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
-  //     0px 2px 1px rgb(0 0 0 / 20%);
+  opacity: 0;
+}
+.is-open {
+  opacity: 1;
+  pointer-events: initial;
 }

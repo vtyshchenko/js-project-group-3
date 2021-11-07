@@ -1,0 +1,24 @@
+{{#each this}}
+<div id="i{{id}}">
+<img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}">
+<h1>{{title}}</h1>
+<div>
+    <ul>
+        <li>Vote / Votes</li>
+        <li>Popularity</li>
+        <li>Original Title</li>
+        <li>Genre</li>
+    </ul>
+    <ul>
+        <li>{{vote_average}}/{{vote_count}}</li>
+        <li>{{popularity}}</li>
+        <li>{{original_title}}</li>
+        <li></li>
+    </ul>
+</div>
+<h2>About</h2>
+<p>{{overview}}</p>
+<button type="button">add to Watched</button>
+<button type="button">add to queue</button>
+</div>
+{{/each}}
