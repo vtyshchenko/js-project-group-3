@@ -10,7 +10,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 
-export default function init(email, password) {
+export default function init() {
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
   // Your web app's Firebase configuration
@@ -29,7 +29,9 @@ export default function init(email, password) {
   // console.log('app', app);
   // const analytics = getAnalytics(app);
   // console.log('analytics', analytics);
+}
 
+function authintification(email, password) {
   const auth = getAuth(auth, email, password);
   auth.languageCode = 'ua';
 
