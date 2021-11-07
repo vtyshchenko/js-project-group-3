@@ -1,0 +1,30 @@
+.close__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.close-btn_icon {
+  width: 14px;
+  height: 14px;
+  fill: $title-color;
+}
+.modal-film {
+  position: absolute;
+  padding: 50px 30px 40px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 280px;
+  //   max-height: 609px;
+  background-color: $main-text-color;
+  //   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+  //     0px 2px 1px rgb(0 0 0 / 20%);
+}
