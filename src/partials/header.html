@@ -1,8 +1,8 @@
 <!-- header -->
-<header class="header header__hom">
+<header class="header header__home">
   <div class="container">
-    <div class=" wrapper">
-      <a href="" class="link logo">
+    <div class=" header__wrapper">
+      <a href="#" class="link logo">
         <span class="logo__icon"></span>
         <span class="logo__label">Filmoteka</span>
       </a>
@@ -19,18 +19,18 @@
         </ul>
       </nav>
     </div>
-    <form action="" class="form">
-      <Input class="form__input" type="text" name="query" 
+    <form action="" class="header-form">
+      <Input class="header-form__input" type="text" name="query" 
       placeholder="Поиск фильмов"></Input>
-      <button type="submit" class="form__button"></button>
+      <button type="submit" class="header-form__button"></button>
     </form>
-    <ul class="library-list is-hidden list">
-      <li>
-        <button class="btn-watched" id="btn-watched">
+    <ul class="library__list is-hidden list">
+      <li class="library__item">
+        <button class="btn__watched" id="btn-watched" type="button" >
           WATCHED</button>
         </li>
-      <li>
-        <button class="btn-queue" id="btn-queue">
+      <li class="library__item">
+        <button class="btn__queue" id="btn-queue" type="button" >
           QUEUE</button>
         </li>
       </ul>
