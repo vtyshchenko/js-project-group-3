@@ -1,11 +1,11 @@
 {{#each this }}
-<li class="gallery-item" data-id="{{id}}">
+<li class="gallery-film-item" data-id="{{id}}">
     <div class="video-card">
         <img class="video-poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}">
-    </div>
     <div class="video-about">
         <p class="video-title">{{title}}</p>
-        <p class="video-genre">{{genre_ids}} | {{release_date}}</p>
+        <p class="video-genre">{{genre_ids}} | {{release_date}}<span class='video-average is-hidden'>{{vote_average}}</span></p>
+    </div>
     </div>
 </li>
 {{/each}}
