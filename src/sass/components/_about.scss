@@ -1,8 +1,20 @@
 .team-modal-wrapper {
   position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.team__modal__button {
+.team__modal-title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.17;
+  letter-spacing: 0.03em;
+  margin-bottom: 50px;
+}
+
+.team__modal-button {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -12,13 +24,13 @@
   z-index: 1500;
 }
 
-.team__modal__icon {
+.team__modal-icon {
   width: 14px;
   height: 14px;
   fill: black;
 }
 
-.team__modal__form {
+.team__modal-form {
   display: flex;
   padding: 40px;
   flex-direction: column;
@@ -27,11 +39,45 @@
   z-index: 10;
 }
 
-.team__modal__list {
+.team__modal-list {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: -30px;
+  margin-top: -30px;
 }
 
-.photo-photo {
+.team__modal-item {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.team__photo {
   width: 300px;
-  height: 300px;
+  height: 400px;
+}
+
+.team__information-wrapper {
+  padding: 30px;
+  text-align: center;
+}
+
+@media screen and (max-width: 320px) {
+  .team-modal-wrapper {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .team__modal-item {
+    flex-basis: calc((100% - 60px) / 4);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .team-modal-wrapper {
+    width: 1024px;
+  }
 }

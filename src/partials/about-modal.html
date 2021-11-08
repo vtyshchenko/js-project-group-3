@@ -1,88 +1,162 @@
 <div class="team-modal-wrapper">
-    <button class="team__modal__button" type="button" data-modal-close>
+    <button class="team__modal-button" type="button" data-modal-close>
     <!-- <svg class="team__modal__icon">
         <use href="./images/close-btn.svg"></use>
     </svg> -->
-    <svg class="team__modal__icon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+    <svg class="team__modal-icon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 8L22 22" stroke="black" stroke-width="2" />
         <path d="M8 22L22 8" stroke="black" stroke-width="2" />
     </svg>
 </button>
 
-<form class="team__modal__form">
-    <h2 class="team__modal__title">Our team</h2>
-    <div class="team__container">
-        <ul class="team__modal__list">
-            <li class="team__modal__item">
-                <div class="team__photo__wrapper">
+<form class="team__modal-form">
+    <h2 class="team__modal-title">Our team</h2>
+            <ul class="team__modal-list">
+                <li class="team__modal-item">
                     <picture>
-                       <img class="photo-photo" src="./images/team/volodymyr.jpg" alt="">
+        <source media="(min-width: 1024px)" type="image/webp" srcset="./images/team/volodymyr-desctop.webp 1x, ./images/team/volodymyr-desctop@1.5x.webp 1.5x, ./images/team/volodymyr-desctop@2x.webp 2x">
+        <source media="(min-width: 768px)" type="image/webp" srcset="./images/team/volodymyr-tablet.webp 1x, ./images/team/volodymyr-tablet@1.5x.webp 1.5x, ./images/team/volodymyr-tablet@2x.webp 2x">
+        <source media="(max-width: 767px)"type="image/webp" srcset="./images/team/volodymyr-mobile.webp 1x, ./images/team/volodymyr-mobile@1.5x.webp 1.5x, ./images/team/volodymyr-mobile@2x.webp 2x">
+        
+        <source media="(min-width: 1024px)" srcset="./images/team/volodymyr-desctop.jpg 1x, ./images/team/volodymyr-desctop@1.5x.jpg 1.5x, ./images/team/volodymyr-desctop@2x.jpg 2x">
+        <source media="(min-width: 768px)" srcset="./images/team/volodymyr-tablet.jpg 1x, ./images/team/volodymyr-tablet@1.5x.jpg 1.5x, ./images/team/volodymyr-tablet@2x.jpg 2x">
+         <source media="(max-width: 767px)" srcset="./images/team/volodymyr-mobile.jpg 1x, ./images/team/volodymyr-mobile@1.5x.jpg 1.5x, ./images/team/volodymyr-mobile@2x.jpg 2x">
+                        <img class="team__photo" src="#" alt="изображение человека" />
                     </picture>
-                </div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Volodymyr Tyshchenko</h3>
-                    <p class="team__description"> Position: Team lead</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
+                    <div class="team__information-wrapper">
+                        <h3 class="team__name">Volodymyr Tyshchenko</h3>
+                        <p class="team__description" lang="en"> Position: Team lead</p>
+                    </div>
+                </li>
+            <li class="team__modal-item">
+                <picture>
+                    <source media="(min-width: 1024px)" type="image/webp"srcset="./images/team/vitaliy-s-desctop.webp 1x, ./images/team/vitaliy-s-desctop@1.5x.webp 1.5x, ./images/team/vitaliy-s-desctop@2x.webp 2x">
+                    <source media="(min-width: 768px)" type="image/webp"srcset="./images/team/vitaliy-s-tablet.webp 1x, ./images/team/vitaliy-s-tablet@1.5x.webp 1.5x, ./images/team/vitaliy-s-tablet@2x.webp 2x">
+                    <source media="(max-width: 767px)" type="image/webp"srcset="./images/team/vitaliy-s-mobile.webp 1x, ./images/team/vitaliy-s-mobile@1.5x.webp 1.5x, ./images/team/vitaliy-s-mobile@2x.webp 2x">
+            
+                    <source media="(mmi-width: 1024px)"srcset="./images/team/vitaliy-s-desctop.jpg 1x, ./images/team/vitaliy-s-desctop@1.5x.jpg 1.5x, ./images/team/vitaliy-s-desctop@2x.jpg 2x">
+                    <source media="(min-width: 768px)"srcset="./images/team/vitaliy-s-tablet.jpg 1x, ./images/team/vitaliy-s-tablet@1.5x.jpg 1.5x, ./images/team/vitaliy-s-tablet@2x.jpg 2x">
+                    <source media="(max-width: 767px)"srcset="./images/team/vitaliy-s-mobile.jpg 1x, ./images/team/vitaliy-s-mobile@1.5x.jpg 1.5x, ./images/team/vitaliy-s-mobile@2x.jpg 2x">
+                    <img class="team__photo" src="#" alt="изображение человека" />
+                </picture>
+                <div class="team__information-wrapper">
                     <h3 class="team__name">Vitaliy Semenenko</h3>
-                    <p class="team__description"> Position: Scrum master</p>
+                    <p class="team__description" lang="en"> Position: Scrum master</p>
                 </div>
             </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
+            <li class="team__modal-item">
+                <picture>
+                    <source media="(min-width: 1024px)" type="image/webp"srcset="./images/team/vitaliy-k-desctop.webp 1x, ./images/team/vitaliy-k-desctop@1.5x.webp 1.5x, ./images/team/vitaliy-k-desctop@2x.webp 2x">
+                    <source media="(min-width: 768px)" type="image/webp"srcset="./images/team/vitaliy-k-tablet.webp 1x, ./images/team/vitaliy-k-tablet@1.5x.webp 1.5x, ./images/team/vitaliy-k-tablet@2x.webp 2x">
+                    <source media="(max-width: 767px)" type="image/webp"srcset="./images/team/vitaliy-k-mobile.webp 1x, ./images/team/vitaliy-k-mobile@1.5x.webp 1.5x, ./images/team/vitaliy-k-mobile@2x.webp 2x">
+            
+                    <source media="(mmi-width: 1024px)"srcset="./images/team/vitaliy-k-desctop.jpg 1x, ./images/team/vitaliy-k-desctop@1.5x.jpg 1.5x, ./images/team/vitaliy-k-desctop@2x.jpg 2x">
+                    <source media="(min-width: 768px)"srcset="./images/team/vitaliy-k-tablet.jpg 1x, ./images/team/vitaliy-k-tablet@1.5x.jpg 1.5x, ./images/team/vitaliy-k-tablet@2x.jpg 2x">
+                    <source media="(max-width: 767px)"srcset="./images/team/vitaliy-k-mobile.jpg 1x, ./images/team/vitaliy-k-mobile@1.5x.jpg 1.5x, ./images/team/vitaliy-k-mobile@2x.jpg 2x">
+                    <img class="team__photo" src="#" alt="изображение человека" />
+                </picture>
+                <div class="team__information-wrapper">
                     <h3 class="team__name">Vitaliy Karpenko</h3>
-                    <p class="team__description"> Position: Developer</p>
+                    <p class="team__description" lang="en"> Position: Developer</p>
                 </div>
             </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Viktoriia Pavlenko</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Maryna Ostapliuk</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Emma Vasylyk</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Ihor Dombik</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Dmitry Sichenko</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
-            <li>
-                <div class="team__photo__wrapper"></div>
-                <div class="team__information__wrapper">
-                    <h3 class="team__name">Dmitry Peresichan</h3>
-                    <p class="team__description"> Position: Developer</p>
-                </div>
-            </li>
+            <li class="team__modal-item">
+                <picture>
+                <source media="(min-width: 1024px)" type="image/webp"srcset="./images/team/vika-desctop.webp 1x, ./images/team/vika-desctop@1.5x.webp 1.5x, ./images/team/vika-desctop@2x.webp 2x">
+                <source media="(min-width: 768px)" type="image/webp"srcset="./images/team/vika-tablet.webp 1x, ./images/team/vika-tablet@1.5x.webp 1.5x, ./images/team/vika-tablet@2x.webp 2x">
+                <source media="(max-width: 767px)" type="image/webp"srcset="./images/team/vika-mobile.webp 1x, ./images/team/vika-mobile@1.5x.webp 1.5x, ./images/team/vika-mobile@2x.webp 2x">
 
-        </ul>
-    </div>
+                <source media="(mmi-width: 1024px)"srcset="./images/team/vika-desctop.jpg 1x, ./images/team/vika-desctop@1.5x.jpg 1.5x, ./images/team/vika-desctop@2x.jpg 2x">
+                <source media="(min-width: 768px)"srcset="./images/team/vika-tablet.jpg 1x, ./images/team/vika-tablet@1.5x.jpg 1.5x, ./images/team/vika-tablet@2x.jpg 2x">
+                <source media="(max-width: 767px)"srcset="./images/team/vika-mobile.jpg 1x, ./images/team/vika-mobile@1.5x.jpg 1.5x, ./images/team/vika-mobile@2x.jpg 2x">
+                <img class="team__photo" src="#" alt="изображение человека" />
+            </picture>
+            <div class="team__information-wrapper">
+                <h3 class="team__name">Viktoriia Pavlenko</h3>
+                <p class="team__description" lang="en"> Position: Developer</p>
+                </div>
+            </li>
+            <li class="team__modal-item">
+                <picture>
+                    <source media="(min-width: 1024px)" type="image/webp" srcset="./images/team/marina-desctop.webp 1x, ./images/team/marina-desctop@1.5x.webp 1.5x, ./images/team/marina-desctop@2x.webp 2x">
+                    <source media="(min-width: 768px)" type="image/webp" srcset="./images/team/marina-tablet.webp 1x, ./images/team/marina-tablet@1.5x.webp 1.5x, ./images/team/marina-tablet@2x.webp 2x">
+                    <source media="(max-width: 767px)" type="image/webp" srcset="./images/team/marina-mobile.webp 1x, ./images/team/marina-mobile@1.5x.webp 1.5x, ./images/team/marina-mobile@2x.webp 2x">
+            
+                    <source media="(mmi-width: 1024px)" srcset="./images/team/marina-desctop.jpg 1x, ./images/team/marina-desctop@1.5x.jpg 1.5x, ./images/team/marina-desctop@2x.jpg 2x">
+                    <source media="(min-width: 768px)" srcset="./images/team/marina-tablet.jpg 1x, ./images/team/marina-tablet@1.5x.jpg 1.5x, ./images/team/marina-tablet@2x.jpg 2x">
+                    <source media="(max-width: 767px)" srcset="./images/team/marina-mobile.jpg 1x, ./images/team/marina-mobile@1.5x.jpg 1.5x, ./images/team/marina-mobile@2x.jpg 2x">
+                    <img class="team__photo" src="#" alt="изображение человека" />
+                </picture>
+                <div class="team__information-wrapper">
+                    <h3 class="team__name">Maryna Ostapliuk</h3>
+                    <p class="team__description" lang="en"> Position: Developer</p>
+                </div>
+            </li>
+            <li class="team__modal-item">
+                <picture>
+                    <source media="(min-width: 1024px)" type="image/webp" srcset="./images/team/emma-desctop.webp 1x, ./images/team/emma-desctop@1.5x.webp 1.5x, ./images/team/emma-desctop@2x.webp 2x">
+                    <source media="(min-width: 768px)" type="image/webp" srcset="./images/team/emma-tablet.webp 1x, ./images/team/emma-tablet@1.5x.webp 1.5x, ./images/team/emma-tablet@2x.webp 2x">
+                    <source media="(max-width: 767px)" type="image/webp" srcset="./images/team/emma-mobile.webp 1x, ./images/team/emma-mobile@1.5x.webp 1.5x, ./images/team/emma-mobile@2x.webp 2x">
+            
+                    <source media="(mmi-width: 1024px)" srcset="./images/team/emma-desctop.jpg 1x, ./images/team/emma-desctop@1.5x.jpg 1.5x, ./images/team/emma-desctop@2x.jpg 2x">
+                    <source media="(min-width: 768px)" srcset="./images/team/emma-tablet.jpg 1x, ./images/team/emma-tablet@1.5x.jpg 1.5x, ./images/team/emma-tablet@2x.jpg 2x">
+                    <source media="(max-width: 767px)" srcset="./images/team/emma-mobile.jpg 1x, ./images/team/emma-mobile@1.5x.jpg 1.5x, ./images/team/emma-mobile@2x.jpg 2x">
+                    <img class="team__photo" src="#" alt="изображение человека" />
+                </picture>
+                <div class="team__information-wrapper">
+                    <h3 class="team__name">Emma Vasylyk</h3>
+                    <p class="team__description" lang="en"> Position: Developer</p>
+                </div>
+            </li>
+        <li class="team__modal-item">
+            <picture>
+                <source media="(min-width: 1024px)" type="image/webp" srcset="./images/team/ihor-desctop.webp 1x, ./images/team/ihor-desctop@1.5x.webp 1.5x, ./images/team/ihor-desctop@2x.webp 2x">
+                <source media="(min-width: 768px)" type="image/webp" srcset="./images/team/ihor-tablet.webp 1x, ./images/team/ihor-tablet@1.5x.webp 1.5x, ./images/team/ihor-tablet@2x.webp 2x">
+                <source media="(max-width: 767px)" type="image/webp" srcset="./images/team/ihor-mobile.webp 1x, ./images/team/ihor-mobile@1.5x.webp 1.5x, ./images/team/ihor-mobile@2x.webp 2x">
+        
+                <source media="(mmi-width: 1024px)" srcset="./images/team/ihor-desctop.jpg 1x, ./images/team/ihor-desctop@1.5x.jpg 1.5x, ./images/team/ihor-desctop@2x.jpg 2x">
+                <source media="(min-width: 768px)" srcset="./images/team/ihor-tablet.jpg 1x, ./images/team/ihor-tablet@1.5x.jpg 1.5x, ./images/team/ihor-tablet@2x.jpg 2x">
+                <source media="(max-width: 767px)" srcset="./images/team/ihor-mobile.jpg 1x, ./images/team/ihor-mobile@1.5x.jpg 1.5x, ./images/team/ihor-mobile@2x.jpg 2x">
+                <img class="team__photo" src="#" alt="изображение человека" />
+            </picture>
+            <div class="team__information-wrapper">
+                <h3 class="team__name">Ihor Dombik</h3>
+                <p class="team__description" lang="en"> Position: Developer</p>
+            </div>
+        </li>
+        <li class="team__modal-item">
+            <picture>
+                <source media="(min-width: 1024px)" type="image/webp" srcset="./images/team/dmitry-s-desctop.webp 1x, ./images/team/dmitry-s-desctop@1.5x.webp 1.5x, ./images/team/dmitry-s-desctop@2x.webp 2x">
+                <source media="(min-width: 768px)" type="image/webp" srcset="./images/team/dmitry-s-tablet.webp 1x, ./images/team/dmitry-s-tablet@1.5x.webp 1.5x, ./images/team/dmitry-s-tablet@2x.webp 2x">
+                <source media="(max-width: 767px)" type="image/webp" srcset="./images/team/dmitry-s-mobile.webp 1x, ./images/team/dmitry-s-mobile@1.5x.webp 1.5x, ./images/team/dmitry-s-mobile@2x.webp 2x">
+        
+                <source media="(mmi-width: 1024px)" srcset="./images/team/dmitry-s-desctop.jpg 1x, ./images/team/dmitry-s-desctop@1.5x.jpg 1.5x, ./images/team/dmitry-s-desctop@2x.jpg 2x">
+                <source media="(min-width: 768px)" srcset="./images/team/dmitry-s-tablet.jpg 1x, ./images/team/dmitry-s-tablet@1.5x.jpg 1.5x, ./images/team/dmitry-s-tablet@2x.jpg 2x">
+                <source media="(max-width: 767px)" srcset="./images/team/dmitry-s-mobile.jpg 1x, ./images/team/dmitry-s-mobile@1.5x.jpg 1.5x, ./images/team/dmitry-s-mobile@2x.jpg 2x">
+                <img class="team__photo" src="#" alt="изображение человека" />
+            </picture>
+            <div class="team__information-wrapper">
+                <h3 class="team__name">Dmitry Sichenko</h3>
+                <p class="team__description" lang="en"> Position: Developer</p>
+            </div>
+        </li>
+    <li class="team__modal-item">
+        <picture>
+            <source media="(min-width: 1024px)" type="image/webp" srcset="#">
+            <source media="(min-width: 768px)" type="image/webp" srcset="#">
+            <source media="(max-width: 767px)" type="image/webp" srcset="#">
+    
+            <source media="(mmi-width: 1024px)" srcset="#">
+            <source media="(min-width: 768px)" srcset="#">
+            <source media="(max-width: 767px)" srcset="#">
+            <img class="team__photo" src="#" alt="изображение человека" />
+        </picture>
+        <div class="team__information-wrapper">
+            <h3 class="team__name">Dmitry Peresichan</h3>
+            <p class="team__description" lang="en"> Position: Developer</p>
+        </div>
+    </li>
+            </ul>
 </form>
 
 </div>
