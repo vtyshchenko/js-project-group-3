@@ -10,18 +10,6 @@ const{
     inputSearchRefs,
     librListRefs,
     logoRefs} = refs.refs
-    
-    // const currentHeader = {
-    //     // home: 'header__home',
-    //     // lib: 'header__library',
-    //     // hidden: 'is-hidden',
-    //     current: 'current',
-    //   };
-    //   const{ 
-    //     // home, 
-    //     // lib, 
-    //     hidden, 
-    //     current } = currentHeader
 
         navLibrRefs.addEventListener('click', libOpenClick);
         navHomeRefs.addEventListener('click', homeOpenClick);
