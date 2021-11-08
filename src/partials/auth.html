@@ -1,57 +1,58 @@
-<div class="backdrop is-hidden" data-modal>
-  <div class="modal-wrapper">
-    <button class="modal__button" type="button" data-modal-close>
-      <svg class="modal__icon">
-        <use href="./images/icons.svg#icon-close-button"></use>
-      </svg>
-    </button>
-    <form class="modal__form">
-      <p class="modal__title">Leave your details, we will call you back</p>
-      <div class="modal__inputs">
-        <label class="modal__group">
-          <span class="modal__label">Mail</span>
-          <span class="modal__input-group">
-            <input
-              class="modal__input-info"
-              type="email"
-              name="email"
-              title="Enter mailbox"
-              placeholder="example@mail.com"
-            />
-            <label class="modal__group">
-              <span class="modal__label">Name</span>
-              <span class="modal__input-group">
-                <input
-                  class="modal__input-info"
-                  type="text"
-                  name="name"
-                  minlength="2"
-                  title="Please enter your name. Username must be two words separated by space."
-                  placeholder="John Jonson"
-                  pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
-                  minlength="8"
-                  required
-                />
-                <svg class="modal__input-icon">
-                  <use href="./images/icons.svg#icon-person"></use>
-                </svg>
-              </span>
-            </label>
-            <svg class="modal__input-icon">
-              <use href="./images/icons.svg#icon-email"></use>
-            </svg>
-          </span>
-        </label>
+<!-- <div class="backdrop is-hidden" data-modal> -->
+<div class="auth-wrapper">
+  <button class="auth__button" type="button" data-modal-close>
+    <svg class="auth__icon">
+      <use href="./images/symbol-defs.svg#icon-close-button"></use>
+    </svg>
+  </button>
+  <form class="auth__form">
+    <p class="auth__title">Leave your details, we will call you back</p>
+    <div class="auth__inputs">
+      <label class="auth__group">
+        <span class="auth__label">Mail</span>
+        <span class="auth__input-group">
+          <input
+            class="auth__input-info"
+            type="email"
+            name="email"
+            title="Enter mailbox"
+            placeholder="example@mail.com"
+          />
+          <label class="auth__group">
+            <span class="auth__label">Name</span>
+            <span class="auth__input-group">
+              <input
+                class="auth__input-info"
+                type="text"
+                name="name"
+                title="Please enter your name. Username must be two words separated by space."
+                placeholder="John Jonson"
+                pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
+                minlength="8"
+                required
+              />
+              <svg class="auth__input-icon">
+                <use href="./images/symbol-defs.svg#icon-person"></use>
+              </svg>
+            </span>
+          </label>
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-email"></use>
+          </svg>
+        </span>
+      </label>
 
-        <label class="modal__confirm">
-          <input class="modal__confirm-checkbox visually-hidden" type="checkbox" name="confirm" />
-          <span class="modal__checkbox-icon"></span>
-          <span class="modal__confirm-conditions">Register new user</span>
-        </label>
+      <label class="auth__confirm">
+        <input class="auth__confirm-checkbox visually-hidden" type="checkbox" name="confirm" />
+        <span class="auth__checkbox-icon"></span>
+        <span class="auth__confirm-conditions">Register new user</span>
+      </label>
 
-        <button class="modal__button-submit" type="submit">Registration</button>
-        <button class="modal__button" type="button" data-modal-close>Cancel</button>
+      <div class="auth__button-group">
+        <button class="auth__button-submit" type="submit">Registration</button>
+        <button class="auth__button-submit" type="button" data-modal-close>Cancel</button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
+<!-- </div> -->
