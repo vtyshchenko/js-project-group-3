@@ -1,0 +1,77 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &__item {
+
+    &+&{
+      margin-left: 3px;
+    }
+
+    &>.pagination__link-current {
+      width: 40px;
+      height: 40px;
+      background-color: $accent-orange-color;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    color: $title-color;
+    font-size: 12px;
+    line-height: 1.33;
+    transition-property: color, background-color;
+    transition-duration: $anim-duration;
+    transition-timing-function: $anim-timing-function;
+    // background-color: $accent-orange-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $main-text-color;
+      background-color: $accent-orange-color;
+    }
+  }
+
+
+  &__link-current {
+    color: $main-text-color;
+  }
+
+  &__link-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: inherit;
+    background-color:$main-background-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      fill: $main-text-color;
+      background-color: $icon-color; //* потрібно узгодити
+      // transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+  }
+}
