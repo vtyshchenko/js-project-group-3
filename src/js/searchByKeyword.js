@@ -9,15 +9,22 @@ searchForm.addEventListener('submit', onSearch)
 
 function onSearch(e) {
     e.preventDefault()
+    if (e.currentTarget.elements.query.value === "") {
+        alert("Search result not successful. Enter the correct movie name")
+    } 
     API.fetchMovies(e.currentTarget.elements.query.value)
+        .then(movieStatus)
         .then(results => {
-            if (results.length === 0) {
-                return "Error"
-            } else {
-                onRenderMoviesCard(results);
-            } 
+            onRenderMoviesCard(results);
         })
         .catch(onFetchError)
+}
+
+function movieStatus(results) {
+  if (results.total_results === 0) {
+    alert("Specify your query")
+  }
+  return Promise.resolve(results)
 }
 
 function onRenderMoviesCard(movies) {
