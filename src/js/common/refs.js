@@ -20,6 +20,7 @@ const refs = {
   inputSearchRefs: document.querySelector('.header-form__input'),
   librListRefs: document.querySelector('.library-list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
+  logoRefs: document.querySelector('.logo'),
 };
 
 export default { themoviedb, refs };
