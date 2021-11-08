@@ -10,4 +10,17 @@ const themoviedb = {
 // https://api.themoviedb.org/3/movie/550?api_key=7cb7f2a84f35ebc2678afebafcd2cb5f
 // keyV4Auth - token
 
-export default { themoviedb };
+const refs = {
+  headerRefs: document.querySelector('header'),
+  navHomeRefs: document.querySelector('.js-home'),
+  navLibrRefs: document.querySelector('.js-lib'),
+  btnHomeRefs: document.querySelector('#btn-home'),
+  btnLibrRefs: document.querySelector('#btn-library'),
+  formSearchRefs: document.querySelector('.header-form'),
+  inputSearchRefs: document.querySelector('.header-form__input'),
+  librListRefs: document.querySelector('.library-list'),
+  btnSearchRefs: document.querySelectorAll('.header-form__button'),
+  logoRefs: document.querySelector('.logo'),
+};
+
+export default { themoviedb, refs };
