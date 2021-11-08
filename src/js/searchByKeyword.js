@@ -1,31 +1,27 @@
 import API from './apiService';
 import movieCardTpl from './movie.hbs';
+import refs from './common/refs';
 
-const inputRef = document.querySelector('.search-input');
-// console.log(inputRef);
 const containerRef = document.querySelector('.my-container')
-inputRef.addEventListener('input', onSearch);
-// console.log(5);
+const searchForm = document.querySelector('#search-form')
+
+searchForm.addEventListener('submit', onSearch)
+
 function onSearch(e) {
-    // searchQuery.value = e.currentTarget.elements.query.value     //inputRef.value.trim();
-    // console.log(searchQuery.value);
     e.preventDefault()
-    console.log(e.target.value);
-    API.fetchMovies(e.target.value.trim())
+    API.fetchMovies(e.currentTarget.elements.query.value)
         .then(results => {
-            // if (results.status === 404) {
-            //     return "Search result not successful. Enter the correct movie name!"
-            // } else {
+            if (results.length === 0) {
+                return "Error"
+            } else {
                 onRenderMoviesCard(results);
-            // } 
+            } 
         })
         .catch(onFetchError)
 }
 
-function onRenderMoviesCard(results) {
-    console.log(results.results);
-    const markup = movieCardTpl(results.results);
-    console.log(markup);
+function onRenderMoviesCard(movies) {
+    const markup = movieCardTpl(movies.results);
     containerRef.innerHTML = markup;
 }
 
