@@ -8,7 +8,8 @@ const{
     btnLibrRefs,
     formSearchRefs,
     inputSearchRefs,
-    librListRefs} = refs.refs
+    librListRefs,
+    logoRefs} = refs.refs
     
     const currentHeader = {
         home: 'header__home',
@@ -24,6 +25,7 @@ const{
 
         navLibrRefs.addEventListener('click', libOpenClick);
         navHomeRefs.addEventListener('click', homeOpenClick);
+        logoRefs.addEventListener('click',homeOpenClick);
         
         function libOpenClick() {
           headerRefs.classList.add(lib);
@@ -32,7 +34,7 @@ const{
           librListRefs.classList.remove(hidden);
           btnLibrRefs.classList.add(current);
           btnHomeRefs.classList.remove(current);
-        }
+        };
         
         function homeOpenClick() {
           headerRefs.classList.remove(lib);
@@ -41,6 +43,5 @@ const{
           librListRefs.classList.add(hidden);
           btnHomeRefs.classList.add(current);
           btnLibrRefs.classList.remove(current);
-        }
-        const logoRefs=document.querySelector('.logo')
-        logoRefs.addEventListener('click',homeOpenClick)
+        };
+      
