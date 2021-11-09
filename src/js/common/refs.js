@@ -6,8 +6,9 @@ const refs = {
   btnLibrRefs: document.querySelector('#btn-library'),
   formSearchRefs: document.querySelector('.header-form'),
   inputSearchRefs: document.querySelector('.header-form__input'),
-  librListRefs: document.querySelector('.library-list'),
+  librListRefs: document.querySelector('.library__list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
+  logoRefs: document.querySelector('.logo'),
 };
 
 export default { refs };
