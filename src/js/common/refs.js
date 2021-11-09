@@ -21,6 +21,11 @@ const refs = {
   librListRefs: document.querySelector('.library__list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
   logoRefs: document.querySelector('.logo'),
+  backdropRefs: document.querySelector('.backdrop'),
+  modalFilmContainerRef: document.querySelector('.modal-film-container'),
+  closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
+  modalWindowRefs: document.querySelector('.modal-film'),
+
 };
 
 export default { themoviedb, refs };
