@@ -57,7 +57,7 @@
 .movie-image {
   max-width: 240px;
   border-radius: 5px;
-  @media screen and (min-width: $mobile) and (max-width: $tablet - 1px) {
+  @media screen and (min-width: $mobile) and (max-width: 767px) {
     margin-bottom: 30px;
   }
   @media screen and (min-width: $tablet) {
