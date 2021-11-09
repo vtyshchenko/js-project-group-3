@@ -18,10 +18,10 @@ function fetchMovie(movie_id) {
 // ========== Популярні фільми
 
 function fetchPopularFilms(page) {
-  return fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page})`.then(response => {
+  return fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page}`).then(response => {
     return response.json()
   })
-)}
+}
 
 // ========== Список жанрів
  
