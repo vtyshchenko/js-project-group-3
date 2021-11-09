@@ -1,53 +1,66 @@
-.container {
+.team-container {
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.team__modal-title {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  position: relative;
 }
 
 .team__modal-button {
   position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
   top: 10px;
   right: 10px;
-  border-radius: 50%;
 }
 
-.team__modal-item {
-  margin-bottom: 30px;
+.team__modal-icon {
+  width: 14px;
+  height: 14px;
 }
 
-.team__photo {
-  max-width: 100%;
-  height: auto;
+.team__modal-title {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.team__modal-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .team__information-wrapper {
-  display: flex;
-  flex-direction: column;
   padding: 30px;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .team__name {
   margin-bottom: 15px;
+  justify-content: center;
 }
 
-@media screen and (min-width: $tablet) {
-  .team__modal-list {
+.team__modal-list {
+  @media screen and (min-width: $tablet) {
     display: flex;
     margin-top: -30px;
     margin-left: -30px;
     flex-wrap: wrap;
   }
+}
 
-  .team__modal-item {
+.team__modal-item {
+  @media screen and (min-width: $tablet) {
     margin-bottom: unset;
     flex-basis: calc((100% - 60px) / 2);
     margin-left: 30px;
@@ -55,8 +68,15 @@
   }
 }
 
-@media screen and (min-width: $desktop) {
-  .team__modal-item {
-    flex-basis: calc((100% - 90px) / 3);
+.team__modal-item {
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc((100% - 120px) / 4);
+  }
+}
+
+.team__information-wrapper {
+  @media screen and (min-width: $desktop) {
+    padding: 0;
+    margin-top: 15px;
   }
 }
