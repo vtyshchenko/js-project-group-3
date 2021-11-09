@@ -10,7 +10,7 @@ const refs = {
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
   logoRefs: document.querySelector('.logo'),
   backdropRefs: document.querySelector('.backdrop'),
-  modalFilmContainerRef: document.querySelector('.modal-film-container'),
+  modalFilmContainerRefs: document.querySelector('.modal-film-container'),
   closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
   modalWindowRefs: document.querySelector('.modal-film'),
   galleryListRefs: document.querySelector('.gallery-film-list'),

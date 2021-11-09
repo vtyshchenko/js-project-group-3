@@ -57,12 +57,11 @@
 .movie-image {
   max-width: 240px;
   border-radius: 5px;
-  @media screen and (max-width: calc($tablet - 1px)) {
-    margin-bottom: 30px;
-  }
+  margin-bottom: 30px;
   @media screen and (min-width: $tablet) {
     max-width: 264px;
     max-height: 374px;
+    margin-bottom: 0;
   }
   @media screen and (min-width: $desktop) {
     max-width: 396px;
@@ -148,4 +147,15 @@
 .movie-overview {
   margin-bottom: 20px;
   line-height: 1.67;
+}
+
+.btn-container {
+  @media screen and (max-width: calc($tablet - 1px)) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.btn-watched {
+  margin-right: 15px;
 }

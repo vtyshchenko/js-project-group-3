@@ -1,18 +1,9 @@
 import modalFilm from '../partials/hbs/modal-film.hbs'
-import API from '../js/apiService'
+import API from './apiService';
 import refs from './common/refs';
-const { modalFilmContainerRef, backdropRefs, closeBtnModalRefs, modalWindowRefs } = refs.refs
+const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs } = refs.refs
 
-// const containerRef = document.querySelector('.modal-film-container')
-const containerList = document.querySelector('.my-container')
-// const modalWindow = document.querySelector('.modal-film')
-// const backdrop = document.querySelector('.backdrop')
-// const closeBtnModal = document.querySelector('[data-action="close-btn-modal"]')
-
-closeBtnModalRefs.addEventListener('click', onCloseBtnModal)
-backdropRefs.addEventListener('click', onCloseBtnModal)
-window.addEventListener('keydown', onEcsKeyPress)
-containerList.addEventListener('click', onClickMovie)
+galleryListRefs.addEventListener('click', onClickMovie)
 
 function onClickMovie(e) {
   let temp = e.target
@@ -27,20 +18,25 @@ function onClickMovie(e) {
   }
   API.fetchMovie(temp.id).then(results => {
     if (temp.id == results.id) {
-      modalFilmContainerRef.insertAdjacentHTML('beforeend', modalFilm(results))
+      modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results))
     }
   })
-    
+  
+  closeBtnModalRefs.addEventListener('click', onCloseBtnModal)
+  backdropRefs.addEventListener('click', onCloseBtnModal)
+  window.addEventListener('keydown', onEcsKeyPress)
   backdropRefs.classList.remove('visually-hidden')
-  modalFilmContainerRef.classList.add('is-open')
+  modalFilmContainerRefs.classList.add('is-open')
   modalWindowRefs.classList.add('is-open')
 }
 
 function onCloseBtnModal() {
-    modalWindowRefs.classList.remove('is-open')
+  modalWindowRefs.classList.remove('is-open')
   backdropRefs.classList.add('visually-hidden')
   window.removeEventListener('keydown', onEcsKeyPress)
-  modalFilmContainerRef.innerHTML = ''
+  modalFilmContainerRefs.innerHTML = ''
+  closeBtnModalRefs.removeEventListener('click', onCloseBtnModal)
+  backdropRefs.removeEventListener('click', onCloseBtnModal)
 }
 
 function onEcsKeyPress(e) {
