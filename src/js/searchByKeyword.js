@@ -1,18 +1,18 @@
 import API from './apiService';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
-const { formSearchRefs, galleryListRefs } = refs.refs
-
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice, error } from '@pnotify/core';
 
+const { formSearchRefs, galleryListRefs } = refs.refs
+
 formSearchRefs.addEventListener('submit', onSearch)
 
 function onSearch(e) {
     e.preventDefault()
-    if (e.currentTarget.elements.query.value === "") {
+    if (!e.currentTarget.elements.query.value) {
         return notice({
             text: 'Please enter your search query.',
             delay: 3000,
@@ -41,7 +41,10 @@ function onRenderMoviesCard(movies) {
     galleryListRefs.innerHTML = markup;
 }
 
-function onFetchError(Error) {
-    Error;
+function onFetchError() {
+    return error({
+        text: 'Search result not successful',
+        delay: 4000,
+    });
 }
 
