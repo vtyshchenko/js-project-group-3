@@ -16,12 +16,10 @@
 .footer-cont__txt
 {
     font-family: $font-family;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 1.19;
     color: $secondary-text-color; 
-    position: static;
+    
     }
 
 .after{
@@ -49,6 +47,10 @@
         margin-right: 10px;
 }
 
+.link {
+    text-decoration: none;
+  }
+
 @media screen and (max-width: $mobile-min) {
 .footer{
     height: 100px;
@@ -61,7 +63,7 @@
 .footer-cont__txt
 {
     font-size: 13px;
-    line-height: 16px;
+    line-height: 1.23;
 }
 
 .footer-container__text{
