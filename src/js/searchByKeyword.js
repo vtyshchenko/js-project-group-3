@@ -1,16 +1,22 @@
 import API from './apiService';
-import movieCardTpl from './movie.hbs';
+import movieCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
+const { formSearchRefs, galleryListRefs } = refs.refs
 
-const containerRef = document.querySelector('.my-container')
-const searchForm = document.querySelector('#search-form')
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/desktop/dist/PNotifyDesktop';
+import '@pnotify/core/dist/BrightTheme.css';
+import { notice, error } from '@pnotify/core';
 
-searchForm.addEventListener('submit', onSearch)
+formSearchRefs.addEventListener('submit', onSearch)
 
 function onSearch(e) {
     e.preventDefault()
     if (e.currentTarget.elements.query.value === "") {
-        alert("Search result not successful. Enter the correct movie name")
+        return notice({
+            text: 'Please enter your search query.',
+            delay: 3000,
+        });
     } 
     API.fetchMovies(e.currentTarget.elements.query.value)
         .then(movieStatus)
@@ -22,16 +28,20 @@ function onSearch(e) {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    alert("Specify your query")
+    return error({
+            text: 'Search result not successful. Enter the correct movie name!',
+            delay: 4000,
+        });
   }
   return Promise.resolve(results)
 }
 
 function onRenderMoviesCard(movies) {
     const markup = movieCardTpl(movies.results);
-    containerRef.innerHTML = markup;
+    galleryListRefs.innerHTML = markup;
 }
 
 function onFetchError(Error) {
     Error;
 }
+

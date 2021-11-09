@@ -9,6 +9,7 @@ const refs = {
   librListRefs: document.querySelector('.library__list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
   logoRefs: document.querySelector('.logo'),
+  galleryListRefs: document.querySelector('.gallery-film-list'),
 };
 
 export default { refs };
