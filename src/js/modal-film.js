@@ -14,17 +14,29 @@ window.addEventListener('keydown', onEcsKeyPress)
 containerList.addEventListener('click', onClickMovie)
 
 function onClickMovie(e) {
-  API.fetchMovie(e.target.id).then(results => {
-    console.log(e.target.id)
+  // console.log(e.target.id);
+  console.dir(e.target)
+  console.log(e.currentTarget);
+  let temp = e.target
+  if (e.target.nodeName !== 'LI') {
+    temp = e.target.parentNode;
+    while (temp.nodeName !== 'LI' && temp.nodeName !== 'BODY') {
+      temp = temp.parentNode
+      
+    }
+    if (temp.nodeName === 'BODY') {
+      return
+    }
+
+  }
+  console.log(temp.id);
+  API.fetchMovie(temp.id).then(results => {
     console.log(results.id)
-    if (e.target.id == results.id) {
+    if (temp.id == results.id) {
       containerRef.insertAdjacentHTML('beforeend', modalFilm(results))
     }
   })
     
-  if (e.target.nodeName !== 'IMG') {
-    return
-  }
   backdrop.classList.remove('visually-hidden')
   containerRef.classList.add('is-open')
   modalWindow.classList.add('is-open')
