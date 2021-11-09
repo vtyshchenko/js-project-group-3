@@ -3,8 +3,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 60px;
 
   &__list {
     display: flex;
@@ -41,7 +41,6 @@
     transition-property: color, background-color;
     transition-duration: $anim-duration;
     transition-timing-function: $anim-timing-function;
-    // background-color: $accent-orange-color;
 
     &:hover,
     &:focus,
@@ -69,9 +68,9 @@
     &:hover,
     &:focus,
     &:active {
-      fill: $main-text-color;
-      background-color: $icon-color; //* потрібно узгодити
-      // transform: matrix(-1, 0, 0, 1, 0, 0);
+      fill: $main-text-color; //* не перебивається колір
+      background-color: $main-background-color; //* потрібно узгодити
+      transform: scale(1.5);
     }
   }
 }
