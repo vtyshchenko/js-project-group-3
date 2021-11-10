@@ -1,21 +1,25 @@
 import movieCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
-import { get, getUser, data, getData, setKey } from './common/api-data';
-// import { onClickMovie } from './modal-film';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, WATCHED, QUEUE } = refs.refs
+import { get, getUser } from './common/api-data';
+const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
-
+headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
 function onWatchedBtnClick(e) {
     let name = getUser()
     let data = get(name)
     
-    console.log(data.watched);
+    const markup = movieCardTpl(data.watched);
+    galleryListRefs.innerHTML = markup;
 }
 
-// function onQueueBtnClick(e){
-//   let name = getUser()
-//     get(name, QUEUE, idMovie.id)
-// }
+
+function onQueueBtnClick(e){
+    let name = getUser()
+    let data = get(name)
+    
+    const markup = movieCardTpl(data.queue);
+    galleryListRefs.innerHTML = markup;
+}
 
 
