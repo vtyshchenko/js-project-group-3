@@ -1,21 +1,16 @@
 import modalFilm from '../partials/hbs/modal-film.hbs'
 import API from './apiService';
 import refs from './common/refs';
-const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs } = refs.refs
+const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs, WATCHED, QUEUE, watchedBtnRefs, queueBtnRefs } = refs.refs
+
+import { move, put, getUser } from './common/api-data';
 
 galleryListRefs.addEventListener('click', onClickMovie)
 
-const watchedBtn = document.querySelector('.btn-watched')
-const queueBtn = document.querySelector('.btn-queue')
 
-watchedBtn.addEventListener('click', onClickWatchedBtn)
-queueBtn.addEventListener('click', onClickQueueBtn)
+let idMovie
 
-function onClickWatchedBtn(e){
-console.log(e.target)
-}
-
-function onClickMovie(e) {
+async function onClickMovie(e) {
   let temp = e.target
   if (e.target.nodeName !== 'LI') {
     temp = e.target.parentNode;
@@ -26,19 +21,35 @@ function onClickMovie(e) {
       return
     }
   }
-  API.fetchMovie(temp.id).then(results => {
+   idMovie = await API.fetchMovie(temp.id).then(results => {
     if (temp.id == results.id) {
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results))
+      return results
     }
   })
-  
+
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal)
   backdropRefs.addEventListener('click', onCloseBtnModal)
   window.addEventListener('keydown', onEcsKeyPress)
+  watchedBtnRefs.addEventListener('click', onClickWatchedBtn)
+  queueBtnRefs.addEventListener('click', onClickQueueBtn)
+
+
   backdropRefs.classList.remove('visually-hidden')
   modalFilmContainerRefs.classList.add('is-open')
   modalWindowRefs.classList.add('is-open')
 }
+
+function onClickWatchedBtn(e){
+let name = getUser()
+move(name, QUEUE, WATCHED, idMovie.id)
+}
+
+function onClickQueueBtn(e){
+  let name = getUser()
+  move(name, WATCHED, QUEUE, idMovie.id)
+}
+ 
 
 function onCloseBtnModal() {
   modalWindowRefs.classList.remove('is-open')
@@ -55,3 +66,4 @@ function onEcsKeyPress(e) {
   }
   onCloseBtnModal()
 }
+

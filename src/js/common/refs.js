@@ -10,10 +10,12 @@ const refs = {
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
   logoRefs: document.querySelector('.logo'),
   backdropRefs: document.querySelector('.backdrop'),
-  modalFilmContainerRefs: document.querySelector('.modal-film-container'),
+  modalFilmContainerRefs: document.querySelector('.movie-container-film'),
   closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
   modalWindowRefs: document.querySelector('.modal-film'),
   galleryListRefs: document.querySelector('.gallery-film-list'),
+  watchedBtnRefs: document.querySelector('.btn-watched'),
+  queueBtnRefs: document.querySelector('.btn-queue'),
   WATCHED:'watched',
   QUEUE:'queue',
 };
