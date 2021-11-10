@@ -1,5 +1,24 @@
 <!-- header -->
 <header class="header header__home">
+
+  <div class="theme-switch">
+    <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+      <use href="./images/sprite.svg#sun "></use>
+    </svg>
+
+    <div class="theme-switch__control">
+      <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+        aria-label="Переключить между тёмной и светлой темой" />
+      <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+      </label>
+      <div aria-hidden="true" class="theme-switch__marker"></div>
+    </div>
+
+    <svg class="theme-switch__icon" aria-label="Иконка луны">
+      <use href="./images/sprite.svg#moon"></use>
+    </svg>
+  </div>
+
   <div class="container">
     <div class=" header__wrapper">
       <a href="#" class="link logo">
@@ -9,31 +28,28 @@
       <nav class="nav">
         <ul class="list nav__list">
           <li class="nav__item js-home">
-            <button type="button" 
-            class="nav__btn current" id="btn-home">Home</button>
+            <button type="button" class="nav__btn current" id="btn-home">Home</button>
           </li>
           <li class="nav__item js-lib">
-            <button type="button" 
-            class="nav__btn" id="btn-library">My library</button>
+            <button type="button" class="nav__btn" id="btn-library">My library</button>
           </li>
         </ul>
       </nav>
     </div>
     <form action="" class="header-form">
-      <input class="header-form__input" type="text" name="query" 
-      placeholder="Поиск фильмов"></input>
+      <input class="header-form__input" type="text" name="query" placeholder="Поиск фильмов"></input>
       <button type="submit" class="header-form__button"></button>
     </form>
     <ul class="library__list is-hidden list">
       <li class="library__item">
-        <button class="btn__watched" id="btn-watched" type="button" >
+        <button class="btn__watched" id="btn-watched" type="button">
           Watched</button>
-        </li>
+      </li>
       <li class="library__item">
-        <button class="btn__queue" id="btn-queue" type="button" >
+        <button class="btn__queue" id="btn-queue" type="button">
           Queue</button>
-        </li>
-      </ul>
+      </li>
+    </ul>
   </div>
 
 </header>
