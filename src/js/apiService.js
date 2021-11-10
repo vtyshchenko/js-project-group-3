@@ -26,7 +26,7 @@ function fetchPopularFilms(page) {
 // ========== Список жанрів
  
 function fetchGenres() {
-  fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`).then(response => {
+ return fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`).then(response => {
     return response.json()
   })
 }
