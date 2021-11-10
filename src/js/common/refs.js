@@ -9,7 +9,13 @@ const refs = {
   librListRefs: document.querySelector('.library__list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
   logoRefs: document.querySelector('.logo'),
+  backdropRefs: document.querySelector('.backdrop'),
+  modalFilmContainerRefs: document.querySelector('.modal-film-container'),
+  closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
+  modalWindowRefs: document.querySelector('.modal-film'),
   galleryListRefs: document.querySelector('.gallery-film-list'),
+  toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
+  bodyRefs: document.querySelector('body'),
 };
 
 export default { refs };

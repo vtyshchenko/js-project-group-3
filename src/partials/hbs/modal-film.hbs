@@ -1,0 +1,28 @@
+<div class="movie-container" id="{{id}}">
+    <img class="movie-image" src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}">
+    <div class="tablet-movie-container">
+    <h1 class="movie-title">{{title}}</h1>
+    <div class="movie-flex">
+    <ul class="movie-flex__list">
+        <li class="movie-flex__title">Vote / Votes</li>
+        <li class="movie-flex__title">Popularity</li>
+        <li class="movie-flex__title">Original Title</li>
+        <li class="movie-flex__title">Genre</li>
+    </ul>
+    <ul class="movie-flex__list">
+        <li class="movie-flex__value"><span class="movie-flex__vote">{{vote_average}}</span> <span class="movie-flex__slash">/</span><span class="movie-flex__votes">{{vote_count}}</span></li>
+        <li class="movie-flex__value">{{popularity}}</li>
+        <li class="movie-flex__value">{{original_title}}</li>
+        {{#each genres}}
+        <li class="movie-flex__value">{{name}}</li>
+        {{/each}}
+    </ul>
+    </div>
+    <h2 class="movie-title__desc">About</h2>
+    <p class="movie-overview">{{overview}}</p>
+    <div class="btn-container">
+    <button class="btn-watched button-add" type="button">add to Watched</button>
+    <button class="btn-queue button-add" type="button">add to queue</button>
+    </div>
+    </div>
+</div>
