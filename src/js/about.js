@@ -1,4 +1,3 @@
-import refs from "./common/refs";
 
 (() => {
   const refs = {
