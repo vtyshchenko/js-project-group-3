@@ -19,6 +19,7 @@
     "url": "https://github.com/vtyshchenko/project-filmoteka/issues"
   },
   "dependencies": {
+    "@pnotify/desktop": "^5.2.0",
     "animate.css": "^4.1.1",
     "auth": "^0.0.9",
     "firebase": "^9.3.0",
