@@ -26,7 +26,7 @@ async function onClickMovie(e) {
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results))
       return results
     }
-  })
+   })
 
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal)
   backdropRefs.addEventListener('click', onCloseBtnModal)
@@ -42,12 +42,12 @@ async function onClickMovie(e) {
 
 function onClickWatchedBtn(e){
 let name = getUser()
-move(name, QUEUE, WATCHED, idMovie.id)
+  move(name, QUEUE, WATCHED, idMovie)
 }
 
 function onClickQueueBtn(e){
   let name = getUser()
-  move(name, WATCHED, QUEUE, idMovie.id)
+  move(name, WATCHED, QUEUE, idMovie)
 }
  
 
