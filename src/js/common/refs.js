@@ -18,6 +18,9 @@ const refs = {
   queueBtnRefs: document.querySelector('.btn-queue'),
   WATCHED:'watched',
   QUEUE:'queue',
+  toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
+  bodyRefs: document.querySelector('body'),
+
 };
 
 export default { refs };
