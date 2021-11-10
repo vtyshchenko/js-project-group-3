@@ -21,6 +21,8 @@ function onSearch(e) {
     API.fetchMovies(e.currentTarget.elements.query.value)
         .then(movieStatus)
         .then(results => {
+            localStorage.setItem("typePages", "search by keyword");
+            localStorage.setItem("totalPages", results.total_pages);
             onRenderMoviesCard(results);
         })
         .catch(onFetchError)
@@ -28,10 +30,7 @@ function onSearch(e) {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    return error({
-            text: 'Search result not successful. Enter the correct movie name!',
-            delay: 4000,
-        });
+    onFetchError()
   }
   return Promise.resolve(results)
 }
@@ -43,7 +42,7 @@ function onRenderMoviesCard(movies) {
 
 function onFetchError() {
     return error({
-        text: 'Search result not successful',
+        text: 'Search result not successful. Enter the correct movie name!',
         delay: 4000,
     });
 }
