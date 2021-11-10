@@ -5,6 +5,16 @@ const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs
 
 galleryListRefs.addEventListener('click', onClickMovie)
 
+const watchedBtn = document.querySelector('.btn-watched')
+const queueBtn = document.querySelector('.btn-queue')
+
+watchedBtn.addEventListener('click', onClickWatchedBtn)
+queueBtn.addEventListener('click', onClickQueueBtn)
+
+function onClickWatchedBtn(e){
+console.log(e.target)
+}
+
 function onClickMovie(e) {
   let temp = e.target
   if (e.target.nodeName !== 'LI') {

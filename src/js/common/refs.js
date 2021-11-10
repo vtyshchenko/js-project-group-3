@@ -14,6 +14,8 @@ const refs = {
   closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
   modalWindowRefs: document.querySelector('.modal-film'),
   galleryListRefs: document.querySelector('.gallery-film-list'),
+  WATCHED:'watched',
+  QUEUE:'queue',
 };
 
 export default { refs };
