@@ -92,14 +92,14 @@ function addData(data, value) {
 function getData() {
   let data = localStorage.getItem('themoviedb');
   if (!data) {
-    return null;
+    return {};
   }
 
   try {
     return JSON.parse(data);
   } catch (error) {
     console.log(`Something happened: ${error}`);
-    return null;
+    return {};
   }
 }
 
