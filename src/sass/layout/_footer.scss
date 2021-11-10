@@ -6,20 +6,17 @@
 .footer-cont{
     display: flex;
     flex-direction: row;
-    align-items:center;
     justify-content: center;
     margin: 0 auto;
     padding-top: 30px;
     }
     
 
-.footer-cont__txt
-{
+.footer-cont__txt{
     font-family: $font-family;
     font-size: 16px;
     line-height: 1.19;
     color: $secondary-text-color; 
-    
     }
 
 .after{
@@ -41,41 +38,48 @@
     display: flex;
     }
     
+ .link {
+    text-decoration: none;
+  }   
+  
 .icon-heart{
     @include settings__icons($main-orange-color, 18px, 18px);
         margin-left: 10px;
         margin-right: 10px;
 }
 
-.link {
-    text-decoration: none;
-  }
 
-@media screen and (max-width: $mobile-min) {
 .footer{
-    height: 100px;
+    @media screen and (min-width: $mobile-min) {
+        height: 100px;
+}
 }
 
 .footer-cont{
-    flex-wrap: wrap;
+    @media screen and (min-width: $mobile-min) {
+        flex-wrap: wrap;
+}
 }
 
-.footer-cont__txt
-{
-    font-size: 13px;
-    line-height: 1.23;
+.footer-cont__txt{
+    @media screen and (min-width: $mobile-min) {
+        font-size: 13px;
+        line-height: 1.23;
+}
 }
 
 .footer-container__text{
-    padding-bottom: 10px;
+    @media screen and (min-width: $mobile-min) {
+        padding-bottom: 10px;
 }
-        
+}
+
 .after{
+    @media screen and (min-width: $mobile-min) {
     &::after{
         width: 97px;
         margin-left: 20px;
     }
 }
 }
-    
- 
+
