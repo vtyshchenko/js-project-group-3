@@ -14,6 +14,8 @@ const refs = {
   closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
   modalWindowRefs: document.querySelector('.modal-film'),
   galleryListRefs: document.querySelector('.gallery-film-list'),
+  toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
+  bodyRefs: document.querySelector('body'),
 };
 
 export default { refs };
