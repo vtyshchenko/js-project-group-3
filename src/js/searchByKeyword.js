@@ -21,9 +21,9 @@ function onSearch(e) {
     API.fetchMovies(e.currentTarget.elements.query.value)
         .then(movieStatus)
         .then(results => {
-            localStorage.setItem("typePages", "search by keyword");
-            localStorage.setItem("totalPages", results.total_pages);
             onRenderMoviesCard(results);
+            localStorage.setItem("pageType", "search by keyword");
+            localStorage.setItem("totalPages", results.total_pages);   
         })
         .catch(onFetchError)
 }
