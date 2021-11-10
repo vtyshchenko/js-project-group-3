@@ -1,12 +1,4 @@
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
-import 'firebase/database';
-import 'firebase/storage';
-import 'firebase/messaging';
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from 'firebase/analytics';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -16,94 +8,30 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 
-export default function init() {
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: 'AIzaSyCGJzBOsXG8poQB0hOgZgBuDv87LmyxPwk',
-    authDomain: 'project-filmoteka.firebaseapp.com',
-    projectId: 'project-filmoteka',
-    storageBucket: 'project-filmoteka.appspot.com',
-    messagingSenderId: '752565238788',
-    appId: '1:752565238788:web:5f9744ba69c8ecc4964951',
-    measurementId: 'G-VENZM40NT5',
-  };
-  // Initialize Firebase
-  // const app =
-  initializeApp(firebaseConfig);
-  // console.log('app', app);
-  // const analytics = getAnalytics(app);
-  // console.log('analytics', analytics);
-}
+const firebaseConfig = {
+  apiKey: 'AIzaSyCGJzBOsXG8poQB0hOgZgBuDv87LmyxPwk',
+  authDomain: 'project-filmoteka.firebaseapp.com',
+  projectId: 'project-filmoteka',
+  storageBucket: 'project-filmoteka.appspot.com',
+  messagingSenderId: '752565238788',
+  appId: '1:752565238788:web:5f9744ba69c8ecc4964951',
+  measurementId: 'G-VENZM40NT5',
+};
 
-function authintification(email, password) {
-  const auth = getAuth(auth, email, password);
-  auth.languageCode = 'ua';
+export function init() {
+  console.log('initializeApp', initializeApp);
+  const app = initializeApp(firebaseConfig, 'filmoteka');
+  console.log('app', app);
+  let auth = getAuth(app);
+  console.log('auth', auth);
+  // const auth = getAuth(auth, email, password);
+  console.log('app.database()', app.database());
 
-  createNewUser();
-  // existing users
-  signInWithExistingUser(auth, email, password);
-
-  onAuthStateChanged(auth, user => {
+  auth.onAuthStateChanged(user => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      console.log(`uid = ${uid}`);
+      console.log('user', user);
     } else {
-      console.log('Buy');
+      console.log('error user', user);
     }
   });
-}
-
-async function createNewUser(auth, email, password) {
-  // new user
-  return await createUserWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
-}
-
-async function signInWithExistingUser(auth, email, password) {
-  // existing users
-  return await signInWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
-}
-
-function onError(error) {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  console.log(`errorCode = ${errorCode}\nerrorMessage = ${errorMessage}`);
-}
-
-function onSignIn(userCredential) {
-  // Signed in
-  const user = userCredential.user;
-  console.log(`user = ${user}`);
-  return user;
-}
-
-function signInGoogleAcc() {
-  const provider = new GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
-  signInWithPopup(auth, provider)
-    .then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      return { user, token };
-    })
-    .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(
-        `errorCode = ${errorCode}\nerrorMessage = ${errorMessage}\nemail = ${email}\ncredential = ${credential}\n`,
-      );
-    });
 }
