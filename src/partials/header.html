@@ -1,4 +1,39 @@
 <!-- header -->
-<header class="header">
-  <div class="container"><p>HEADER</p></div>
+<header class="header header__home">
+  <div class="container">
+    <div class=" header__wrapper">
+      <a href="#" class="link logo">
+        <span class="logo__icon"></span>
+        <span class="logo__label">Filmoteka</span>
+      </a>
+      <nav class="nav">
+        <ul class="list nav__list">
+          <li class="nav__item js-home">
+            <button type="button" 
+            class="nav__btn current" id="btn-home">Home</button>
+          </li>
+          <li class="nav__item js-lib">
+            <button type="button" 
+            class="nav__btn" id="btn-library">My library</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <form action="" class="header-form">
+      <input class="header-form__input" type="text" name="query" 
+      placeholder="Поиск фильмов"></input>
+      <button type="submit" class="header-form__button"></button>
+    </form>
+    <ul class="library__list is-hidden list">
+      <li class="library__item">
+        <button class="btn__watched" id="btn-watched" type="button" >
+          Watched</button>
+        </li>
+      <li class="library__item">
+        <button class="btn__queue" id="btn-queue" type="button" >
+          Queue</button>
+        </li>
+      </ul>
+  </div>
+
 </header>
