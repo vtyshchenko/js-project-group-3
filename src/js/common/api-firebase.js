@@ -1,3 +1,9 @@
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage';
+import 'firebase/messaging';
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 // import { getAnalytics } from 'firebase/analytics';
@@ -25,7 +31,8 @@ export default function init() {
     measurementId: 'G-VENZM40NT5',
   };
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  // const app =
+  initializeApp(firebaseConfig);
   // console.log('app', app);
   // const analytics = getAnalytics(app);
   // console.log('analytics', analytics);
@@ -51,14 +58,14 @@ function authintification(email, password) {
   });
 }
 
-function createNewUser(auth, email, password) {
+async function createNewUser(auth, email, password) {
   // new user
-  createUserWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
+  return await createUserWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
 }
 
-function signInWithExistingUser(auth, email, password) {
+async function signInWithExistingUser(auth, email, password) {
   // existing users
-  signInWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
+  return await signInWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
 }
 
 function onError(error) {
