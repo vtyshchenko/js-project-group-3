@@ -1,21 +1,21 @@
 export function del(user, key, data) {
   if (!user) {
-    return false;
+    return true;
   }
 
   let tmp = getData();
   if (!tmp || !tmp[user] || !tmp[user][key]) {
-    return false;
+    return true;
   }
 
   tmp[user][key] = tmp[user][key].filter(item => item != data);
   return saveData(tmp);
 }
 
-export function move(user, key_from, key_to, data) {
-  let res = del(user, key_from, data);
+export function move(user, keyFrom, keyTo, data) {
+  let res = del(user, keyFrom, data);
   if (res) {
-    res = put(user, key_to, data);
+    res = put(user, keyTo, data);
   }
   return res;
 }
@@ -47,6 +47,15 @@ export function put(user, key, data) {
   tmp = checkUser(tmp, user);
   tmp[user] = setKey(tmp[user], key, data);
   return saveData(tmp);
+}
+
+export function getUser() {
+  let tmp = getData();
+  if (!tmp.loginUser) {
+    tmp.loginUser = 'local';
+    saveData(tmp);
+  }
+  return tmp.loginUser;
 }
 
 function checkUser(data, user) {
@@ -83,14 +92,14 @@ function addData(data, value) {
 function getData() {
   let data = localStorage.getItem('themoviedb');
   if (!data) {
-    return null;
+    return {};
   }
 
   try {
     return JSON.parse(data);
   } catch (error) {
     console.log(`Something happened: ${error}`);
-    return null;
+    return {};
   }
 }
 
