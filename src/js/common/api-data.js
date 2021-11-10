@@ -1,18 +1,40 @@
+export function del(user, key, data) {
+  if (!user) {
+    return false;
+  }
+
+  let tmp = getData();
+  if (!tmp || !tmp[user] || !tmp[user][key]) {
+    return false;
+  }
+
+  tmp[user][key] = tmp[user][key].filter(item => item != data);
+  return saveData(tmp);
+}
+
+export function move(user, key_from, key_to, data) {
+  let res = del(user, key_from, data);
+  if (res) {
+    res = put(user, key_to, data);
+  }
+  return res;
+}
+
 export function get(user) {
   let data = getData();
 
   if (!data) {
     return [];
+  }
+
+  if (!user) {
+    return data;
+  }
+
+  if (!data[user]) {
+    return [];
   } else {
-    if (!user) {
-      return data;
-    } else {
-      if (!data[user]) {
-        return [];
-      } else {
-        return data[user];
-      }
-    }
+    return data[user];
   }
 }
 
@@ -24,14 +46,7 @@ export function put(user, key, data) {
   let tmp = getData();
   tmp = checkUser(tmp, user);
   tmp[user] = setKey(tmp[user], key, data);
-  try {
-    tmp = JSON.stringify(tmp);
-    localStorage.setItem('themoviedb', tmp);
-    return true;
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return false;
-  }
+  return saveData(tmp);
 }
 
 function checkUser(data, user) {
@@ -67,7 +82,6 @@ function addData(data, value) {
 
 function getData() {
   let data = localStorage.getItem('themoviedb');
-  console.log('data', data);
   if (!data) {
     return null;
   }
@@ -77,5 +91,16 @@ function getData() {
   } catch (error) {
     console.log(`Something happened: ${error}`);
     return null;
+  }
+}
+
+function saveData(data) {
+  try {
+    let tmp = JSON.stringify(data);
+    localStorage.setItem('themoviedb', tmp);
+    return true;
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return false;
   }
 }
