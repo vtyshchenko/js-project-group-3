@@ -1,5 +1,7 @@
 import API from './apiService';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
+import { onSearchYear } from './searchGenresAndYear.js';
+import { onSearchGenresList } from './searchGenresAndYear.js';
 import refs from './common/refs';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
@@ -16,9 +18,11 @@ function onSearch() {
         return notice({
             text: 'Please enter your search query.',
             delay: 3000,
-        });
+        })
     } 
     API.fetchMovies(inputSearchRefs.value.trim())
+        .then(onSearchYear)
+        .then(onSearchGenresList)
         .then(movieStatus)
         .then(results => {
             onRenderMoviesCard(results);
@@ -30,7 +34,6 @@ function onSearch() {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onFetchError()
     onRenderMoviesCard(movies)
   }
   return Promise.resolve(results)
