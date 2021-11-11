@@ -84,7 +84,13 @@ function setKey(data, key, value) {
 }
 
 function addData(data, value) {
-  if (data.indexOf(value) === -1) {
+  let res = -1;
+  for (const obj of data) {
+    if (obj.id === value.id) {
+      res = 1;
+    }
+  }
+  if (res === -1) {
     data.push(value);
   }
 }
