@@ -19,31 +19,67 @@ import buttonsTpl from '../partials/hbs/pagination.hbs';
 const wrapper = document.querySelector('.pagination-wrapper-js');
 const arrowLeft = document.querySelector('.arrow-left-js');
 const arrowRight = document.querySelector('.arrow-right-js');
-const initialPage = document.querySelector('.pagination__link-js');
 
-const page = 5;
+const firstPage = 1;
+const page = 14;
 const totalPages = 20;
+const countShowSumbols = 9;
+const MOVE_PAGE_TEXT = '...';
 
 function markupButton(totalPages, page) {
-  wrapper.innerHTML = '';
-  let beforePages = page - 1;
-  let afterPages = page + 1;
+  let beforePages;
+  let afterPages;
+  if (page > 0 && page < 6) {
+    beforePages = firstPage;
+  } else {
+    beforePages = page - 4;
+  }
 
-  if (page > 1) {
+  if (page < 17) {
+    afterPages = page + 4;
+  } else {
+    afterPages = totalPages;
+    beforePages = countShowSumbols + 3;
+  }
+
+  if (page === 1) {
     //*Зробити активною стрілку вліво
+    arrowLeft.classList.add('hidden');
+  }
+  let buttons = buttonsTpl(1);
+  if (page > 5) {
+    buttons += buttonsTpl(MOVE_PAGE_TEXT);
+  } else {
+    buttons += buttonsTpl(2);
+    afterPages = countShowSumbols;
   }
 
-  for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
-    if (page == pageLength) {
-      // page = initialPage;
-      // //*Додати клас "pagination__link-current"
-      // page.classList.add('pagination__link-current');
+  console.log('beforePages:', beforePages);
+  console.log('afterPages:', afterPages);
+  for (let pageLength = beforePages + 2; pageLength <= afterPages - 2; pageLength++) {
+    buttons += buttonsTpl(pageLength);
+  }
+  if (totalPages - page > 4) {
+    buttons += buttonsTpl(MOVE_PAGE_TEXT);
+  } else {
+    buttons += buttonsTpl(totalPages - 1);
+  }
+  buttons += buttonsTpl(totalPages);
+  wrapper.innerHTML = buttons;
+
+  const initialPage = document.querySelectorAll('.pagination__link-js');
+  console.log('🚀 ~ file: pagination.js ~ line 70 ~ markupButton ~ initialPage', initialPage);
+  for (const button of initialPage) {
+    if (button.innerText === String(page)) {
+      //*Додати клас "pagination__link-current"
+      button.classList.add('pagination__link-current');
+      break;
     }
-    wrapper.innerHTML += buttonsTpl(pageLength);
   }
 
-  if (page < totalPages) {
+  if (page === totalPages) {
     //*Зробити активною кнопку вправо
+    arrowRight.classList.add('hidden');
   }
 
   // wrapper.innerHTML = buttonsTpl(page);
