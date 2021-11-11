@@ -22,7 +22,6 @@
   transform: translate(-50%, 0);
   max-width: 280px;
   background-color: $main-text-color;
-  opacity: 0;
 
   @media screen and (max-width: $tablet) {
     padding: 50px 20px 40px 20px;
@@ -151,9 +150,9 @@
 }
 
 .btn-container {
-    display: flex;
-    justify-content: right;
-    margin-right: 10px;
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
   @media screen and (min-width: $desktop) {
     position: absolute;
     bottom: 30px;
