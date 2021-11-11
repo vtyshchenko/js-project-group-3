@@ -1,14 +1,30 @@
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    openModalBtnMenu: document.querySelector('[data-modal-open-modal]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
-  };
+import refs from './common/refs';
+const { backdropRefs, closeModalBtnRefs, openModalBtnRefs, modalRefs} = refs.refs
 
-  refs.closeModalBtn.addEventListener('click', toggleModal);
 
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
+  function onOpenTeamBtn() {
+    modalRefs.classList.toggle('is-hidden');
+    modalRefs.classList.toggle('is-open')
+    backdropRefs.classList.remove('visually-hidden')
+  window.addEventListener('keydown', onEcsKeyPress)
   }
-})();
+
+ closeModalBtnRefs.addEventListener('click', onCloseTeamBtn);
+openModalBtnRefs.addEventListener('click', onOpenTeamBtn);
+
+
+function onCloseTeamBtn() {
+  window.removeEventListener('keydown', onEcsKeyPress)
+  modalRefs.classList.remove('is-open')
+   openModalBtnRefs.removeEventListener('click', onOpenTeamBtn);
+  backdropRefs.classList.toggle('visually-hidden')
+  window.innerHTML = ''
+  
+}
+
+  function onEcsKeyPress(e) {
+  if (e.code !== 'Escape') {
+    return
+  }
+  onCloseTeamBtn()
+}
