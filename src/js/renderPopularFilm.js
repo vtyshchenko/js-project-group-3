@@ -2,7 +2,7 @@ import API from './apiService';
 import videoCardTpl from '../partials/hbs/video-card.hbs'
 import refs from './common/refs';
 import { onSearchYear } from './searchGenresAndYear.js'
-import {onSearchGenresList} from './searchGenresAndYear.js'
+import { onSearchGenresList } from './searchGenresAndYear.js'
 
 const {galleryListRefs, btnHomeRefs} = refs.refs
 
@@ -19,8 +19,8 @@ export default function onSearchPopularFilms(e, page) {
     }).then(onSaveGenres)
     
     API.fetchPopularFilms(page)
-        .then(onSearchYear)
         .then(onSearchGenresList)
+        .then(onSearchYear)
         .then(data => {
         localStorage.setItem("totalPages", data.total_pages);
         localStorage.setItem("pageType", 'popular');
