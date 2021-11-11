@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import 'firebase/database';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -18,14 +19,21 @@ const firebaseConfig = {
   measurementId: 'G-VENZM40NT5',
 };
 
-export function init() {
+export async function init() {
   console.log('initializeApp', initializeApp);
   const app = initializeApp(firebaseConfig, 'filmoteka');
   console.log('app', app);
   let auth = getAuth(app);
   console.log('auth', auth);
-  // const auth = getAuth(auth, email, password);
-  console.log('app.database()', app.database());
+  console.log('auth.currentUser', auth.currentUser);
+
+  if (!auth.currentUser) {
+    let UserCredential = await createUserWithEmailAndPassword(auth, 'test@gmail.com', 'test123')
+      .then(result => {
+        console.log('UserCredential = ', result);
+      })
+      .catch(console.log);
+  }
 
   auth.onAuthStateChanged(user => {
     if (user) {
