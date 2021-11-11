@@ -22,16 +22,15 @@ function onSearch(e) {
         .then(movieStatus)
         .then(results => {
             onRenderMoviesCard(results);
+            localStorage.setItem("pageType", "search by keyword");
+            localStorage.setItem("totalPages", results.total_pages);   
         })
         .catch(onFetchError)
 }
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    return error({
-            text: 'Search result not successful. Enter the correct movie name!',
-            delay: 4000,
-        });
+    onFetchError()
   }
   return Promise.resolve(results)
 }
@@ -43,7 +42,7 @@ function onRenderMoviesCard(movies) {
 
 function onFetchError() {
     return error({
-        text: 'Search result not successful',
+        text: 'Search result not successful. Enter the correct movie name!',
         delay: 4000,
     });
 }
