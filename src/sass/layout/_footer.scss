@@ -1,3 +1,4 @@
+
 .footer{
     background: $main-background-color;
     height: 77px;
@@ -31,7 +32,14 @@
     background-color: $secondary-text-color; 
     border-radius: 2px;
     margin-left: 25px;
+
+    @media screen and (min-width: $mobile-min) {
+        width: 97px;
+        margin-left: 20px;
     }
+
+    
+}
 }
 
 .footer-cont__text{
@@ -71,15 +79,6 @@
 .footer-container__text{
     @media screen and (min-width: $mobile-min) {
         padding-bottom: 10px;
-}
-}
-
-.after{
-    @media screen and (min-width: $mobile-min) {
-    &::after{
-        width: 97px;
-        margin-left: 20px;
-    }
 }
 }
 
