@@ -47,7 +47,6 @@ themeLocalStorage(inputChange);
 toggleThemeRefs.addEventListener('change', inputChange);
 function inputChange(evt) {
   const checkedInput = evt.target.checked;
-  console.log(checkedInput);
   if (checkedInput) {
     bodyRefs.classList = Theme.DARK;
   } else bodyRefs.classList = Theme.LIGHT;
@@ -55,7 +54,6 @@ function inputChange(evt) {
 }
 function themeLocalStorage(evt) {
   const saveTheme = localStorage.getItem('theme');
-  console.log(saveTheme);
   if (saveTheme === Theme.DARK) {
     toggleThemeRefs.checked = true;
     bodyRefs.classList = saveTheme;

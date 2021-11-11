@@ -15,8 +15,8 @@
   }
 
     @media screen and (min-width: $tablet) {
-       padding-top: 41px;
-        background-image: linear-gradient(
+         padding-top: 41px;
+         background-image: linear-gradient(
           $bg-image-darkening,
           $bg-image-darkening),
          url('../images/hero-home-tablet.png');
@@ -50,7 +50,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         height: 230px;
-        padding-top: 41px;
+        padding-top: 46px;
 
         @media screen and (min-device-pixel-ratio: 2),
         screen and (min-resolution: 192dpi),
@@ -60,7 +60,8 @@
       
 
     @media screen and (min-width: $tablet) {
-        background-image: linear-gradient(
+         padding-top: 41px;
+          background-image: linear-gradient(
           $bg-image-darkening,
           $bg-image-darkening),
          url('../images/hero-library-tablet.png');
@@ -277,10 +278,12 @@
 
 body.light-theme {
   background-color: $main-text-color;
+  fill: $main-text-color;
 }
 
 body.dark-theme {
-  background-color: $third-text-color;
+   background-color: $team-bg-color;
+   fill: $main-orange-color;
 }
 
 
@@ -297,7 +300,7 @@ body.dark-theme {
   color: currentColor;
   height: 20px;
   width: 26px;
-  fill: #FF6B08;
+ 
 }
 
 .theme-switch__control {
@@ -331,7 +334,7 @@ body.dark-theme {
   height: 100%;
   color: transparent;
   user-select: none;
-  background-color: #333;
+  background-color: $secondary-text-color;
   border-radius: inherit;
   z-index: 1;
   cursor: pointer;
@@ -345,15 +348,13 @@ body.dark-theme {
   border-radius: 50%;
   z-index: 2;
   pointer-events: none;
-  box-shadow: 0 1px 1px $bg-image-darkening; 
-  // box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 1px $secondary-text-color; 
   transform: translateX(3px);
   transition: transform $anim-duration var(--timing-function);
 }
 
 .theme-switch__toggle:checked + .theme-switch__track {
-  background-color: $icon-color;
-  //  background-color: #d3d3d4;
+  background-color: $main-orange-color;
 }
 
 .theme-switch__toggle:checked ~ .theme-switch__marker {
