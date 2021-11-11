@@ -1,0 +1,98 @@
+.team-container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: $team-bg-color;
+}
+
+.team__modal-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: $main-orange-color;
+}
+
+.team__modal-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.team__modal-title {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.team__modal-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.team__modal-item {
+  box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -webkit-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -moz-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+}
+
+.team__information-wrapper {
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.team__name {
+  margin-bottom: 15px;
+  justify-content: center;
+  color: $main-orange-color;
+}
+
+.team__modal-form {
+  @media screen and (min-width: $tablet) {
+    padding: 6px;
+  }
+}
+
+.team__modal-list {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    margin-top: -30px;
+    margin-left: -30px;
+    flex-wrap: wrap;
+  }
+}
+
+.team__modal-item {
+  @media screen and (min-width: $tablet) {
+    margin-bottom: unset;
+    flex-basis: calc((100% - 60px) / 2);
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+}
+
+.team__modal-item {
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc((100% - 120px) / 4);
+  }
+}
+
+.team__information-wrapper {
+  @media screen and (min-width: $desktop) {
+    padding: 0;
+    margin-top: 15px;
+  }
+}

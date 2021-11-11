@@ -12,11 +12,12 @@
 @import './components/button';
 @import './components/backdrop';
 @import './components/modal';
+@import './components/about';
 @import './components/modal_film';
-// @import './components/about';
 
 @import './layout/header';
 @import './layout/hero';
 @import './layout/pagination';
 @import './layout/video-card';
 @import './layout/footer';
+@import './components/spinner.scss';

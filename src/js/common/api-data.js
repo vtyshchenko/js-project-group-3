@@ -1,18 +1,40 @@
+export function del(user, key, data) {
+  if (!user) {
+    return true;
+  }
+
+  let tmp = getData();
+  if (!tmp || !tmp[user] || !tmp[user][key]) {
+    return true;
+  }
+
+  tmp[user][key] = tmp[user][key].filter(item => item != data);
+  return saveData(tmp);
+}
+
+export function move(user, keyFrom, keyTo, data) {
+  let res = del(user, keyFrom, data);
+  if (res) {
+    res = put(user, keyTo, data);
+  }
+  return res;
+}
+
 export function get(user) {
   let data = getData();
 
   if (!data) {
     return [];
+  }
+
+  if (!user) {
+    return data;
+  }
+
+  if (!data[user]) {
+    return [];
   } else {
-    if (!user) {
-      return data;
-    } else {
-      if (!data[user]) {
-        return [];
-      } else {
-        return data[user];
-      }
-    }
+    return data[user];
   }
 }
 
@@ -24,14 +46,16 @@ export function put(user, key, data) {
   let tmp = getData();
   tmp = checkUser(tmp, user);
   tmp[user] = setKey(tmp[user], key, data);
-  try {
-    tmp = JSON.stringify(tmp);
-    localStorage.setItem('themoviedb', tmp);
-    return true;
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return false;
+  return saveData(tmp);
+}
+
+export function getUser() {
+  let tmp = getData();
+  if (!tmp.loginUser) {
+    tmp.loginUser = 'local';
+    saveData(tmp);
   }
+  return tmp.loginUser;
 }
 
 function checkUser(data, user) {
@@ -60,22 +84,38 @@ function setKey(data, key, value) {
 }
 
 function addData(data, value) {
-  if (data.indexOf(value) === -1) {
+  let res = -1;
+  for (const obj of data) {
+    if (obj.id === value.id) {
+      res = 1;
+    }
+  }
+  if (res === -1) {
     data.push(value);
   }
 }
 
 function getData() {
   let data = localStorage.getItem('themoviedb');
-  console.log('data', data);
   if (!data) {
-    return null;
+    return {};
   }
 
   try {
     return JSON.parse(data);
   } catch (error) {
     console.log(`Something happened: ${error}`);
-    return null;
+    return {};
+  }
+}
+
+function saveData(data) {
+  try {
+    let tmp = JSON.stringify(data);
+    localStorage.setItem('themoviedb', tmp);
+    return true;
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return false;
   }
 }
