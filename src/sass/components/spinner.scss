@@ -1,7 +1,7 @@
 .mask {
   width: 100%;
   height: 100%;
-  background-color: $mask-kolor;
+  background-color: $spinner-mask-color;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -24,7 +24,7 @@
   bottom: 0;
   right: 0;
   margin: auto;
-  outline: 1px solid $color1;
+  outline: 1px solid $spinner-color1;
   filter: url(#goo);
   -o-filter: url(#goo);
   -ms-filter: url(#goo);
@@ -44,7 +44,7 @@
   width: 34px;
   height: 34px;
   border-radius: 49px;
-  background: $color2;
+  background: $spinner-color2;
   position: absolute;
   left: 50%;
   transform: translateY(0);
@@ -77,7 +77,7 @@
   -moz-animation: cssload-dot-rotate-1 4.6s 0s linear infinite;
 }
 .cssload-dot:nth-child(1):before {
-  background-color: $color3;
+  background-color: $spinner-color3;
   animation: cssload-dot-move 4.6s 0s ease infinite;
   -o-animation: cssload-dot-move 4.6s 0s ease infinite;
   -ms-animation: cssload-dot-move 4.6s 0s ease infinite;
@@ -93,7 +93,7 @@
   -moz-animation: cssload-dot-rotate-2 4.6s 1.15s linear infinite;
 }
 .cssload-dot:nth-child(2):before {
-  background-color: $color4;
+  background-color: $spinner-color4;
   animation: cssload-dot-move 4.6s 1.15s ease infinite;
   -o-animation: cssload-dot-move 4.6s 1.15s ease infinite;
   -ms-animation: cssload-dot-move 4.6s 1.15s ease infinite;
@@ -109,7 +109,7 @@
   -moz-animation: cssload-dot-rotate-3 4.6s 2.3s linear infinite;
 }
 .cssload-dot:nth-child(3):before {
-  background-color: $color5;
+  background-color: $spinner-color5;
   animation: cssload-dot-move 4.6s 2.3s ease infinite;
   -o-animation: cssload-dot-move 4.6s 2.3s ease infinite;
   -ms-animation: cssload-dot-move 4.6s 2.3s ease infinite;
@@ -125,7 +125,7 @@
   -moz-animation: cssload-dot-rotate-4 4.6s 3.45s linear infinite;
 }
 .cssload-dot:nth-child(4):before {
-  background-color: $color2;
+  background-color: $spinner-color2;
   animation: cssload-dot-move 4.6s 3.45s ease infinite;
   -o-animation: cssload-dot-move 4.6s 3.45s ease infinite;
   -ms-animation: cssload-dot-move 4.6s 3.45s ease infinite;
@@ -205,91 +205,91 @@
 
 @keyframes cssload-dot-colors {
   0% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
   25% {
-    background-color: $color3;
+    background-color: $spinner-color3;
   }
   50% {
-    background-color: $color4;
+    background-color: $spinner-color4;
   }
   75% {
-    background-color: $color5;
+    background-color: $spinner-color5;
   }
   100% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
 }
 
 @-o-keyframes cssload-dot-colors {
   0% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
   25% {
-    background-color: $color3;
+    background-color: $spinner-color3;
   }
   50% {
-    background-color: $color4;
+    background-color: $spinner-color4;
   }
   75% {
-    background-color: $color5;
+    background-color: $spinner-color5;
   }
   100% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
 }
 
 @-ms-keyframes cssload-dot-colors {
   0% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
   25% {
-    background-color: $color3;
+    background-color: $spinner-color3;
   }
   50% {
-    background-color: $color4;
+    background-color: $spinner-color4;
   }
   75% {
-    background-color: $color5;
+    background-color: $spinner-color5;
   }
   100% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
 }
 
 @-webkit-keyframes cssload-dot-colors {
   0% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
   25% {
-    background-color: $color3;
+    background-color: $spinner-color3;
   }
   50% {
-    background-color: $color4;
+    background-color: $spinner-color4;
   }
   75% {
-    background-color: $color5;
+    background-color: $spinner-color5;
   }
   100% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
 }
 
 @-moz-keyframes cssload-dot-colors {
   0% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
   25% {
-    background-color: $color3;
+    background-color: $spinner-color3;
   }
   50% {
-    background-color: $color4;
+    background-color: $spinner-color4;
   }
   75% {
-    background-color: $color5;
+    background-color: $spinner-color5;
   }
   100% {
-    background-color: $color2;
+    background-color: $spinner-color2;
   }
 }
 
