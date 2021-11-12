@@ -22,6 +22,11 @@ const refs = {
   bodyRefs: document.querySelector('body'),
   headerWatchedBtnRefs: document.querySelector('#btn-watched'),
   headerQueueBtnRefs: document.querySelector('#btn-queue'),
+    openModalBtnRefs: document.querySelector('[data-modal-open]'),
+    closeModalBtnRefs: document.querySelector('[data-modal-close]'),
+    modalRefs: document.querySelector('[data-modal]'),
+
+
 };
 
 export default { refs };
