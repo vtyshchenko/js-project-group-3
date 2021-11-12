@@ -1,4 +1,4 @@
-import watchedQueueTpl from '../partials/hbs/watchedQueue-markup.hbs'
+import watchedQueueTpl from '../partials/hbs/watched-queue-markup.hbs'
 import refs from './common/refs';
 import { get, getUser } from './common/api-data';
 const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs

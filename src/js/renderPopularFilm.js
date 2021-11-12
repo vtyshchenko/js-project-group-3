@@ -1,4 +1,4 @@
-import API from './apiService';
+import API from './api-service';
 import videoCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
 import { onSearchYear, onSearchGenresList } from './searchGenresAndYear.js';
