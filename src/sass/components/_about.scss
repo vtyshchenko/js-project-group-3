@@ -4,6 +4,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  background-color: $team-bg-color;
 }
 
 .team__modal-button {
@@ -17,6 +18,8 @@
   border-radius: 50%;
   top: 10px;
   right: 10px;
+  border: none;
+  background-color: $main-orange-color;
 }
 
 .team__modal-icon {
@@ -37,6 +40,12 @@
   flex-direction: column;
 }
 
+.team__modal-item {
+  box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -webkit-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -moz-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+}
+
 .team__information-wrapper {
   padding: 30px;
   justify-content: center;
@@ -48,6 +57,13 @@
 .team__name {
   margin-bottom: 15px;
   justify-content: center;
+  color: $main-orange-color;
+}
+
+.team__modal-form {
+  @media screen and (min-width: $tablet) {
+    padding: 6px;
+  }
 }
 
 .team__modal-list {

@@ -5,21 +5,24 @@ const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
-function onWatchedBtnClick(e) {
+    
+function onWatchedBtnClick() {
     let name = getUser()
     let data = get(name)
-    
-    const markup = movieCardTpl(data.watched);
-    galleryListRefs.innerHTML = markup;
+    galleryListRefs.innerHTML = movieCardTpl(data.watched);
+    clearHidden()
 }
 
-
-function onQueueBtnClick(e){
+function onQueueBtnClick() {
     let name = getUser()
     let data = get(name)
-    
-    const markup = movieCardTpl(data.queue);
-    galleryListRefs.innerHTML = markup;
+    galleryListRefs.innerHTML = movieCardTpl(data.queue);
+    clearHidden()
 }
 
-
+function clearHidden() {
+    const ratingRefs = document.querySelectorAll(".video-average")
+    for (const el of ratingRefs) {
+        el.classList.remove('is-hidden')
+    }
+}
