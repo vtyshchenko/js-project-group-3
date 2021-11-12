@@ -81,7 +81,6 @@ function removeMovieListenier() {
 }
 
 function onEcsKeyPress(e) {
-  console.log('TEXT');
   if (e.code === 'Escape') {
     removeMovieListenier()
   }

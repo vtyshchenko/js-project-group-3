@@ -20,8 +20,8 @@ function onSearch() {
     });
   }
   API.fetchMovies(inputSearchRefs.value.trim())
-    .then(onSearchGenresList)
     .then(onSearchYear)
+    .then(onSearchGenresList)
     .then(movieStatus)
     .then(results => {
       onRenderMoviesCard(results);
@@ -33,7 +33,7 @@ function onSearch() {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onRenderMoviesCard(movies);
+    onFetchError()
   }
   return Promise.resolve(results);
 }
