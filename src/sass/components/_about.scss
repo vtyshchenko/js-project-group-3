@@ -61,9 +61,13 @@
 }
 
 .team__name {
-  margin-bottom: 15px;
   justify-content: center;
   color: $main-orange-color;
+}
+
+.team__description {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .team__modal-form {
