@@ -18,7 +18,6 @@ function onCloseTeamBtn() {
   modalRefs.classList.remove('is-open')
    openModalBtnRefs.removeEventListener('click', onOpenTeamBtn);
   backdropRefs.classList.toggle('visually-hidden')
-  window.innerHTML = ''
   
 }
 
