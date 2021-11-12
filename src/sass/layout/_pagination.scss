@@ -6,6 +6,10 @@
   padding-top: 50px;
   padding-bottom: 60px;
 
+  &__wrapper{
+    display: flex;
+  }
+
   &__list {
     display: flex;
     flex-direction: row;
