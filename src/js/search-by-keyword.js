@@ -1,4 +1,4 @@
-import API from './apiService';
+import API from './api-service';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
 import { onSearchYear, onSearchGenresList } from './searchGenresAndYear.js';
 import refs from './common/refs';
@@ -33,7 +33,7 @@ function onSearch() {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onRenderMoviesCard(movies);
+    onFetchError()
   }
   return Promise.resolve(results);
 }
