@@ -14,7 +14,6 @@ export function onSearchGenresList(data) {
       let tmp = genres.find(genr => genr.id === item)
       return tmp.name
     })
-
       if (genreID.length === 0) {
           genreID = ["No genre"]
         }
