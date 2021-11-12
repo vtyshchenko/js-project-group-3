@@ -1,5 +1,5 @@
 import modalFilm from '../partials/hbs/modal-film.hbs'
-import API from './apiService';
+import API from './api-service';
 import refs from './common/refs';
 const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs, WATCHED, QUEUE, watchedBtnRefs, queueBtnRefs } = refs.refs
 
@@ -81,7 +81,6 @@ function removeMovieListenier() {
 }
 
 function onEcsKeyPress(e) {
-  console.log('TEXT');
   if (e.code === 'Escape') {
     removeMovieListenier()
   }
