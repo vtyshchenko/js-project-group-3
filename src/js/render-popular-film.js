@@ -1,7 +1,7 @@
 import API from './apiService';
 import videoCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
-import { onSearchYear, onSearchGenresList } from './searchGenresAndYear.js';
+import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 
 const { galleryListRefs, btnHomeRefs, logoRefs } = refs.refs;
 
