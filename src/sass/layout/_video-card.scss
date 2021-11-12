@@ -8,7 +8,6 @@
 
 .gallery-film-item {
   width: 280px;
-  height: 440px;
 
   margin: 0 auto;
   &:not(:last-child) {
@@ -24,10 +23,6 @@
   @media screen and (min-width: $desktop) {
     width: calc((100% - 90px) / 3);
   }
-}
-
-.video-card {
-  height: 440px;
 }
 
 .video-poster {
@@ -52,6 +47,7 @@
 .video-title {
   margin-bottom: 4px;
   line-height: 1.16;
+  letter-spacing: normal;
   text-transform: uppercase;
   color: $title-color;
 }
@@ -62,19 +58,15 @@
 }
 
 .video-average {
+  padding: 1px 0 0;
   margin-left: 10px;
 
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 36px;
-  height: 16px;
   line-height: 1.16;
   background-color: $main-orange-color;
   color: $main-text-color;
   border-radius: 5px;
-
-  &.is-hidden {
-    display: none;
-  }
 }
