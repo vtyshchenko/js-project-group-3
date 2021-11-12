@@ -20,8 +20,8 @@ function onSearch() {
     });
   }
   API.fetchMovies(inputSearchRefs.value.trim())
-    .then(onSearchGenresList)
     .then(onSearchYear)
+    .then(onSearchGenresList)
     .then(movieStatus)
     .then(results => {
       onRenderMoviesCard(results);
