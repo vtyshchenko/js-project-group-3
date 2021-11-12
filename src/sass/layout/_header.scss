@@ -300,6 +300,9 @@ body.dark-theme {
   color: currentColor;
   height: 20px;
   width: 26px;
+  &:not(:last-child){
+    margin-left: 20px;
+}
  
 }
 
