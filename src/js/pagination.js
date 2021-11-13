@@ -1,29 +1,12 @@
-import refs from './apiService.js';
+import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
+import onSearchPopularFilms from './renderPopularFilm.js';
 
-// const BASE_URL = 'https://api.themoviedb.org/3/';
-// const breakPoint = 'trending/';
-
-// function fetchPages() {
-//   fetch(`${BASE_URL}${breakPoint}all/day?api_key=${refs.themoviedb.keyV3Auth}`)
-//     .then(response => response.json())
-//     .then(result => {
-//       console.log(result);
-//       console.log(result.page);
-//       console.log(result.total_pages);
-//     });
-// }
-
-// fetchPages();
-
-const wrapper = document.querySelector('.pagination__wrapper-js');
-const arrowLeft = document.querySelector('.arrow-left-js');
-const arrowRight = document.querySelector('.arrow-right-js');
-const listernerEvent = document.querySelector('.pagination__wrapper-js');
+const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
 
 const firstPage = 1;
 let page = 1;
-const totalPages = 20;
+const totalPages = localStorage.getItem('totalPages');
 const countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
 
@@ -31,15 +14,17 @@ arrowLeft.addEventListener('click', onClickArrowLeft);
 arrowRight.addEventListener('click', onClickArrowRight);
 listernerEvent.addEventListener('click', onClickButton);
 
-function onClickArrowLeft() {
+function onClickArrowLeft(e) {
   page -= 1;
   onMarkupButton(totalPages, page);
+  onSearchPopularFilms(e, page);
   return page;
 }
 
-function onClickArrowRight() {
+function onClickArrowRight(e) {
   page += 1;
   onMarkupButton(totalPages, page);
+  onSearchPopularFilms(e, page);
   return page;
 }
 
@@ -64,15 +49,17 @@ function onClickButton(e) {
       page = totalPages;
     }
   }
+
+  onSearchPopularFilms(e, page);
   onMarkupButton(totalPages, page);
 }
 
-function onHideArrow() {
-  this.classList.add('hidden');
+function onHideArrowLeft() {
+  page === 1 ? arrowLeft.classList.add('hidden') : arrowLeft.classList.remove('hidden');
 }
 
-function onShowArrow() {
-  this.classList.remove('hidden');
+function onHideArrowRight() {
+  page === totalPages ? arrowRight.classList.add('hidden') : arrowRight.classList.remove('hidden');
 }
 
 function onMarkupButton(totalPages, page) {
@@ -92,12 +79,8 @@ function onMarkupButton(totalPages, page) {
     beforePages = totalPages - countShowSumbols + 1;
   }
 
-  if (page === 1) {
-    //*Зробити не активною стрілку вліво
-    arrowLeft.classList.add('hidden');
-  } else {
-    arrowLeft.classList.remove('hidden');
-  }
+  onHideArrowLeft(page);
+
   let buttons = '';
   //* якщо сторінка від 1 до 5 не для мобілки 108-114
   buttons += buttonsTpl({ id: '', name: 1 });
@@ -130,11 +113,7 @@ function onMarkupButton(totalPages, page) {
     }
   }
 
-  if (page === totalPages) {
-    arrowRight.classList.add('hidden');
-  } else {
-    arrowRight.classList.remove('hidden');
-  }
+  onHideArrowRight();
 }
 
 onMarkupButton(totalPages, page);

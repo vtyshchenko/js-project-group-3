@@ -16,17 +16,19 @@ const refs = {
   galleryListRefs: document.querySelector('.gallery-film-list'),
   watchedBtnRefs: document.querySelector('.btn-watched'),
   queueBtnRefs: document.querySelector('.btn-queue'),
-  WATCHED:'watched',
-  QUEUE:'queue',
+  WATCHED: 'watched',
+  QUEUE: 'queue',
   toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
   bodyRefs: document.querySelector('body'),
   headerWatchedBtnRefs: document.querySelector('#btn-watched'),
   headerQueueBtnRefs: document.querySelector('#btn-queue'),
-    openModalBtnRefs: document.querySelector('[data-modal-open]'),
-    closeModalBtnRefs: document.querySelector('[data-modal-close]'),
-    modalRefs: document.querySelector('[data-modal]'),
-
-
+  openModalBtnRefs: document.querySelector('[data-modal-open]'),
+  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
+  modalRefs: document.querySelector('[data-modal]'),
+  wrapper: document.querySelector('.pagination__wrapper-js'),
+  arrowLeft: document.querySelector('.arrow-left-js'),
+  arrowRight: document.querySelector('.arrow-right-js'),
+  listernerEvent: document.querySelector('.pagination__wrapper-js'),
 };
 
 export default { refs };
