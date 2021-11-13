@@ -25,8 +25,7 @@ const refs = {
     openModalBtnRefs: document.querySelector('[data-modal-open]'),
     closeModalBtnRefs: document.querySelector('[data-modal-close]'),
     modalRefs: document.querySelector('[data-modal]'),
-
-
+  paginationRefs: document.querySelector('.pagination'),
 };
 
 export default { refs };

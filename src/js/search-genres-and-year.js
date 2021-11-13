@@ -18,7 +18,7 @@ export function onSearchGenresList(data) {
           genreID = ["No genre"]
         }
   
-      if (genreID.length <= 3) {
+    if (genreID) {
           genreID = genreID.join(', ').split(',')
         }
       if (genreID.length >= 3) {
