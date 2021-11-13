@@ -35,5 +35,6 @@ const{
           librListRefs.classList.add('is-hidden');
           btnHomeRefs.classList.add('current');
           btnLibrRefs.classList.remove('current');
+          paginationRefs.classList.remove('visually-hidden')
         };
       
