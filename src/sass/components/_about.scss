@@ -32,6 +32,10 @@
   height: 14px;
 }
 
+.team__photo {
+  margin: auto;
+}
+
 .team__modal-title {
   margin-bottom: 40px;
   display: flex;
@@ -96,7 +100,7 @@
 
 .team__modal-item {
   @media screen and (min-width: $desktop) {
-    flex-basis: calc((100% - 120px) / 4);
+    flex-basis: calc((100% - 120px) / 3);
   }
 }
 
