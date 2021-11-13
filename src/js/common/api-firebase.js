@@ -20,26 +20,65 @@ const firebaseConfig = {
 };
 
 export async function init() {
-  console.log('initializeApp', initializeApp);
-  const app = initializeApp(firebaseConfig, 'filmoteka');
-  console.log('app', app);
+  return initializeApp(firebaseConfig, 'filmoteka');
+}
+
+export function login(app, email, password, newUser) {
+  if (!user) {
+    email = 'test@gmail.com';
+  }
+  if (!password) {
+    password = 'test123';
+  }
+  let uaerCredentauls;
+
   let auth = getAuth(app);
-  console.log('auth', auth);
   console.log('auth.currentUser', auth.currentUser);
 
-  if (!auth.currentUser) {
-    let UserCredential = await createUserWithEmailAndPassword(auth, 'test@gmail.com', 'test123')
-      .then(result => {
-        console.log('UserCredential = ', result);
-      })
-      .catch(console.log);
+  if (newUser) {
+    uaerCredentauls = signInWithExistingUser(auth, email, password);
+  } else {
+    uaerCredentauls = createNewUser(auth, email, password);
   }
+  console.log(uaerCredentauls);
 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      console.log('user', user);
+  onAuthStateChanged(userData => {
+    if (userData) {
+      onSignIn(userData);
     } else {
-      console.log('error user', user);
+      onError(userData);
     }
   });
+}
+
+async function createNewUser(auth, email, password) {
+  // new user
+  let res = await createUserWithEmailAndPassword(auth, email, password)
+    .then(onSignIn)
+    .catch(onError);
+  if (!res) {
+    res = {};
+  }
+  return res;
+}
+
+async function signInWithExistingUser(auth, email, password) {
+  // existing users
+  let res = await signInWithEmailAndPassword(auth, email, password).then(onSignIn).catch(onError);
+  if (!res) {
+    res = {};
+  }
+  return res;
+}
+
+function onError(error) {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log(`errorCode = ${errorCode}\nerrorMessage = ${errorMessage}`);
+}
+
+function onSignIn(userCredential) {
+  const user = userCredential.user;
+  console.log(`user = ${user}`);
+  return user;
 }
