@@ -32,6 +32,10 @@
   height: 14px;
 }
 
+.team__photo {
+  margin: auto;
+}
+
 .team__modal-title {
   margin-bottom: 40px;
   display: flex;
@@ -61,9 +65,13 @@
 }
 
 .team__name {
-  margin-bottom: 15px;
   justify-content: center;
   color: $main-orange-color;
+}
+
+.team__description {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .team__modal-form {
@@ -92,7 +100,7 @@
 
 .team__modal-item {
   @media screen and (min-width: $desktop) {
-    flex-basis: calc((100% - 120px) / 4);
+    flex-basis: calc((100% - 120px) / 3);
   }
 }
 

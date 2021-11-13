@@ -1,6 +1,6 @@
 import API from './api-service';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
-import { onSearchYear, onSearchGenresList } from './search-genres-and-year';
+import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 import refs from './common/refs';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
@@ -33,7 +33,7 @@ function onSearch() {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onFetchError()
+    onFetchError();
   }
   return Promise.resolve(results);
 }
