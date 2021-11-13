@@ -1,74 +1,72 @@
+.footer {
+  background: $main-background-color;
+  height: 77px;
 
-.footer{
-    background: $main-background-color;
-    height: 77px;
-    
-    @media screen and (min-width: $mobile-min) {
-        height: 100px;
-    }
+  @media screen and (min-width: $mobile-min) {
+    height: 100px;
+  }
 }
 
-.footer-cont{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0 auto;
-    padding-top: 30px;
+.footer-cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 30px;
 
-    @media screen and (min-width: $mobile-min) {
-        flex-wrap: wrap;
-    }
+  @media screen and (min-width: $mobile-min) {
+    flex-wrap: wrap;
+  }
 }
-    
-.footer-cont__txt{
-    font-family: $font-family;
-    font-size: 16px;
-    line-height: 1.19;
-    color: $secondary-text-color; 
 
-     @media screen and (min-width: $mobile-min) {
-        font-size: 13px;
-        line-height: 1.23;
-    }
+.footer-cont__txt {
+  font-family: $font-family;
+  font-size: 16px;
+  line-height: 1.19;
+  color: inherit;
+
+  @media screen and (min-width: $mobile-min) {
+    font-size: 13px;
+    line-height: 1.23;
+  }
 }
- 
-.after{
-    position: static;
 
-    &::after{
+.after {
+  position: static;
+
+  &::after {
     position: absolute;
     display: block;
-    content: "";
+    content: '';
     width: 117px;
     height: 1px;
-    background-color: $secondary-text-color; 
+    background-color: $secondary-text-color;
     border-radius: 2px;
     margin-left: 25px;
 
     @media screen and (min-width: $mobile-min) {
-        width: 97px;
-        margin-left: 20px;
-    }    
-}
+      width: 97px;
+      margin-left: 20px;
+    }
+  }
 }
 
-.footer-cont__text{
-    display: flex;
+.footer-cont__text {
+  display: flex;
 }
-    
+
 .link {
-    text-decoration: none;
-}   
-  
-.icon-heart{
-    @include settings__icons($main-orange-color, 18px, 18px);
-        margin-left: 10px;
-        margin-right: 10px;
+  text-decoration: none;
 }
 
-.footer-container__text{
-    @media screen and (min-width: $mobile-min) {
-        padding-bottom: 10px;
-}
+.icon-heart {
+  @include settings__icons($main-orange-color, 18px, 18px);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
+.footer-container__text {
+  @media screen and (min-width: $mobile-min) {
+    padding-bottom: 10px;
+  }
+}
