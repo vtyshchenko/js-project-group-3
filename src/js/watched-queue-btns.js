@@ -25,6 +25,8 @@ function getMarkup(name) {
         galleryListRefs.innerHTML = watchedQueueTpl(year);
     } else {
         galleryListRefs.innerHTML = ''
+        const pagination = document.querySelector('.pagination')
+        pagination.classList.add('visually-hidden')
         return notice({
             text: 'Oops! You have no movies here.',
             delay: 3000,
