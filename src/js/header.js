@@ -7,10 +7,10 @@ const{
     btnHomeRefs,
     btnLibrRefs,
     formSearchRefs,
-    inputSearchRefs,
     librListRefs,
     logoRefs,
     galleryListRefs,
+    toggleThemeRefs,
     } = refs.refs
 
         navLibrRefs.addEventListener('click', libOpenClick);
@@ -25,7 +25,7 @@ const{
           btnLibrRefs.classList.add('current');
           btnHomeRefs.classList.remove('current');
            galleryListRefs.innerHTML = ''
-           localStorage.setItem('totalPages', results.total_pages);
+           localStorage.setItem('totalPages', 0);
         };
         
         function homeOpenClick() {
@@ -40,23 +40,32 @@ const{
         const Theme = {
           LIGHT: 'light-theme',
           DARK: 'dark-theme',
-        };
+};
+        const { LIGHT, DARK } = Theme
+        toggleThemeRefs.addEventListener('change', inputChange)
         
-        themeLocalStorage(inputChange);
+        let savedTheme = localStorage.getItem('theme')
+        if (!savedTheme) {
+         savedTheme = LIGHT;
+         localStorage.setItem('theme', savedTheme)
+}
         
-        toggleThemeRefs.addEventListener('change', inputChange);
-        function inputChange(evt) {
-          const checkedInput = evt.target.checked;
-          if (checkedInput) {
-            bodyRefs.classList = Theme.DARK;
-          } else bodyRefs.classList = Theme.LIGHT;
-          localStorage.setItem('theme', bodyRefs.classList);
-        }
-        function themeLocalStorage(evt) {
-          const saveTheme = localStorage.getItem('theme');
-          if (saveTheme === Theme.DARK) {
-            toggleThemeRefs.checked = true;
-            bodyRefs.classList = saveTheme;
-          } else toggleThemeRefs.checked = false;
-        }
+document.body.classList.add(savedTheme);
+toggleThemeRefs.checked = savedTheme === DARK
+          
+function inputChange(e) {
+  if (e.target.checked === true) {
+    localStorage.setItem('theme', DARK)
+    changeClasses(LIGHT, DARK)
+  } else {
+    localStorage.setItem("theme", LIGHT)
+    changeClasses(DARK, LIGHT)
+  }
+}
+
+function changeClasses( removeClass, addClass) {
+  document.body.classList.remove(removeClass)
+  document.body.classList.add(addClass)
+}
+
 

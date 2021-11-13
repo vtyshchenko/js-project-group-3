@@ -276,18 +276,25 @@
 
 //Theme
 
-body.light-theme {
+body.light-theme{
   background-color: $main-text-color;
-  fill: $main-text-color;
+ fill: $main-text-color;
+ color:$title-color;
+  
 }
 
-body.dark-theme {
+body.dark-theme{
    background-color: $team-bg-color;
    fill: $main-orange-color;
+   
+}
+body.dark-theme .pagination__link {
+  color: $main-text-color;
 }
 
 
 .theme-switch {
+  color: currentColor;
   display: flex;
   align-items: center;
   position: absolute;
