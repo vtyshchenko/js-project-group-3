@@ -5,7 +5,7 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, paginationRefs} = refs.refs
+const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
@@ -14,19 +14,21 @@ function getMarkup(name) {
     let nameUser = getUser()
     let data = get(nameUser)
     let dataList = ''
+    let totalPages = 0
     if (name === 'watched') {
         dataList = data.watched
+        totalPages = Math.floor(data.watched.length / 20) + 1
     } else {
         dataList = data.queue
+        totalPages = Math.floor(data.queue.length / 20) + 1 
     }
+    localStorage.setItem('totalPages', totalPages);
     let genresList = onSearchGenresList(dataList)
     let year = onSearchYear(genresList)
     if (year) {
         galleryListRefs.innerHTML = watchedQueueTpl(year);
-        paginationRefs.classList.remove('visually-hidden')
     } else {
         galleryListRefs.innerHTML = ''
-        paginationRefs.classList.add('visually-hidden')
         return notice({
             text: 'Oops! You have no movies here.',
             delay: 3000,
@@ -36,10 +38,12 @@ function getMarkup(name) {
 
 function onWatchedBtnClick() {
     getMarkup('watched')
+    localStorage.setItem('pageType', 'watched');
 }
 
 function onQueueBtnClick() {
     getMarkup('queue')
+    localStorage.setItem('pageType', 'queue');
 }
 
 function onSearchGenresList(data) {
