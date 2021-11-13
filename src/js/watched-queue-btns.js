@@ -5,7 +5,7 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
+const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, paginationRefs} = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
@@ -19,20 +19,18 @@ function getMarkup(name) {
     } else {
         dataList = data.queue
     }
-        let genresList = onSearchGenresList(dataList)
-        let year = onSearchYear(genresList)
-        const pagination = document.querySelector('.pagination')
+    let genresList = onSearchGenresList(dataList)
+    let year = onSearchYear(genresList)
     if (year) {
         galleryListRefs.innerHTML = watchedQueueTpl(year);
-        pagination.classList.remove('visually-hidden')
+        paginationRefs.classList.remove('visually-hidden')
     } else {
         galleryListRefs.innerHTML = ''
-        pagination.classList.add('visually-hidden')
+        paginationRefs.classList.add('visually-hidden')
         return notice({
             text: 'Oops! You have no movies here.',
             delay: 3000,
-        })
-        
+        }) 
     }
 }
 
