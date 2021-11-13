@@ -23,8 +23,11 @@ export async function init() {
   return initializeApp(firebaseConfig, 'filmoteka');
 }
 
-export function login(app, email, password, newUser) {
+export function login(app, userName, password, email, newUser) {
   if (!user) {
+    userName = 'test';
+  }
+  if (!email) {
     email = 'test@gmail.com';
   }
   if (!password) {
@@ -34,11 +37,17 @@ export function login(app, email, password, newUser) {
 
   let auth = getAuth(app);
   console.log('auth.currentUser', auth.currentUser);
+  console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
-    uaerCredentauls = signInWithExistingUser(auth, email, password);
-  } else {
     uaerCredentauls = createNewUser(auth, email, password);
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+    }).catch(error => {
+      console.log(error);
+    });
+  } else {
+    uaerCredentauls = signInWithExistingUser(auth, email, password);
   }
   console.log(uaerCredentauls);
 
@@ -82,3 +91,11 @@ function onSignIn(userCredential) {
   console.log(`user = ${user}`);
   return user;
 }
+
+function put(data) {}
+
+function get() {}
+
+function update() {}
+
+function del() {}

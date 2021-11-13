@@ -73,15 +73,15 @@
   line-height: 1.143;
   letter-spacing: 0.01em;
   color: $secondary-text-color;
-  outline: $main-orange-color;
+  outline: $third-text-color;
 
   width: 100%;
   height: 40px;
   padding: 12px 12px 12px 42px;
-  border: 1px solid $main-orange-color;
+  border: 1px solid $third-text-color;
   box-sizing: border-box;
   border-radius: 4px;
-  box-shadow: 0px 4px 4px $main-orange-color;
+  box-shadow: 4px 4px 4px $main-orange-color;
   transition: border $anim-duration $anim-timing-function;
 
   .auth__input-group:focus-within > & {
@@ -90,10 +90,10 @@
 }
 
 .auth__input-icon {
-  //   position: absolute;
+  position: absolute;
   left: 12px;
   top: 50%;
-  fill: $secondary-text-color;
+  fill: $third-text-color;
   width: 18px;
   height: 18px;
   transform: translateY(-50%);

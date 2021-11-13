@@ -8,7 +8,7 @@ export function del(user, key, data) {
     return true;
   }
 
-  tmp[user][key] = tmp[user][key].filter(item => item != data);
+  tmp[user][key] = tmp[user][key].filter(item => item.id != data.id);
   return saveData(tmp);
 }
 
