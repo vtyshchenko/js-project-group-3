@@ -48,6 +48,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 30px;
 }
 
 .team__modal-item {
@@ -75,12 +76,6 @@
   margin-bottom: 10px;
 }
 
-.team__modal-form {
-  @media screen and (min-width: $tablet) {
-    padding: 6px;
-  }
-}
-
 .team__modal-list {
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -102,6 +97,12 @@
 .team__photo {
   @media screen and (min-width: $tablet) {
     width: 340px;
+  }
+}
+
+.team-container {
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 40px;
   }
 }
 
