@@ -34,6 +34,7 @@
 
 .team__photo {
   margin: auto;
+  width: 280px;
 }
 
 .team__modal-title {
@@ -95,6 +96,18 @@
     flex-basis: calc((100% - 60px) / 2);
     margin-left: 30px;
     margin-top: 30px;
+  }
+}
+
+.team__photo {
+  @media screen and (min-width: $tablet) {
+    width: 340px;
+  }
+}
+
+.team__photo {
+  @media screen and (min-width: $desktop) {
+    width: unset;
   }
 }
 
