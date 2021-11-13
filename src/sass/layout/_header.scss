@@ -15,8 +15,8 @@
   }
 
     @media screen and (min-width: $tablet) {
-       padding-top: 41px;
-        background-image: linear-gradient(
+         padding-top: 41px;
+         background-image: linear-gradient(
           $bg-image-darkening,
           $bg-image-darkening),
          url('../images/hero-home-tablet.png');
@@ -50,7 +50,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         height: 230px;
-        padding-top: 41px;
+        padding-top: 46px;
 
         @media screen and (min-device-pixel-ratio: 2),
         screen and (min-resolution: 192dpi),
@@ -60,7 +60,8 @@
       
 
     @media screen and (min-width: $tablet) {
-        background-image: linear-gradient(
+         padding-top: 41px;
+          background-image: linear-gradient(
           $bg-image-darkening,
           $bg-image-darkening),
          url('../images/hero-library-tablet.png');
@@ -270,4 +271,98 @@
 }
 .is-hidden{
   display: none;
+}
+
+
+//Theme
+
+body.light-theme{
+  background-color: $main-text-color;
+ fill: $main-text-color;
+ color:$title-color;
+  
+}
+
+body.dark-theme{
+   background-color: $team-bg-color;
+   fill: $main-orange-color;
+   
+}
+
+.theme-switch {
+   color: currentColor;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+}
+
+.theme-switch__icon {
+  color: currentColor;
+  height: 20px;
+  width: 26px;
+  &:not(:last-child){
+    margin-left: 20px;
+}
+ 
+}
+
+.theme-switch__control {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  width: 64px;
+  height: 32px;
+  border-radius: 50em;
+  padding: 3px 0;
+}
+
+.theme-switch__toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.theme-switch__track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  user-select: none;
+  background-color: $secondary-text-color;
+  border-radius: inherit;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.theme-switch__marker {
+  position: relative;
+  background-color: $main-text-color;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 1px 1px $secondary-text-color; 
+  transform: translateX(3px);
+  transition: transform $anim-duration var(--timing-function);
+}
+
+.theme-switch__toggle:checked + .theme-switch__track {
+  background-color: $main-orange-color;
+}
+
+.theme-switch__toggle:checked ~ .theme-switch__marker {
+  transform: translateX(35px);
 }
