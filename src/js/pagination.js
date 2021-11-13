@@ -1,6 +1,6 @@
 import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
-import onSearchPopularFilms from './renderPopularFilm.js';
+import onSearchPopularFilms from './render-popular-film.js';
 
 const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
 
