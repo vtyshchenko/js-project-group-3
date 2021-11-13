@@ -21,14 +21,18 @@ function getMarkup(name) {
     }
         let genresList = onSearchGenresList(dataList)
         let year = onSearchYear(genresList)
+        const pagination = document.querySelector('.pagination')
     if (year) {
         galleryListRefs.innerHTML = watchedQueueTpl(year);
+        pagination.classList.remove('visually-hidden')
     } else {
         galleryListRefs.innerHTML = ''
+        pagination.classList.add('visually-hidden')
         return notice({
             text: 'Oops! You have no movies here.',
             delay: 3000,
         })
+        
     }
 }
 
