@@ -9,7 +9,9 @@ const{
     formSearchRefs,
     inputSearchRefs,
     librListRefs,
-    logoRefs} = refs.refs
+    logoRefs,
+    galleryListRefs,
+    paginationRefs } = refs.refs
 
         navLibrRefs.addEventListener('click', libOpenClick);
         navHomeRefs.addEventListener('click', homeOpenClick);
@@ -22,6 +24,8 @@ const{
           librListRefs.classList.remove('is-hidden');
           btnLibrRefs.classList.add('current');
           btnHomeRefs.classList.remove('current');
+          galleryListRefs.innerHTML = ''
+          paginationRefs.classList.add('visually-hidden')
         };
         
         function homeOpenClick() {
