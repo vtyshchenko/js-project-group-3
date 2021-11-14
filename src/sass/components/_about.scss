@@ -81,6 +81,7 @@
     flex-wrap: wrap;
   }
 }
+
 .team__modal-item {
   box-shadow: 12px 13px 15px 3px $team-shadow-color;
   -webkit-box-shadow: 12px 13px 15px 3px $team-shadow-color;
@@ -98,6 +99,7 @@
     flex-basis: calc((100% - 120px) / 3);
   }
 }
+
 .team__photo {
   margin: auto;
   width: 280px;
