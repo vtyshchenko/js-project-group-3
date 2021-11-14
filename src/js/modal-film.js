@@ -88,11 +88,15 @@ function getName() {
 function onClickWatchedBtn(e){
   let name = getName()
   move(name, QUEUE, WATCHED, idMovie)
+  watchedBtnRefs.textContent = 'watched'
+  queueBtnRefs.textContent = 'add to queue'
 }
 
 function onClickQueueBtn(e){
   let name = getName()
   move(name, WATCHED, QUEUE, idMovie)
+  watchedBtnRefs.textContent = 'add to watched'
+  queueBtnRefs.textContent = 'queue'
 }
  
 
