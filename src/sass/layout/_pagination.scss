@@ -40,7 +40,6 @@
     transition-property: color, background-color;
     transition-duration: $anim-duration;
     transition-timing-function: $anim-timing-function;
-    // background-color: $accent-orange-color;
 
     &:hover,
     &:focus,
@@ -68,8 +67,7 @@
     &:focus,
     &:active {
       fill: $main-text-color;
-      background-color: $icon-color; //* потрібно узгодити
-      // transform: matrix(-1, 0, 0, 1, 0, 0);
+      background-color: $icon-color;
     }
   }
 }
