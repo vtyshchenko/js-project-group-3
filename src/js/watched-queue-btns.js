@@ -9,7 +9,7 @@ const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
-   
+
 function getMarkup(name) {
     let nameUser = getUser()
     let data = get(nameUser)
@@ -41,7 +41,7 @@ function getMarkup(name) {
     }
 }
 
-function onWatchedBtnClick() {
+export default function onWatchedBtnClick() {
     getMarkup('watched')
     typeOfPage('watched')
 }
