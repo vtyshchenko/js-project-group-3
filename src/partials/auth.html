@@ -18,7 +18,6 @@
             placeholder="John Jonson"
             pattern="^[a-zA-Z]+$"
             minlength="8"
-            required
           />
           <svg class="auth__input-icon">
             <use href="./images/symbol-defs.svg#icon-person"></use>
@@ -34,9 +33,10 @@
             type="email"
             name="email"
             title="Enter password"
-            pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
+            pattern="^[a-zA-Z\.#\\]+\s[a-zA-Z]+$"
             minlength="8"
             placeholder="Enter password"
+            required
           />
           <svg class="auth__input-icon">
             <use href="./images/symbol-defs.svg#icon-password"></use>
@@ -53,6 +53,7 @@
             name="email"
             title="Enter mailbox"
             placeholder="example@mail.com"
+            required
           />
           <svg class="auth__input-icon">
             <use href="./images/symbol-defs.svg#icon-email"></use>
