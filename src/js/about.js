@@ -3,12 +3,13 @@ const { backdropRefs, closeModalBtnRefs, openModalBtnRefs, modalRefs} = refs.ref
     openModalBtnRefs.addEventListener('click', onOpenTeamBtn);
 
 function onOpenTeamBtn() {
-    modalRefs.classList.toggle('is-hidden');
+    modalRefs.classList.toggle('visually-hidden');
     modalRefs.classList.toggle('is-open')
     backdropRefs.classList.remove('visually-hidden')
     window.addEventListener('keydown', onEcsKeyPress)
   closeModalBtnRefs.addEventListener('click', onCloseTeamBtn);
-    backdropRefs.addEventListener('click', onCloseTeamBtn)
+  backdropRefs.addEventListener('click', onCloseTeamBtn)
+  document.body.classList.toggle('modal-open');
 
   }
 
@@ -23,7 +24,7 @@ function onCloseTeamBtn(e) {
 
 function removeonCloseTeamBtn() {
     window.removeEventListener('keydown', onEcsKeyPress)
-    modalRefs.classList.toggle('is-hidden');
+    modalRefs.classList.toggle('visually-hidden');
     modalRefs.classList.toggle('is-open')
     backdropRefs.classList.add('visually-hidden')
        closeModalBtnRefs.removeEventListener('click', onCloseTeamBtn);
