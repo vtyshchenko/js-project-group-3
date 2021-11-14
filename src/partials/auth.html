@@ -6,11 +6,51 @@
   </button>
   <form class="auth__form">
     <p class="auth__title">Register or log in</p>
+
     <div class="auth__inputs">
+      <label class="auth__group">
+        <span class="auth__label">Mail</span>
+        <span class="auth__input-group">
+          <input
+            id="user-email"
+            class="auth__input-info"
+            type="email"
+            name="email"
+            title="Enter mailbox"
+            placeholder="example@mail.com"
+            required
+          />
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-email"></use>
+          </svg>
+        </span>
+      </label>
+
+      <label class="auth__group">
+        <span class="auth__label">Password</span>
+        <span class="auth__input-group">
+          <input
+            id="user-password"
+            class="auth__input-info"
+            type="password"
+            name="password"
+            title="Enter password"
+            pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
+            minlength="8"
+            placeholder="Enter password"
+            required
+          />
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-password"></use>
+          </svg>
+        </span>
+      </label>
+
       <label class="auth__group">
         <span class="auth__label">Name</span>
         <span class="auth__input-group">
           <input
+            id="user-name"
             class="auth__input-info"
             type="text"
             name="name"
@@ -25,41 +65,6 @@
         </span>
       </label>
 
-      <label class="auth__group">
-        <span class="auth__label">Password</span>
-        <span class="auth__input-group">
-          <input
-            class="auth__input-info"
-            type="email"
-            name="email"
-            title="Enter password"
-            pattern="^[a-zA-Z\.#\\]+\s[a-zA-Z]+$"
-            minlength="8"
-            placeholder="Enter password"
-            required
-          />
-          <svg class="auth__input-icon">
-            <use href="./images/symbol-defs.svg#icon-password"></use>
-          </svg>
-        </span>
-      </label>
-
-      <label class="auth__group">
-        <span class="auth__label">Mail</span>
-        <span class="auth__input-group">
-          <input
-            class="auth__input-info"
-            type="email"
-            name="email"
-            title="Enter mailbox"
-            placeholder="example@mail.com"
-            required
-          />
-          <svg class="auth__input-icon">
-            <use href="./images/symbol-defs.svg#icon-email"></use>
-          </svg>
-        </span>
-      </label>
       <label class="auth__confirm">
         <input
           class="auth__confirm-checkbox visually-hidden"

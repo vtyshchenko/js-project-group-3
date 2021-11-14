@@ -32,6 +32,11 @@ const refs = {
   closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
   confirmCheckboxRefs: document.querySelector('.auth__confirm-checkbox'),
+
+  authNameRefs: document.querySelector('#user-name'),
+  authEmailRefs: document.querySelector('#user-email'),
+  authPasswordRefs: document.querySelector('#user-password'),
+
   buttonRegistrationRefs: document.querySelector('#registration'),
 
   paginationRefs: document.querySelector('.pagination'),

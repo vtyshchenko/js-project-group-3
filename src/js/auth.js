@@ -6,6 +6,9 @@ const {
   modalAuthRefs,
   confirmCheckboxRefs,
   buttonRegistrationRefs,
+  authNameRefs,
+  authEmailRefs,
+  authPasswordRefs,
 } = refs.refs;
 openModalAuthRefs.addEventListener('click', onOpen);
 
@@ -13,23 +16,26 @@ function onOpen() {
   window.addEventListener('keydown', onKeyPress);
   closeModalAuthRefs.addEventListener('click', onClose);
   confirmCheckboxRefs.addEventListener('change', onCheckboxChange);
-
-  modalAuthRefs.classList.toggle('visually-hidden');
-  modalAuthRefs.classList.toggle('is-open');
-  backdropRefs.classList.remove('visually-hidden');
   backdropRefs.addEventListener('click', onClose);
-  document.body.classList.toggle('modal-open');
+  buttonRegistrationRefs.addEventListener('click', onConfirm);
+
+  backdropRefs.classList.remove('visually-hidden');
+  modalAuthRefs.classList.remove('visually-hidden');
+  modalAuthRefs.classList.add('is-open');
+  document.body.classList.add('modal-open');
 }
 
 function removeListeners() {
+  confirmCheckboxRefs.checked = true;
   window.removeEventListener('keydown', onKeyPress);
   closeModalAuthRefs.removeEventListener('click', onClose);
+  confirmCheckboxRefs.removeEventListener('change', onCheckboxChange);
   backdropRefs.removeEventListener('click', onClose);
 
+  backdropRefs.classList.toggle('visually-hidden');
   modalAuthRefs.classList.toggle('visually-hidden');
   modalAuthRefs.classList.toggle('is-open');
-  backdropRefs.classList.add('visually-hidden');
-  document.body.classList.remove('modal-open');
+  document.body.classList.toggle('modal-open');
 }
 
 function onKeyPress(e) {
@@ -59,4 +65,19 @@ function onCheckboxChange(e) {
     text = 'Log in';
   }
   buttonRegistrationRefs.innerHTML = text;
+}
+
+function onConfirm() {
+  console.log('authNameRefs', authNameRefs);
+  console.log('authEmailRefs', authEmailRefs);
+  console.log('authPasswordRefs', authPasswordRefs);
+  console.log('confirmCheckboxRefs', confirmCheckboxRefs);
+  let userName = authNameRefs.value;
+  let userEmail = authEmailRefs.value;
+  let userPassword = authPasswordRefs.value;
+  let isNewUser = confirmCheckboxRefs.checked;
+  console.log('userName', userName);
+  console.log('userEmail', userEmail);
+  console.log('userPassword', userPassword);
+  console.log('isNewUser', isNewUser);
 }
