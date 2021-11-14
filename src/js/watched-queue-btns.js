@@ -17,10 +17,15 @@ function getMarkup(name) {
     let totalPages = 0
     if (name === 'watched') {
         dataList = data.watched
-        totalPages = numberOfPage(data.watched)
+        if (data.watched) {
+            totalPages = numberOfPage(data.watched)
+        }
+        
     } else {
         dataList = data.queue
-        totalPages = numberOfPage(data.queue)
+        if (data.queue) {
+            totalPages = numberOfPage(data.queue)
+        }
     }
     localStorage.setItem('totalPages', totalPages);
     let genresList = onSearchGenresList(dataList)
