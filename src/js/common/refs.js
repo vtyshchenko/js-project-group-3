@@ -16,7 +16,6 @@ const refs = {
   galleryListRefs: document.querySelector('.gallery-film-list'),
   watchedBtnRefs: document.querySelector('.btn-watched'),
   queueBtnRefs: document.querySelector('.btn-queue'),
-  // buttonsModalFilmRefs: document.querySelector('.button-add'),
   WATCHED:'watched',
   QUEUE:'queue',
   toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
