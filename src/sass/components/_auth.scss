@@ -1,8 +1,8 @@
 .auth-wrapper {
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0) scale(1);
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, 0) scale(1);
 
   transition: opacity $anim-duration $anim-timing-function,
     transform $anim-duration $anim-timing-function;
@@ -12,10 +12,46 @@
   }
 
   @media screen and (min-width: $desktop) {
-    width: 400px;
+    width: 500px;
   }
 }
 
+.auth__button-close {
+  position: absolute;
+  @extend %flex__center;
+  color: $title-color;
+  background-color: $main-background-color;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid $main-orange-color;
+  cursor: pointer;
+  z-index: 1020;
+  transform: rotateZ(360deg);
+  transition: transform $anim-duration $anim-timing-function,
+    color $anim-duration $anim-timing-function;
+
+  .auth__icon {
+    @include settings__icons($main-orange-color, 18px, 18px);
+  }
+
+  &:hover {
+    color: $main-orange-color;
+    transform: rotateZ(0deg);
+  }
+
+  @media screen and (max-width: calc($desktop - 1px)) {
+    top: 8px;
+    right: 8px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    top: calc(50% - 105px);
+    left: calc(50% + 145px);
+  }
+}
 // ################### form ###################
 .auth__form {
   background: $main-background-color;
@@ -24,9 +60,13 @@
   box-shadow: 0px 1px 3px $main-orange-color, 0px 1px 1px $icon-color,
     0px 2px 1px $accent-orange-color;
   border-radius: 4px;
+  transform: translate(0, 20%) scale(1);
+
+  transition: opacity $anim-duration $anim-timing-function,
+    transform $anim-duration $anim-timing-function;
 
   @media screen and (min-width: $mobile) {
-    height: 350px;
+    height: 360px;
   }
 }
 

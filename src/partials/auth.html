@@ -1,6 +1,6 @@
 <div class="auth-wrapper container visually-hidden" data-auth-modal>
-  <button class="button" type="button" data-auth-modal-close>
-    <svg class="icon">
+  <button class="auth__button-close" type="button" data-auth-modal-close>
+    <svg class="auth__icon">
       <use class="auth__use" href="./images/symbol-defs.svg#icon-close-button"></use>
     </svg>
   </button>
@@ -72,8 +72,10 @@
       </label>
 
       <div class="auth__button-group">
-        <button class="button-submit" type="submit">Registration</button>
-        <button class="button-submit" type="button" data-modal-close>Cancel</button>
+        <button class="button-submit" id="registration" type="submit">Registration</button>
+        <button class="button-submit button-submit-close" type="button" data-modal-close>
+          Cancel
+        </button>
       </div>
     </div>
   </form>
