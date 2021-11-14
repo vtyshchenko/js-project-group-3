@@ -1,14 +1,23 @@
 const refs = {
+  bodyRefs: document.body,
+
   headerRefs: document.querySelector('header'),
   navHomeRefs: document.querySelector('.js-home'),
   navLibrRefs: document.querySelector('.js-lib'),
   btnHomeRefs: document.querySelector('#btn-home'),
   btnLibrRefs: document.querySelector('#btn-library'),
+  btnLogin: document.querySelector('#btn-login'),
+
+  logoRefs: document.querySelector('.logo'),
+  toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
+  headerWatchedBtnRefs: document.querySelector('#btn-watched'),
+  headerQueueBtnRefs: document.querySelector('#btn-queue'),
+
   formSearchRefs: document.querySelector('.header-form'),
   inputSearchRefs: document.querySelector('.header-form__input'),
   librListRefs: document.querySelector('.library__list'),
   btnSearchRefs: document.querySelectorAll('.header-form__button'),
-  logoRefs: document.querySelector('.logo'),
+
   backdropRefs: document.querySelector('.backdrop'),
   modalFilmContainerRefs: document.querySelector('.movie-container-film'),
   closeBtnModalRefs: document.querySelector('[data-action="close-btn-modal"]'),
@@ -16,16 +25,17 @@ const refs = {
   galleryListRefs: document.querySelector('.gallery-film-list'),
   watchedBtnRefs: document.querySelector('.btn-watched'),
   queueBtnRefs: document.querySelector('.btn-queue'),
-  WATCHED:'watched',
-  QUEUE:'queue',
-  toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
-  bodyRefs: document.querySelector('body'),
-  headerWatchedBtnRefs: document.querySelector('#btn-watched'),
-  headerQueueBtnRefs: document.querySelector('#btn-queue'),
-    openModalBtnRefs: document.querySelector('[data-modal-open]'),
-    closeModalBtnRefs: document.querySelector('[data-modal-close]'),
-    modalRefs: document.querySelector('[data-modal]'),
+  openModalBtnRefs: document.querySelector('[data-modal-open]'),
+  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
+  modalRefs: document.querySelector('[data-modal]'),
+  openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
+  closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
+  modalAuthRefs: document.querySelector('[data-auth-modal]'),
+
   paginationRefs: document.querySelector('.pagination'),
+
+  WATCHED: 'watched',
+  QUEUE: 'queue',
 };
 
 export default { refs };
