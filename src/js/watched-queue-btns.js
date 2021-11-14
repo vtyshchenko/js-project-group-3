@@ -17,10 +17,10 @@ function getMarkup(name) {
     let totalPages = 0
     if (name === 'watched') {
         dataList = data.watched
-        totalPages = Math.floor(data.watched.length / 20) + 1
+        totalPages = numberOfPage(data.watched)
     } else {
         dataList = data.queue
-        totalPages = Math.floor(data.queue.length / 20) + 1 
+        totalPages = numberOfPage(data.queue)
     }
     localStorage.setItem('totalPages', totalPages);
     let genresList = onSearchGenresList(dataList)
@@ -38,12 +38,20 @@ function getMarkup(name) {
 
 function onWatchedBtnClick() {
     getMarkup('watched')
-    localStorage.setItem('pageType', 'watched');
+    typeOfPage('watched')
 }
 
 function onQueueBtnClick() {
     getMarkup('queue')
-    localStorage.setItem('pageType', 'queue');
+    typeOfPage('queue')
+}
+
+function typeOfPage(type) {
+    localStorage.setItem('pageType', type);
+}
+
+function numberOfPage(info) {
+    return Math.floor(info.length / 20) + 1
 }
 
 function onSearchGenresList(data) {
