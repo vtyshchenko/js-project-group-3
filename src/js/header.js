@@ -7,9 +7,11 @@ const{
     btnHomeRefs,
     btnLibrRefs,
     formSearchRefs,
-    inputSearchRefs,
     librListRefs,
-    logoRefs} = refs.refs
+    logoRefs,
+    galleryListRefs,
+    toggleThemeRefs,
+    } = refs.refs
 
         navLibrRefs.addEventListener('click', libOpenClick);
         navHomeRefs.addEventListener('click', homeOpenClick);
@@ -22,6 +24,8 @@ const{
           librListRefs.classList.remove('is-hidden');
           btnLibrRefs.classList.add('current');
           btnHomeRefs.classList.remove('current');
+           galleryListRefs.innerHTML = ''
+           localStorage.setItem('totalPages', 0);
         };
         
         function homeOpenClick() {
@@ -33,3 +37,35 @@ const{
           btnLibrRefs.classList.remove('current');
         };
       
+        const Theme = {
+          LIGHT: 'light-theme',
+          DARK: 'dark-theme',
+};
+        const { LIGHT, DARK } = Theme
+        toggleThemeRefs.addEventListener('change', inputChange)
+        
+        let savedTheme = localStorage.getItem('theme')
+        if (!savedTheme) {
+         savedTheme = LIGHT;
+         localStorage.setItem('theme', savedTheme)
+}
+        
+document.body.classList.add(savedTheme);
+toggleThemeRefs.checked = savedTheme === DARK
+          
+function inputChange(e) {
+  if (e.target.checked === true) {
+    localStorage.setItem('theme', DARK)
+    changeClasses(LIGHT, DARK)
+  } else {
+    localStorage.setItem("theme", LIGHT)
+    changeClasses(DARK, LIGHT)
+  }
+}
+
+function changeClasses( removeClass, addClass) {
+  document.body.classList.remove(removeClass)
+  document.body.classList.add(addClass)
+}
+
+

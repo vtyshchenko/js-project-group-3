@@ -22,7 +22,7 @@
   transform: translate(-50%, 0);
   max-width: 280px;
   background-color: $main-text-color;
-  opacity: 0;
+  border: 1px solid $third-text-color;
 
   @media screen and (max-width: $tablet) {
     padding: 50px 20px 40px 20px;
@@ -48,7 +48,7 @@
 
 .movie-container,
 .movie-container-film {
-  color: $title-color;
+  color: inherit;
   font-size: 12px;
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -151,13 +151,13 @@
 }
 
 .btn-container {
-    display: flex;
-    justify-content: right;
-    margin-right: 10px;
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
   @media screen and (min-width: $desktop) {
     position: absolute;
     bottom: 30px;
-    left: 358px;
+    left: 373px;
   }
 }
 
