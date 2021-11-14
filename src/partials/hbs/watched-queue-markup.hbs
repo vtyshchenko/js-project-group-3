@@ -1,0 +1,16 @@
+{{#each this }}
+<li class="gallery-film-item" id="{{id}}">
+    <div class="video-card">
+        {{#if poster_path}}
+        <img class="video-poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}">
+        {{else}}
+        <img class="video-poster" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png" alt="{{title}}">
+        {{/if}}
+    <div class="video-about">
+        <p class="video-title">{{title}}</p>
+        <p class="video-genre">
+            {{genres}} | {{release_date}}<span class='video-average'>{{vote_average}}</span></p>
+    </div>
+    </div>
+</li>
+{{/each}}

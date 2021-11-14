@@ -1,0 +1,115 @@
+.is-open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.team-container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: $team-bg-color;
+
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 40px;
+  }
+}
+
+.team__modal-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: $main-orange-color;
+}
+
+.team__modal-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.team__modal-title {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.team__modal-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+  color: $main-text-color;
+}
+
+.team__name {
+  justify-content: center;
+  color: $main-orange-color;
+}
+
+.team__description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.team__information-wrapper {
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: $desktop) {
+    padding: 0;
+    margin-top: 15px;
+  }
+}
+
+.team__modal-list {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    margin-top: -30px;
+    margin-left: -30px;
+    flex-wrap: wrap;
+  }
+}
+
+.team__modal-item {
+  box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -webkit-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  -moz-box-shadow: 12px 13px 15px 3px $team-shadow-color;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: unset;
+    flex-basis: calc((100% - 60px) / 2);
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc((100% - 120px) / 3);
+  }
+}
+
+.team__photo {
+  margin: auto;
+  width: 280px;
+
+  @media screen and (min-width: $tablet) {
+    width: 340px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: unset;
+  }
+}
