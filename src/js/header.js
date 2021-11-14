@@ -1,4 +1,5 @@
 import  refs from './common/refs.js';
+import  onWatchedBtnClick  from './watched-queue-btns'
 
 const{
     headerRefs,
@@ -26,6 +27,7 @@ const{
           btnHomeRefs.classList.remove('current');
            galleryListRefs.innerHTML = ''
            localStorage.setItem('totalPages', 0);
+           onWatchedBtnClick()
         };
         
         function homeOpenClick() {
