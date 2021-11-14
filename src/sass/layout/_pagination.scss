@@ -16,12 +16,11 @@
   }
 
   &__item {
-
-    &+&{
+    & + & {
       margin-left: 3px;
     }
 
-    &>.pagination__link-current {
+    & > .pagination__link-current {
       width: 40px;
       height: 40px;
       background-color: $accent-orange-color;
@@ -35,13 +34,12 @@
     width: 30px;
     height: 30px;
     border-radius: 4px;
-    color: $title-color;
+    color: inherit;
     font-size: 12px;
     line-height: 1.33;
     transition-property: color, background-color;
     transition-duration: $anim-duration;
     transition-timing-function: $anim-timing-function;
-    // background-color: $accent-orange-color;
 
     &:hover,
     &:focus,
@@ -50,7 +48,6 @@
       background-color: $accent-orange-color;
     }
   }
-
 
   &__link-current {
     color: $main-text-color;
@@ -64,14 +61,13 @@
     height: 40px;
     border-radius: 5px;
     border-color: inherit;
-    background-color:$main-background-color;
+    background-color: $main-background-color;
 
     &:hover,
     &:focus,
     &:active {
       fill: $main-text-color;
-      background-color: $icon-color; //* потрібно узгодити
-      // transform: matrix(-1, 0, 0, 1, 0, 0);
+      background-color: $icon-color;
     }
   }
 }
