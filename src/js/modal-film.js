@@ -1,11 +1,13 @@
 import modalFilm from '../partials/hbs/modal-film.hbs'
 import API from './api-service';
 import refs from './common/refs';
-const { modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs, WATCHED, QUEUE, watchedBtnRefs, queueBtnRefs } = refs.refs
+const { buttonsModalFilmRefs, modalFilmContainerRefs, backdropRefs, closeBtnModalRefs, modalWindowRefs, galleryListRefs, WATCHED, QUEUE, watchedBtnRefs, queueBtnRefs } = refs.refs
 
 import { move, getUser } from './common/api-data';
 
 galleryListRefs.addEventListener('click', onClickMovie)
+
+
 
 let idMovie
 
@@ -28,18 +30,52 @@ async function onClickMovie(e) {
     }
    })
   
+  const votes = document.querySelector('.movie-flex__votes')
+  let theme = localStorage.getItem('theme')
+
+  let onmouseover = function() 
+  {
+    if (theme === "dark-theme") {
+      this.style.boxShadow = "0px 4px 4px rgb(5, 5, 5)";
+      this.style.border = "1px solid rgb(5, 5, 5)";
+    }
+  }
+  let onmouseout = function() 
+  {
+    if (theme === "dark-theme") {
+      this.style.boxShadow = "0px 4px 4px rgb(255, 107, 1)";
+    }
+  }
+  
+  watchedBtnRefs.onmouseover = onmouseover
+  watchedBtnRefs.onmouseout = onmouseout
+  queueBtnRefs.onmouseover = onmouseover
+  queueBtnRefs.onmouseout = onmouseout
+  if (theme === "dark-theme") {
+    modalWindowRefs.style.backgroundColor = "rgb(5, 5, 5)";
+    modalWindowRefs.style.color = 'rgb(255, 255, 255)';
+    votes.style.backgroundColor = 'rgb(83, 83, 83)';
+    closeBtnModalRefs.style.fill = 'inherit';
+  } else {
+    closeBtnModalRefs.style.fill = 'rgb(0, 0, 0)';
+    modalWindowRefs.style.backgroundColor = '';
+    modalWindowRefs.style.color = '';
+    votes.style.backgroundColor = '';
+  }
+
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal)
    window.addEventListener('keydown', onEcsKeyPress)
    watchedBtnRefs.addEventListener('click', onClickWatchedBtn)
    queueBtnRefs.addEventListener('click', onClickQueueBtn)
    backdropRefs.addEventListener('click', onCloseBtnModal)
    
-   
+   document.body.classList.toggle('modal-open')
    backdropRefs.classList.remove('visually-hidden')
    modalFilmContainerRefs.classList.add('is-open')
    modalWindowRefs.classList.remove('visually-hidden')
    modalWindowRefs.classList.add('is-open')
 }
+
 
 function getName() {
   let name = getUser()
@@ -68,6 +104,7 @@ function onCloseBtnModal(e) {
 }
 
 function removeMovieListenier() {
+  document.body.classList.toggle('modal-open')
   modalWindowRefs.classList.add('visually-hidden')
   modalWindowRefs.classList.remove('is-open')
   backdropRefs.classList.add('visually-hidden')
