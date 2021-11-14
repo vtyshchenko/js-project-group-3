@@ -47,4 +47,4 @@ let e=document.querySelector(".mask");window.addEventListener("load",()=>{e.clas
 },{"../partials/hbs/watched-queue-markup.hbs":"E2xy","./common/refs":"OsqH","./common/api-data":"TAGd","@pnotify/core/dist/PNotify.css":"AjW3","@pnotify/desktop/dist/PNotifyDesktop":"R69c","@pnotify/core/dist/BrightTheme.css":"AjW3","@pnotify/core":"txz9"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/about.js"),require("./js/search-by-keyword"),require("./js/header.js"),require("./js/render-popular-film"),require("./js/modal-film.js"),require("./js/spinner"),require("./js/watched-queue-btns");
 },{"./sass/main.scss":"clu1","./js/about.js":"H3RA","./js/search-by-keyword":"OU2w","./js/header.js":"cGsR","./js/render-popular-film":"sETT","./js/modal-film.js":"voJm","./js/spinner":"Sc1o","./js/watched-queue-btns":"VN1g"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-filmoteka/src.efb97737.js.map
+//# sourceMappingURL=/project-filmoteka/src.c8954372.js.map
