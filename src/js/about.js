@@ -29,7 +29,7 @@ function removeonCloseTeamBtn() {
     backdropRefs.classList.add('visually-hidden')
        closeModalBtnRefs.removeEventListener('click', onCloseTeamBtn);
  backdropRefs.removeEventListener('click', onCloseTeamBtn)
-  
+   document.body.classList.remove('modal-open');
 }
 
 function onEcsKeyPress(e) {
