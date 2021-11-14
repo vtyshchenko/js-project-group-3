@@ -58,10 +58,10 @@
   text-decoration: none;
 }
 
-.icon-heart {
-  @include settings__icons($main-orange-color, 18px, 18px);
-  margin-left: 10px;
-  margin-right: 10px;
+.footer-container__text{
+    @media screen and (min-width: $mobile-min) {
+        padding-bottom: 10px;
+        padding-right: 5px;
 }
 
 .footer-container__text {
