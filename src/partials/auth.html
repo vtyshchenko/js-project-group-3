@@ -26,6 +26,13 @@
         </span>
       </label>
 
+      <!-- 
+    At least 1 Uppercase
+    At least 1 Lowercase
+    At least 1 Number
+    At least 1 Symbol, symbol allowed -- > !@#$%^&*_=+-
+    Min 8 chars and Max 12 chars
+    -->
       <label class="auth__group">
         <span class="auth__label">Password</span>
         <span class="auth__input-group">
@@ -35,7 +42,7 @@
             type="password"
             name="password"
             title="Enter password"
-            pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
             minlength="8"
             placeholder="Enter password"
             required
@@ -46,7 +53,7 @@
         </span>
       </label>
 
-      <label class="auth__group">
+      <label class="auth__group" id="auth-input-group-name">
         <span class="auth__label">Name</span>
         <span class="auth__input-group">
           <input

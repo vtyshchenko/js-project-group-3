@@ -1,3 +1,16 @@
+export function getLanguage() {
+  let data = localStorage.getItem('language');
+  if (!data) {
+    return 'en-uk';
+  }
+
+  return data;
+}
+
+export function setLanguage(lang) {
+  localStorage.setItem('language', String(lang));
+}
+
 export function del(user, key, data) {
   if (!user) {
     return true;

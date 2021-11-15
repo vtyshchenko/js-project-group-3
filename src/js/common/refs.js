@@ -32,7 +32,8 @@ const refs = {
   closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
   confirmCheckboxRefs: document.querySelector('.auth__confirm-checkbox'),
-
+  authFormRefs: document.querySelector('.auth__form'),
+  authNameGroupRefs: document.querySelector('#auth-input-group-name'),
   authNameRefs: document.querySelector('#user-name'),
   authEmailRefs: document.querySelector('#user-email'),
   authPasswordRefs: document.querySelector('#user-password'),

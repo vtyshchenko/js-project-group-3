@@ -6,11 +6,17 @@ const {
   modalAuthRefs,
   confirmCheckboxRefs,
   buttonRegistrationRefs,
+  authNameGroupRefs,
   authNameRefs,
   authEmailRefs,
   authPasswordRefs,
+  authFormRefs,
 } = refs.refs;
 openModalAuthRefs.addEventListener('click', onOpen);
+confirmCheckboxRefs.checked = true;
+authNameRefs.innerHTML = '';
+authEmailRefs.innerHTML = '';
+authPasswordRefs.innerHTML = '';
 
 function onOpen() {
   window.addEventListener('keydown', onKeyPress);
@@ -26,7 +32,6 @@ function onOpen() {
 }
 
 function removeListeners() {
-  confirmCheckboxRefs.checked = true;
   window.removeEventListener('keydown', onKeyPress);
   closeModalAuthRefs.removeEventListener('click', onClose);
   confirmCheckboxRefs.removeEventListener('change', onCheckboxChange);
@@ -58,20 +63,21 @@ function onClose(e) {
 }
 
 function onCheckboxChange(e) {
+  console.log(e);
   let text = '';
   if (e.target.checked) {
     text = 'Registration';
+    authNameGroupRefs.classList.remove('visually-hidden');
+    authFormRefs.style.height = '360px';
   } else {
     text = 'Log in';
+    authNameGroupRefs.classList.add('visually-hidden');
+    authFormRefs.style.height = '300px';
   }
   buttonRegistrationRefs.innerHTML = text;
 }
 
 function onConfirm() {
-  console.log('authNameRefs', authNameRefs);
-  console.log('authEmailRefs', authEmailRefs);
-  console.log('authPasswordRefs', authPasswordRefs);
-  console.log('confirmCheckboxRefs', confirmCheckboxRefs);
   let userName = authNameRefs.value;
   let userEmail = authEmailRefs.value;
   let userPassword = authPasswordRefs.value;
