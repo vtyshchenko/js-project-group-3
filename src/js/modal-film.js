@@ -33,7 +33,6 @@ async function onClickMovie(e) {
   }
   idMovie = await API.fetchMovie(temp.id).then(results => {
     if (temp.id == results.id) {
-      console.log(results);
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
       return results;
     }
@@ -57,10 +56,17 @@ async function onClickMovie(e) {
   watchedBtnRefs.onmouseout = onmouseout;
   queueBtnRefs.onmouseover = onmouseover;
   queueBtnRefs.onmouseout = onmouseout;
+
   if (theme === 'dark-theme') {
-    styleThemeModal('rgb(5, 5, 5)', 'rgb(255, 255, 255)', 'rgb(83, 83, 83)', 'inherit');
+    styleThemeModal(
+      'rgb(5, 5, 5)',
+      'rgb(255, 255, 255)',
+      'rgb(83, 83, 83)',
+      'inherit',
+      'rgba(255, 107, 0, 0.75)',
+    );
   } else {
-    styleThemeModal('', '', '', 'rgb(0, 0, 0)');
+    styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
   }
 
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal);
@@ -76,13 +82,15 @@ async function onClickMovie(e) {
   modalWindowRefs.classList.add('is-open');
 }
 
-function styleThemeModal(bck, color, votesbck, fill) {
-  console.log(bck, color, votesbck, fill);
+function styleThemeModal(bck, color, votesbck, fill, containerBc) {
   const votes = document.querySelector('.movie-flex__votes');
+  const companyContainerRef = document.querySelector('.company-container');
+
   modalWindowRefs.style.backgroundColor = bck;
   modalWindowRefs.style.color = color;
   votes.style.backgroundColor = votesbck;
   closeBtnModalRefs.style.fill = fill;
+  companyContainerRef.style.backgroundColor = containerBc;
 }
 
 function getName() {
