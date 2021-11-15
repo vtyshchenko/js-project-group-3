@@ -30,10 +30,14 @@ function onSearchPopularFilms(page) {
       return data.results;
     })
     .then(renderPopFilms)
+    .then(() => {
+      onMarkupButton(page);
+    })
     .catch(error => {
       console.log(error);
     });
 
+  // console.log('~ page', page);
   // onMarkupButton(page);
 }
 

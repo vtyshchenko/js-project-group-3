@@ -3,32 +3,28 @@ import buttonsTpl from '../partials/hbs/pagination.hbs';
 import onSearchPopularFilms from './render-popular-film.js';
 
 const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
-
-const firstPage = 1;
-let page = 1;
 let totalPages = 1;
-const countShowSumbols = 9;
-const MOVE_PAGE_TEXT = '...';
 
 arrowLeft.addEventListener('click', onClickArrowLeft);
 arrowRight.addEventListener('click', onClickArrowRight);
 listernerEvent.addEventListener('click', onClickButton);
 
 function onGetTotalPages() {
-  return (totalPages = localStorage.getItem('totalPages'));
+  return localStorage.getItem('totalPages');
 }
+// console.log('~ onGetTotalPages()', onGetTotalPages());
 
-function onClickArrowLeft(e) {
+function onClickArrowLeft() {
   page -= 1;
-  onMarkupButton(totalPages, page);
-  onSearchPopularFilm(e, page);
+  // onMarkupButton(page);
+  // onSearchPopularFilm(e, page);
   return page;
 }
 
-function onClickArrowRight(e) {
+function onClickArrowRight() {
   page += 1;
-  onMarkupButton(totalPages, page);
-  onSearchPopularFilms(e, page);
+  // onMarkupButton(page);
+  // onSearchPopularFilms(e, page);
   return page;
 }
 
@@ -54,24 +50,35 @@ function onClickButton(e) {
     }
   }
 
-  onSearchPopularFilms(e, page);
-  onMarkupButton(totalPages, page);
-}
+//   onSearchPopularFilms(e, page);
+//   onMarkupButton(totalPages, page);
+// }
 
-function onHideArrowLeft() {
+function onHideArrowLeft(page) {
   page === 1 ? arrowLeft.classList.add('hidden') : arrowLeft.classList.remove('hidden');
 }
 
-function onHideArrowRight() {
+function onHideArrowRight(page) {
   page === totalPages ? arrowRight.classList.add('hidden') : arrowRight.classList.remove('hidden');
 }
-
-export function onMarkupButton(page) {
+function onMarkupButton(page) {
+  markupButton(page);
+}
+export function markupButton(page) {
+  console.log(page);
+  const firstPage = 1;
+  const countShowSumbols = 9;
+  const MOVE_PAGE_TEXT = '...';
+  // let page;
   let beforePages;
   let afterPages;
-
-  // onGetTotalPages();
-  let totalPages = 20;
+  if (!page) {
+    page = 1;
+  }
+  // console.log('~ onGetTotalPages()', totalPages);
+  let totalPages = onGetTotalPages();
+  console.log('~ onGetTotalPages()', totalPages);
+  // let totalPages = 20;
 
   if (page > 0 && page < 6) {
     beforePages = firstPage;
@@ -86,7 +93,7 @@ export function onMarkupButton(page) {
     beforePages = totalPages - countShowSumbols + 1;
   }
 
-  // onHideArrowLeft(page);
+  onHideArrowLeft(page);
 
   let buttons = '';
   //* якщо сторінка від 1 до 5 не для мобілки 108-114
@@ -120,7 +127,7 @@ export function onMarkupButton(page) {
     }
   }
 
-  // onHideArrowRight();
+  onHideArrowRight();
 }
 
-onMarkupButton(page);
+// onMarkupButton(1);

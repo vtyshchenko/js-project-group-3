@@ -5,6 +5,7 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
+import { onMarkupButton } from './pagination.js';
 const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs;
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
@@ -43,13 +44,13 @@ function getMarkup(name) {
 export default function onWatchedBtnClick() {
   getMarkup('watched');
   typeOfPage('watched');
-  onMarkupButton(1, 1);
+  // onMarkupButton(1, 1);
 }
 
 function onQueueBtnClick() {
   getMarkup('queue');
   typeOfPage('queue');
-  onMarkupButton(1, 1);
+  // onMarkupButton(1, 1);
 }
 
 function typeOfPage(type) {
