@@ -17,6 +17,14 @@ function fetchMovie(movie_id) {
         .then(response => response.json())
 }
 
+// ========== Трейлер
+
+function fetchTrailer(movie_id) {
+  const LANG = localStorage.getItem('language')
+    return fetch(`${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}&language=${LANG}`)
+        .then(response => response.json()).then(data => data.results[0].key)
+}
+
 // ========== Популярні фільми
 
 function fetchPopularFilms(page) {
@@ -47,5 +55,5 @@ const themoviedb = {
 // https://api.themoviedb.org/3/movie/550?api_key=7cb7f2a84f35ebc2678afebafcd2cb5f
 // keyV4Auth - token
 
-export default { fetchMovies, fetchMovie, fetchPopularFilms, fetchGenres, themoviedb };
+export default { fetchMovies, fetchMovie, fetchPopularFilms, fetchGenres, fetchTrailer, themoviedb };
 

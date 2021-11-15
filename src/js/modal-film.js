@@ -1,3 +1,4 @@
+import * as basicLightbox from 'basiclightbox'
 import modalFilm from '../partials/hbs/modal-film.hbs'
 import API from './api-service';
 import refs from './common/refs';
@@ -10,6 +11,7 @@ galleryListRefs.addEventListener('click', onClickMovie)
 
 
 let idMovie
+let idTrailer
 
 async function onClickMovie(e) {
   e.preventDefault()
@@ -23,12 +25,24 @@ async function onClickMovie(e) {
       return
     }
   }
-   idMovie = await API.fetchMovie(temp.id).then(results => {
+  idTrailer = await API.fetchTrailer(temp.id).then(data => {
+      const trailer = data
+      return data
+    
+  })
+    
+  
+  // console.log(idTrailer);
+  idMovie = await API.fetchMovie(temp.id).then(results => {
+    console.log(results);
     if (temp.id == results.id) {
+      results.trailer = idTrailer
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results))
       return results
     }
-   })
+  })
+
+
   
   const votes = document.querySelector('.movie-flex__votes')
   let theme = localStorage.getItem('theme')
