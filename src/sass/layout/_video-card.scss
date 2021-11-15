@@ -7,6 +7,7 @@
 }
 
 .gallery-film-item {
+  position: relative;
   width: 280px;
   padding: 5px;
   border-radius: 5px;
@@ -73,4 +74,47 @@
   background-color: $main-orange-color;
   color: $main-text-color;
   border-radius: 5px;
+}
+
+// Трейлеры
+.card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  font-size: 18px;
+  line-height: 1.56;
+  background-color: $overlay-color;
+  color: $main-text-color;
+  overflow: auto;
+  width: 1px;
+  height: 1px;
+  transform: translateX(-100%);
+  transition: transform $anim-duration $anim-timing-function,
+    opacity $anim-duration $anim-timing-function;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100px 25px;
+  background-image: url('../images/icon-youtube.png');
+  z-index: 50;
+
+  .gallery-film-item:hover &,
+  .gallery-film-item:focus & {
+    opacity: 1;
+    transform: translateX(0);
+    width: 100%;
+    height: 8%;
+  }
+  @media screen and (max-width: calc($mobile - 1px)) {
+    overflow: auto;
+  }
+}
+.card__text {
+  padding: 5px 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: $main-text-color;
+}
+.card__thumb {
+  overflow: hidden;
 }
