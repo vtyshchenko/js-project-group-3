@@ -1,0 +1,82 @@
+<div class="auth-wrapper container visually-hidden" data-auth-modal>
+  <button class="auth__button-close" type="button" data-auth-modal-close>
+    <svg class="auth__icon">
+      <use class="auth__use" href="./images/symbol-defs.svg#icon-close-button"></use>
+    </svg>
+  </button>
+  <form class="auth__form">
+    <p class="auth__title">Register or log in</p>
+    <div class="auth__inputs">
+      <label class="auth__group">
+        <span class="auth__label">Name</span>
+        <span class="auth__input-group">
+          <input
+            class="auth__input-info"
+            type="text"
+            name="name"
+            title="Please enter your name."
+            placeholder="John Jonson"
+            pattern="^[a-zA-Z]+$"
+            minlength="8"
+          />
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-person"></use>
+          </svg>
+        </span>
+      </label>
+
+      <label class="auth__group">
+        <span class="auth__label">Password</span>
+        <span class="auth__input-group">
+          <input
+            class="auth__input-info"
+            type="email"
+            name="email"
+            title="Enter password"
+            pattern="^[a-zA-Z\.#\\]+\s[a-zA-Z]+$"
+            minlength="8"
+            placeholder="Enter password"
+            required
+          />
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-password"></use>
+          </svg>
+        </span>
+      </label>
+
+      <label class="auth__group">
+        <span class="auth__label">Mail</span>
+        <span class="auth__input-group">
+          <input
+            class="auth__input-info"
+            type="email"
+            name="email"
+            title="Enter mailbox"
+            placeholder="example@mail.com"
+            required
+          />
+          <svg class="auth__input-icon">
+            <use href="./images/symbol-defs.svg#icon-email"></use>
+          </svg>
+        </span>
+      </label>
+      <label class="auth__confirm">
+        <input
+          class="auth__confirm-checkbox visually-hidden"
+          type="checkbox"
+          name="confirm"
+          checked
+        />
+        <span class="auth__checkbox-icon"></span>
+        <span class="auth__confirm-conditions">Register new user</span>
+      </label>
+
+      <div class="auth__button-group">
+        <button class="button-submit" id="registration" type="submit">Registration</button>
+        <button class="button-submit button-submit-close" type="button" data-modal-close>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
