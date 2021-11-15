@@ -60,8 +60,6 @@ async function onClickMovie(e) {
       }
     });
 
-    const votes = document.querySelector('.movie-flex__votes');
-
     let onmouseover = function () {
       if (theme === 'dark-theme') {
         this.style.boxShadow = '0px 4px 4px rgb(5, 5, 5)';
@@ -78,17 +76,17 @@ async function onClickMovie(e) {
     watchedBtnRefs.onmouseout = onmouseout;
     queueBtnRefs.onmouseover = onmouseover;
     queueBtnRefs.onmouseout = onmouseout;
+
     if (theme === 'dark-theme') {
-      modalWindowRefs.style.backgroundColor = 'rgb(5, 5, 5)';
-      modalWindowRefs.style.color = 'rgb(255, 255, 255)';
-      votes.style.backgroundColor = 'rgb(83, 83, 83)';
-      closeBtnModalRefs.style.fill = 'inherit';
+      styleThemeModal(
+        'rgb(5, 5, 5)',
+        'rgb(255, 255, 255)',
+        'rgb(83, 83, 83)',
+        'inherit',
+        'rgba(255, 107, 0, 0.75)',
+      );
     } else {
-      closeBtnModalRefs.style.fill = 'rgb(0, 0, 0)';
-      console.log(closeBtnModalRefs);
-      modalWindowRefs.style.backgroundColor = '';
-      modalWindowRefs.style.color = '';
-      votes.style.backgroundColor = '';
+      styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
     }
   }
 
@@ -110,6 +108,17 @@ async function onClickMovie(e) {
     modalWindowRefs.classList.remove('visually-hidden');
     modalWindowRefs.classList.add('is-open');
   }
+}
+
+function styleThemeModal(bck, color, votesbck, fill, containerBc) {
+  const votes = document.querySelector('.movie-flex__votes');
+  const companyContainerRef = document.querySelector('.company-container');
+
+  modalWindowRefs.style.backgroundColor = bck;
+  modalWindowRefs.style.color = color;
+  votes.style.backgroundColor = votesbck;
+  closeBtnModalRefs.style.fill = fill;
+  companyContainerRef.style.backgroundColor = containerBc;
 }
 
 function getName() {
