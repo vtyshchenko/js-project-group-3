@@ -22,7 +22,7 @@ function fetchMovie(movie_id) {
 function fetchTrailer(movie_id) {
   const LANG = localStorage.getItem('language')
     return fetch(`${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}&language=${LANG}`)
-        .then(response => response.json()).then(data => data.results[0].key)
+        .then(response => response.json())
 }
 
 // ========== Популярні фільми
