@@ -92,3 +92,4 @@ function onSearchYear(data) {
   return newYear
 }
 
+export default { onWatchedBtnClick, onQueueBtnClick, getMarkup };
