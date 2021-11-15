@@ -39,9 +39,7 @@ const refs = {
 
   WATCHED: 'watched',
   QUEUE: 'queue',
-    
-  openModalBtnRefs: document.querySelector('[data-modal-open]'),
-  modalRefs: document.querySelector('[data-modal]'),
+
   wrapper: document.querySelector('.pagination__wrapper-js'),
   arrowLeft: document.querySelector('.arrow-left-js'),
   arrowRight: document.querySelector('.arrow-right-js'),
