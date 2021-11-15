@@ -12,7 +12,7 @@
   background-color: $team-bg-color;
 
   @media screen and (min-width: $desktop) {
-    margin-bottom: 40px;
+    padding-bottom: 40px;
   }
 }
 
@@ -87,10 +87,6 @@
 
 .team__modal-item {
   border-radius: 43px;
-
-  box-shadow: 1px 1px 400px 71px rgba(232, 194, 175, 0.52);
-  -webkit-box-shadow: 1px 1px 400px 71px rgba(232, 194, 175, 0.52);
-  -moz-box-shadow: 1px 1px 400px 71px rgba(232, 194, 175, 0.52);
 
   @media screen and (min-width: $tablet) {
     margin-bottom: unset;
