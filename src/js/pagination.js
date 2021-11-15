@@ -6,7 +6,7 @@ const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
 
 const firstPage = 1;
 let page = 1;
-const totalPages = localStorage.getItem('totalPages');
+let totalPages = 1;
 const countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
 
@@ -14,10 +14,14 @@ arrowLeft.addEventListener('click', onClickArrowLeft);
 arrowRight.addEventListener('click', onClickArrowRight);
 listernerEvent.addEventListener('click', onClickButton);
 
+function onGetTotalPages() {
+  return (totalPages = localStorage.getItem('totalPages'));
+}
+
 function onClickArrowLeft(e) {
   page -= 1;
   onMarkupButton(totalPages, page);
-  onSearchPopularFilms(e, page);
+  onSearchPopularFilm(e, page);
   return page;
 }
 
@@ -62,9 +66,12 @@ function onHideArrowRight() {
   page === totalPages ? arrowRight.classList.add('hidden') : arrowRight.classList.remove('hidden');
 }
 
-function onMarkupButton(totalPages, page) {
+export function onMarkupButton(page) {
   let beforePages;
   let afterPages;
+
+  // onGetTotalPages();
+  let totalPages = 20;
 
   if (page > 0 && page < 6) {
     beforePages = firstPage;
@@ -79,7 +86,7 @@ function onMarkupButton(totalPages, page) {
     beforePages = totalPages - countShowSumbols + 1;
   }
 
-  onHideArrowLeft(page);
+  // onHideArrowLeft(page);
 
   let buttons = '';
   //* якщо сторінка від 1 до 5 не для мобілки 108-114
@@ -113,7 +120,7 @@ function onMarkupButton(totalPages, page) {
     }
   }
 
-  onHideArrowRight();
+  // onHideArrowRight();
 }
 
-onMarkupButton(totalPages, page);
+onMarkupButton(page);
