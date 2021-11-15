@@ -281,9 +281,9 @@ body.dark-theme {
   color: currentColor;
   height: 20px;
   width: 26px;
-  &:not(:last-child) {
-    margin-left: 20px;
-  }
+  // &:not(:last-child) {
+  //   margin-right: 20px;
+  // }
 }
 
 .theme-switch__control {
@@ -345,6 +345,7 @@ body.dark-theme {
 }
 .languages{
   position: absolute;
+  padding: 0;
    top: 2px;
    left: -30%;
    &:hover {
@@ -354,7 +355,13 @@ body.dark-theme {
     }
   }
 }
+// .languages__list {
+//   padding: 0;
+//   display: flex;
+  
+// }
   .languages__item{
+    padding: 0;
     &:not(:last-child){
       margin-right: 10px;
   }

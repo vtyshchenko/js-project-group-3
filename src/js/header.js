@@ -1,5 +1,5 @@
 import refs from './common/refs.js';
-
+import  onWatchedBtnClick  from './watched-queue-btns'
 const {
   headerRefs,
   navHomeRefs,
@@ -43,7 +43,8 @@ function libOpenClick() {
   btnHomeRefs.classList.remove('current');
   galleryListRefs.innerHTML = '';
   localStorage.setItem('totalPages', 0);
-  inputSearchRefs.value = ''  
+  inputSearchRefs.value = '';
+  onWatchedBtnClick();
 }
 
 function homeOpenClick() {
