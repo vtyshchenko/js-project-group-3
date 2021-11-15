@@ -1,3 +1,16 @@
+export function getLanguage() {
+  let data = localStorage.getItem('language');
+  if (!data) {
+    return 'en-uk';
+  }
+
+  return data;
+}
+
+export function setLanguage(lang) {
+  localStorage.setItem('language', String(lang));
+}
+
 export function del(user, key, data) {
   if (!user) {
     return true;
@@ -8,7 +21,7 @@ export function del(user, key, data) {
     return true;
   }
 
-  tmp[user][key] = tmp[user][key].filter(item => item != data);
+  tmp[user][key] = tmp[user][key].filter(item => item.id != data.id);
   return saveData(tmp);
 }
 
