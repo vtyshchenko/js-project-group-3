@@ -156,6 +156,7 @@ function removeMovieListenier() {
 
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.add('visually-hidden');
+
   closeBtnModalRefs.removeEventListener('click', onCloseBtnModal);
   backdropRefs.removeEventListener('click', onCloseBtnModal);
   watchedBtnRefs.removeEventListener('click', onClickWatchedBtn);

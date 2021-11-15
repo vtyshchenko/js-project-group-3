@@ -41,7 +41,7 @@ function getMarkup(name) {
     }
 }
 
-export default function onWatchedBtnClick() {
+function onWatchedBtnClick() {
     getMarkup('watched')
 }
 
@@ -85,3 +85,5 @@ function onSearchYear(data) {
     })
   return newYear
 }
+
+export default { onWatchedBtnClick, onQueueBtnClick, getMarkup };
