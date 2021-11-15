@@ -22,8 +22,12 @@ export function onSearchGenresList(data) {
           genreID = genreID.join(', ').split(',')
         }
       if (genreID.length >= 3) {
-            genreID = genreID.slice(0, 2)
-            genreID.push(' Other')
+        genreID = genreID.slice(0, 2)
+        if (localStorage.getItem('language') === 'uk-UA') {
+          genreID.push(' Інше')
+        } else {
+          genreID.push(' Other')
+        }
       }
         
     elem.genre_ids = genreID
@@ -39,8 +43,10 @@ export function onSearchYear(data) {
  newYear.results = newYear.results.map(elem => {
     if (elem.release_date) {
       elem.release_date =  elem.release_date.split('-')[0];
+    }  else if( localStorage.getItem('language') === 'uk-UA')  {
+      elem.release_date = 'Нема даних'
     } else {
-     elem.release_date = 'No date'
+      elem.release_date = 'No date'
    }
  return elem
  })

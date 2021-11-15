@@ -1,6 +1,7 @@
 import { setLanguage } from './common/api-data'
+import refs from './common/refs'
 
-//-------------------------------
+const { btnHomeRefs, btnLibrRefs } = refs.refs
 const btnUA = document.querySelector('#btn-ua')
 const btnUS = document.querySelector('#btn-us')
 
@@ -9,11 +10,21 @@ btnUS.addEventListener('click', onChangeLangUS)
 
 
 function onChangeLangUA() {
-  setLanguage('uk-UA')
-  document.location.reload();
+    setLanguage('uk-UA')
+    location.reload()
 }
 
 function onChangeLangUS() {
-  setLanguage('en-US')
-  document.location.reload();
+    setLanguage('en-US')
+    location.reload();
 }
+
+
+
+
+
+
+
+
+
+
