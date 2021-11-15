@@ -7,6 +7,7 @@
 }
 
 .gallery-film-item {
+  position: relative;
   width: 280px;
   padding: 5px;
   border-radius: 5px;
@@ -78,24 +79,27 @@
 // Трейлеры
 .card__overlay {
   position: absolute;
-
-  left: 0;
   top: 0;
+  left: 0;
+  opacity: 0;
+  font-size: 18px;
+  line-height: 1.56;
+  background-color: #c3c3c3;
+  color: #fff;
+  overflow: auto;
   width: 100%;
-  height: 10%;
-
-  background: rgba(33, 150, 243, 0.9);
-
+  height: 100%;
+  padding: 60px 20px;
   transform: translateX(100%);
-  transition: transform 250ms ease-in;
-  background-size: 50px 50px;
+  transition: transform $anim-duration $anim-timing-function,
+    opacity $anim-duration $anim-timing-function;
   background: no-repeat url('../images/icon-youtube.png');
   z-index: 50;
 
-  .card__link:hover &,
-  .card__link:focus & {
+  .gallery-film-item:hover &,
+  .gallery-film-item:focus & {
+    opacity: 1;
     transform: translateX(0);
-    transform: scale(1.04);
   }
   @media screen and (max-width: 479px) {
     overflow: auto;
@@ -117,6 +121,6 @@
   }
 }
 .card__thumb {
-  position: relative;
+  // position: relative;
   overflow: hidden;
 }
