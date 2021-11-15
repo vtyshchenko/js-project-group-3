@@ -44,13 +44,11 @@ function getMarkup(name) {
 export default function onWatchedBtnClick() {
   getMarkup('watched');
   typeOfPage('watched');
-  // onMarkupButton(1, 1);
 }
 
 function onQueueBtnClick() {
   getMarkup('queue');
   typeOfPage('queue');
-  // onMarkupButton(1, 1);
 }
 
 function typeOfPage(type) {

@@ -9,7 +9,7 @@ const { galleryListRefs, btnHomeRefs, logoRefs } = refs.refs;
 btnHomeRefs.addEventListener('click', onSearchPopularFilms);
 logoRefs.addEventListener('click', onSearchPopularFilms);
 
-function onSearchPopularFilms(page) {
+export function onSearchPopularFilms(page) {
   if (!page) {
     page = 1;
   }
@@ -36,9 +36,6 @@ function onSearchPopularFilms(page) {
     .catch(error => {
       console.log(error);
     });
-
-  // console.log('~ page', page);
-  // onMarkupButton(page);
 }
 
 function renderPopFilms(results) {
