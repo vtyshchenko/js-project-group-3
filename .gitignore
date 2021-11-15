@@ -107,3 +107,8 @@ dist
 
 # TernJS port file
 .tern-port
+orig/
+
+*old.*
+*buckup.*
+~*
