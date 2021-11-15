@@ -4,6 +4,7 @@
     <img class="movie-image" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png" alt="{{title}}">
     {{/if}}
     <div class="tablet-movie-container">
+        <div>
     <h1 class="movie-title">{{title}}</h1>
     <div class="movie-flex">
     <ul class="movie-flex__list">
@@ -24,3 +25,22 @@
     <h2 class="movie-title__desc">About</h2>
     <p class="movie-overview">{{overview}}</p>
     </div>
+    <div class="company-container">
+    <ul class="company list">
+        {{#each production_companies}}
+            {{#unless logo_path}}
+                <li class="company__list-item">{{name}} <span class="separator">|</span></li>
+            {{/unless}}
+        {{/each}}
+    </ul>
+    <ul class="company list">
+        {{#each production_companies}}
+            {{#if logo_path}}
+            <li class="company__list-item">
+                <img class="company__image" src="https://image.tmdb.org/t/p/w500{{logo_path}}" alt="{{name}}">
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>
+</div>
