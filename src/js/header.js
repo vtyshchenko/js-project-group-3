@@ -1,5 +1,7 @@
 import refs from './common/refs.js';
 import  onWatchedBtnClick  from './watched-queue-btns'
+import { onSearchPopularFilms } from './render-popular-film'
+import {onMarkupButton} from './pagination'
 const {
   headerRefs,
   navHomeRefs,
@@ -54,7 +56,9 @@ function homeOpenClick() {
   librListRefs.classList.add('is-hidden');
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
-  inputSearchRefs.value = ''  
+  inputSearchRefs.value = '' 
+  onSearchPopularFilms()
+  onMarkupButton(localStorage.getItem('totalPages'), 1) 
 }
 
 function inputChange(e) {
@@ -71,5 +75,6 @@ function changeClasses(removeClass, addClass) {
   document.body.classList.remove(removeClass);
   document.body.classList.add(addClass);
 }
+
 
 
