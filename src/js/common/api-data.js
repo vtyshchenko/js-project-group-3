@@ -1,7 +1,7 @@
 export function getLanguage() {
   let data = localStorage.getItem('language');
   if (!data) {
-    return 'en-uk';
+    return 'en-US';
   }
 
   return data;
