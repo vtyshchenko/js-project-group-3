@@ -2,7 +2,6 @@ import modalFilm from '../partials/hbs/modal-film.hbs';
 import API from './api-service';
 import refs from './common/refs';
 const {
-  buttonsModalFilmRefs,
   modalFilmContainerRefs,
   backdropRefs,
   closeBtnModalRefs,
@@ -40,7 +39,6 @@ async function onClickMovie(e) {
     }
   });
 
-  const votes = document.querySelector('.movie-flex__votes');
   let theme = localStorage.getItem('theme');
 
   let onmouseover = function () {
@@ -60,15 +58,9 @@ async function onClickMovie(e) {
   queueBtnRefs.onmouseover = onmouseover;
   queueBtnRefs.onmouseout = onmouseout;
   if (theme === 'dark-theme') {
-    modalWindowRefs.style.backgroundColor = 'rgb(5, 5, 5)';
-    modalWindowRefs.style.color = 'rgb(255, 255, 255)';
-    votes.style.backgroundColor = 'rgb(83, 83, 83)';
-    closeBtnModalRefs.style.fill = 'inherit';
+    styleThemeModal('rgb(5, 5, 5)', 'rgb(255, 255, 255)', 'rgb(83, 83, 83)', 'inherit');
   } else {
-    closeBtnModalRefs.style.fill = 'rgb(0, 0, 0)';
-    modalWindowRefs.style.backgroundColor = '';
-    modalWindowRefs.style.color = '';
-    votes.style.backgroundColor = '';
+    styleThemeModal('', '', '', 'rgb(0, 0, 0)');
   }
 
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal);
@@ -82,6 +74,15 @@ async function onClickMovie(e) {
   modalFilmContainerRefs.classList.add('is-open');
   modalWindowRefs.classList.remove('visually-hidden');
   modalWindowRefs.classList.add('is-open');
+}
+
+function styleThemeModal(bck, color, votesbck, fill) {
+  console.log(bck, color, votesbck, fill);
+  const votes = document.querySelector('.movie-flex__votes');
+  modalWindowRefs.style.backgroundColor = bck;
+  modalWindowRefs.style.color = color;
+  votes.style.backgroundColor = votesbck;
+  closeBtnModalRefs.style.fill = fill;
 }
 
 function getName() {

@@ -28,7 +28,6 @@
   top: 3%;
   left: 50%;
   transform: translate(-50%, 0);
-  // max-width: 280px;
   background-color: $main-text-color;
   border: 1px solid $third-text-color;
   padding: 50px 20px 40px 20px;
@@ -66,24 +65,17 @@
 }
 
 .movie-image {
-  // max-width: 240px;
   border-radius: 5px;
   margin: 0 auto 30px auto;
-  // max-width: 100%;
-  // height: auto;
   min-width: 264px;
   height: 400px;
   @media screen and (min-width: $mobile) {
-    // min-width: 264px;
     min-width: unset;
   }
   @media screen and (min-width: $tablet) {
-    // min-width: 264px;
-    // height: 400px;
     margin-bottom: 0;
   }
   @media screen and (min-width: $desktop) {
-    // min-width: 396px;
     height: 600px;
   }
 }
@@ -175,12 +167,6 @@
 .btn-container {
   display: flex;
   justify-content: center;
-  // margin-right: 10px;
-  // @media screen and (min-width: $desktop) {
-  //   // position: absolute;
-  //   // bottom: 30px;
-  //   // left: 373px;
-  // }
 }
 
 .btn-watched {
