@@ -25,6 +25,7 @@ const refs = {
   galleryListRefs: document.querySelector('.gallery-film-list'),
   watchedBtnRefs: document.querySelector('.btn-watched'),
   queueBtnRefs: document.querySelector('.btn-queue'),
+
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
   closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
@@ -38,6 +39,13 @@ const refs = {
 
   WATCHED: 'watched',
   QUEUE: 'queue',
+    
+  openModalBtnRefs: document.querySelector('[data-modal-open]'),
+  modalRefs: document.querySelector('[data-modal]'),
+  wrapper: document.querySelector('.pagination__wrapper-js'),
+  arrowLeft: document.querySelector('.arrow-left-js'),
+  arrowRight: document.querySelector('.arrow-right-js'),
+  listernerEvent: document.querySelector('.pagination__wrapper-js'),
 };
 
 export default { refs };
