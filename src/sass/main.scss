@@ -16,11 +16,12 @@
 @import './components/auth';
 @import './components/about';
 @import './components/modal_film';
+@import './components/modal_trailer';
 @import './components/up-button';
+@import './components/spinner.scss';
 
 @import './layout/header';
 @import './layout/hero';
 @import './layout/pagination';
 @import './layout/video-card';
 @import './layout/footer';
-@import './components/spinner.scss';
