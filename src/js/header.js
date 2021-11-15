@@ -1,4 +1,5 @@
-import  refs from './common/refs.js';
+import refs from './common/refs.js';
+import { onSearchPopularFilms } from './render-popular-film'
 
 const{
     headerRefs,
@@ -35,6 +36,7 @@ const{
           librListRefs.classList.add('is-hidden');
           btnHomeRefs.classList.add('current');
           btnLibrRefs.classList.remove('current');
+          onSearchPopularFilms()
         };
       
         const Theme = {
