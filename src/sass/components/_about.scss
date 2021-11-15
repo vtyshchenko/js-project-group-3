@@ -75,6 +75,8 @@
 }
 
 .team__modal-list {
+  width: 743px;
+
   @media screen and (min-width: $tablet) {
     display: flex;
     margin-top: -30px;
@@ -84,10 +86,11 @@
 }
 
 .team__modal-item {
-  box-shadow: 12px 13px 15px 3px $team-shadow-color;
-  -webkit-box-shadow: 12px 13px 15px 3px $team-shadow-color;
-  -moz-box-shadow: 12px 13px 15px 3px $team-shadow-color;
-  margin-bottom: 30px;
+  border-radius: 65px;
+
+  box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
+  -webkit-box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
+  -moz-box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
 
   @media screen and (min-width: $tablet) {
     margin-bottom: unset;
@@ -104,6 +107,7 @@
 .team__photo {
   margin: auto;
   width: 280px;
+  border-radius: 65px;
 
   @media screen and (min-width: $tablet) {
     width: 340px;
@@ -174,6 +178,6 @@
   fill: $team-social-color;
 
   @media screen and (min-width: $desktop) {
-    width: 35px;
+    width: 34px;
   }
 }
