@@ -86,11 +86,11 @@
 }
 
 .team__modal-item {
-  border-radius: 65px;
+  border-radius: 43px;
 
-  box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
-  -webkit-box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
-  -moz-box-shadow: 1px 1px 400px 71px rgba(255, 107, 1, 0.52);
+  box-shadow: 1px 1px 400px 71px rgba(242, 171, 124, 0.52);
+  -webkit-box-shadow: 1px 1px 400px 71px rgba(242, 171, 124, 0.52);
+  -moz-box-shadow: 1px 1px 400px 71px rgba(242, 171, 124, 0.52);
 
   @media screen and (min-width: $tablet) {
     margin-bottom: unset;
@@ -107,7 +107,7 @@
 .team__photo {
   margin: auto;
   width: 280px;
-  border-radius: 65px;
+  border-radius: 43px;
 
   @media screen and (min-width: $tablet) {
     width: 340px;
