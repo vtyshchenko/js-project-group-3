@@ -20,16 +20,15 @@
     bottom: 120px;
     right: 20px;
     }
+  }
 
-  }
+.up-button:hover {
+  background: $bg-image-darkening;
+}
   
-  .up-button:hover {
-    background: $bg-image-darkening;
-  }
-  
-  .up-button-show {
-    display: block;
-  }
+.up-button-show {
+  display: block;
+}
 
 .up-arrow {
   fill: $main-orange-color;
