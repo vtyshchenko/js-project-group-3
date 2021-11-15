@@ -1,7 +1,11 @@
 import modalFilm from '../partials/hbs/modal-film.hbs';
+import modalTrailer from '../partials/hbs/modal-trailer.hbs';
 import API from './api-service';
 import refs from './common/refs';
 const {
+  modalTrailerContainerRefs,
+  modalTrailerWindowRefs,
+  buttonsModalFilmRefs,
   modalFilmContainerRefs,
   backdropRefs,
   closeBtnModalRefs,
@@ -31,42 +35,59 @@ async function onClickMovie(e) {
       return;
     }
   }
-  idMovie = await API.fetchMovie(temp.id).then(results => {
-    if (temp.id == results.id) {
-      modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
-      return results;
-    }
-  });
 
   let theme = localStorage.getItem('theme');
+  let isTrailer = Array.from(e.target.classList).includes('card__overlay');
 
-  let onmouseover = function () {
+  if (isTrailer) {
+    API.fetchTrailer(temp.id).then(results => {
+      const trailerId = results.id;
+      const trailer = results.results[0].key;
+      if (temp.id == results.id) {
+        results.trailer = trailer;
+        modalTrailerContainerRefs.insertAdjacentHTML('beforeend', modalTrailer(results));
+        return results;
+      }
+    });
     if (theme === 'dark-theme') {
-      this.style.boxShadow = '0px 4px 4px rgb(5, 5, 5)';
-      this.style.border = '1px solid rgb(5, 5, 5)';
+      modalTrailerWindowRefs.style.backgroundColor = 'rgb(5, 5, 5)';
     }
-  };
-  let onmouseout = function () {
-    if (theme === 'dark-theme') {
-      this.style.boxShadow = '0px 4px 4px rgb(255, 107, 1)';
-    }
-  };
-
-  watchedBtnRefs.onmouseover = onmouseover;
-  watchedBtnRefs.onmouseout = onmouseout;
-  queueBtnRefs.onmouseover = onmouseover;
-  queueBtnRefs.onmouseout = onmouseout;
-
-  if (theme === 'dark-theme') {
-    styleThemeModal(
-      'rgb(5, 5, 5)',
-      'rgb(255, 255, 255)',
-      'rgb(83, 83, 83)',
-      'inherit',
-      'rgba(255, 107, 0, 0.75)',
-    );
   } else {
-    styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
+    idMovie = await API.fetchMovie(temp.id).then(results => {
+      if (temp.id == results.id) {
+        modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
+        return results;
+      }
+    });
+
+    let onmouseover = function () {
+      if (theme === 'dark-theme') {
+        this.style.boxShadow = '0px 4px 4px rgb(5, 5, 5)';
+        this.style.border = '1px solid rgb(5, 5, 5)';
+      }
+    };
+    let onmouseout = function () {
+      if (theme === 'dark-theme') {
+        this.style.boxShadow = '0px 4px 4px rgb(255, 107, 1)';
+      }
+    };
+
+    watchedBtnRefs.onmouseover = onmouseover;
+    watchedBtnRefs.onmouseout = onmouseout;
+    queueBtnRefs.onmouseover = onmouseover;
+    queueBtnRefs.onmouseout = onmouseout;
+
+    if (theme === 'dark-theme') {
+      styleThemeModal(
+        'rgb(5, 5, 5)',
+        'rgb(255, 255, 255)',
+        'rgb(83, 83, 83)',
+        'inherit',
+        'rgba(255, 107, 0, 0.75)',
+      );
+    } else {
+      styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
+    }
   }
 
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal);
@@ -78,8 +99,15 @@ async function onClickMovie(e) {
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.remove('visually-hidden');
   modalFilmContainerRefs.classList.add('is-open');
-  modalWindowRefs.classList.remove('visually-hidden');
-  modalWindowRefs.classList.add('is-open');
+
+  if (isTrailer) {
+    modalTrailerWindowRefs.classList.remove('visually-hidden');
+    modalTrailerWindowRefs.classList.add('is-open');
+    closeBtnModalRefs.classList.add('close_position');
+  } else {
+    modalWindowRefs.classList.remove('visually-hidden');
+    modalWindowRefs.classList.add('is-open');
+  }
 }
 
 function styleThemeModal(bck, color, votesbck, fill, containerBc) {
@@ -128,19 +156,25 @@ function onCloseBtnModal(e) {
 }
 
 function removeMovieListenier() {
-  document.body.classList.toggle('modal-open');
+  modalTrailerWindowRefs.classList.add('visually-hidden');
+  modalTrailerWindowRefs.classList.remove('is-open');
+  modalTrailerContainerRefs.innerHTML = '';
   modalWindowRefs.classList.add('visually-hidden');
   modalWindowRefs.classList.remove('is-open');
-  backdropRefs.classList.add('visually-hidden');
   modalFilmContainerRefs.innerHTML = '';
+
+  document.body.classList.toggle('modal-open');
+  backdropRefs.classList.add('visually-hidden');
+
   closeBtnModalRefs.removeEventListener('click', onCloseBtnModal);
   backdropRefs.removeEventListener('click', onCloseBtnModal);
   watchedBtnRefs.removeEventListener('click', onClickWatchedBtn);
   queueBtnRefs.removeEventListener('click', onClickQueueBtn);
   window.removeEventListener('keydown', onEcsKeyPress);
+  closeBtnModalRefs.classList.remove('close_position');
 }
 
-function onEcsKeyPress(e) {
+export default function onEcsKeyPress(e) {
   if (e.code === 'Escape') {
     removeMovieListenier();
   }
