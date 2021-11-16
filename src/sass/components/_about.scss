@@ -27,12 +27,8 @@
   height: 30px;
   background-color: transparent;
   border: none;
-
   outline: none;
   cursor: pointer;
-
-  background-color: $main-orange-color;
-
   transform: rotateZ(360deg);
   transition: transform $anim-duration $anim-timing-function,
     color $anim-duration $anim-timing-function;
@@ -43,8 +39,8 @@
 }
 
 .team__modal-icon {
-  width: 14px;
-  height: 14px;
+  width: 30px;
+  height: 30px;
 }
 
 .team__modal-title {
@@ -153,7 +149,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    padding-top: 200px;
+    padding-top: 207px;
   }
 }
 
@@ -187,7 +183,7 @@
   border-radius: 29%;
 
   @media screen and (min-width: $desktop) {
-    width: 34px;
+    width: 30px;
     height: 34px;
   }
 }
