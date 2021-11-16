@@ -23,7 +23,7 @@ galleryListRefs.addEventListener('click', onClickMovie);
 
 let idMovie;
 
-async function onClickMovie(e) {
+export async function onClickMovie(e) {
   e.preventDefault();
   let temp = e.target;
   if (e.target.nodeName !== 'LI') {
@@ -101,6 +101,7 @@ async function onClickMovie(e) {
 
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.remove('visually-hidden');
+  modalsWrapperRefs.classList.remove('visually-hidden');
   modalFilmContainerRefs.classList.add('is-open');
 
   if (isTrailer) {
@@ -171,7 +172,7 @@ function removeMovieListenier() {
 
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.add('visually-hidden');
-
+  modalsWrapperRefs.classList.add('visually-hidden');
   closeBtnModalRefs.removeEventListener('click', onCloseBtnModal);
   backdropRefs.removeEventListener('click', onCloseBtnModal);
   watchedBtnRefs.removeEventListener('click', onClickWatchedBtn);
