@@ -12,14 +12,17 @@ const { galleryListRefs, inputSearchRefs } = refs.refs;
 const debounce = require('lodash.debounce');
 inputSearchRefs.addEventListener('input', debounce(onSearch, 500));
 
-function onSearch() {
+function onSearch(page) {
+  if (!page) {
+    page = 1;
+    }
   if (!inputSearchRefs.value) {
     return notice({
       text: 'Please enter your search query.',
       delay: 2000,
     });
   }
-  API.fetchMovies(inputSearchRefs.value.trim())
+  API.fetchMovies(inputSearchRefs.value.trim(), page)
     .then(onSearchYear)
     .then(onSearchGenresList)
     .then(movieStatus)
