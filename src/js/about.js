@@ -16,7 +16,7 @@ function onOpenTeamBtn() {
 function onCloseTeamBtn(e) {
 
   let classes = e.target.classList
-  if (classes.contains('backdrop') || classes.contains('team__modal-button') || classes.contains('team__modal-icon') || classes.contains('tea__icon-use')) {
+  if (classes.contains('backdrop') || classes.contains('team__modal-button') || classes.contains('team__modal-icon') || classes.contains('team__icon-use')) {
     removeonCloseTeamBtn()
 }
   
