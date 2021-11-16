@@ -2,12 +2,8 @@ import API from './api-service';
 import videoCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
 import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
-import { onMarkupButton } from './pagination.js';
 
-const { galleryListRefs, btnHomeRefs, logoRefs } = refs.refs;
-
-btnHomeRefs.addEventListener('click', onSearchPopularFilms);
-logoRefs.addEventListener('click', onSearchPopularFilms);
+const { galleryListRefs } = refs.refs;
 
 export function onSearchPopularFilms(page) {
   if (!page) {
@@ -30,9 +26,6 @@ export function onSearchPopularFilms(page) {
       return data.results;
     })
     .then(renderPopFilms)
-    .then(() => {
-      onMarkupButton(page);
-    })
     .catch(error => {
       console.log(error);
     });

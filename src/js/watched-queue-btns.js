@@ -5,7 +5,6 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
-import { onMarkupButton } from './pagination.js';
 const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs;
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
@@ -28,6 +27,7 @@ function getMarkup(name) {
     }
   }
   localStorage.setItem('totalPages', totalPages);
+  localStorage.setItem('pageType', name);
   let genresList = onSearchGenresList(dataList);
   let year = onSearchYear(genresList);
   if (year) {
@@ -36,23 +36,17 @@ function getMarkup(name) {
     galleryListRefs.innerHTML = '';
     return notice({
       text: 'Oops! You have no movies here.',
-      delay: 3000,
+      delay: 2000,
     });
   }
 }
 
-export default function onWatchedBtnClick() {
+function onWatchedBtnClick() {
   getMarkup('watched');
-  typeOfPage('watched');
 }
 
 function onQueueBtnClick() {
   getMarkup('queue');
-  typeOfPage('queue');
-}
-
-function typeOfPage(type) {
-  localStorage.setItem('pageType', type);
 }
 
 function numberOfPage(info) {
@@ -95,3 +89,5 @@ function onSearchYear(data) {
   });
   return newYear;
 }
+
+export default { onWatchedBtnClick, onQueueBtnClick, getMarkup };
