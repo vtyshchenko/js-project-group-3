@@ -2,14 +2,16 @@
 <li class="gallery-film-item" id="{{id}}">
     <div class="video-card">
         {{#if poster_path}}
-        <img class="video-poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}">
+        <img class="video-poster card__thumb" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}">
         {{else}}
-        <img class="video-poster" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png" alt="{{title}}">
+        <img class="video-poster card__thumb" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png" alt="{{title}}">
         {{/if}}
-    <div class="video-about">
-        <p class="video-title">{{title}}</p>
-        <p class="video-genre">{{genre_ids}} | {{release_date}}<span class='video-average visually-hidden'>{{vote_average}}</span></p>
-    </div>
+        <div class="card__overlay">
+        </div>
+        <div class="video-about">
+            <p class="video-title">{{title}}</p>
+            <p class="video-genre">{{genre_ids}} | {{release_date}}<span class='video-average visually-hidden'>{{vote_average}}</span></p>
+        </div>
     </div>
 </li>
 {{/each}}

@@ -3,12 +3,9 @@ import videoCardTpl from '../partials/hbs/video-card.hbs';
 import refs from './common/refs';
 import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 
-const { galleryListRefs, btnHomeRefs, logoRefs } = refs.refs;
+const { galleryListRefs } = refs.refs;
 
-btnHomeRefs.addEventListener('click', onSearchPopularFilms);
-logoRefs.addEventListener('click', onSearchPopularFilms)
-
-export default function onSearchPopularFilms(e, page) {
+export  function onSearchPopularFilms(page) {
   if (!page) {
     page = 1;
   }

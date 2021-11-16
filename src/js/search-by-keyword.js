@@ -16,7 +16,7 @@ function onSearch() {
   if (!inputSearchRefs.value) {
     return notice({
       text: 'Please enter your search query.',
-      delay: 3000,
+      delay: 2000,
     });
   }
   API.fetchMovies(inputSearchRefs.value.trim())
@@ -50,6 +50,6 @@ function onRenderMoviesCard(movies) {
 function onFetchError() {
   return error({
     text: 'Search result not successful. Enter the correct movie name!',
-    delay: 4000,
+    delay: 3000,
   });
 }
