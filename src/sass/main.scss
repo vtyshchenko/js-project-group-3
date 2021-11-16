@@ -1,5 +1,4 @@
 @import './utils/variables';
-@import './utils/visually-hidden';
 
 @import './common/common';
 @import './common/base';
@@ -25,3 +24,5 @@
 @import './layout/video-card';
 @import './layout/footer';
 @import './components/spinner.scss';
+
+@import './utils/visually-hidden';

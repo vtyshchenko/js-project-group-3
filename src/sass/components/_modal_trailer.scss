@@ -1,7 +1,6 @@
 .modal-trailer {
   top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
+  margin: 0 auto;
   max-width: 280px;
   background-color: $main-text-color;
   border: 1px solid $third-text-color;
@@ -21,6 +20,30 @@
     width: calc(100% - 2 * 15px);
     position: relative;
   }
+}
+
+.modal-wrapper-trailer {
+  top: 10%;
+  margin: 0 auto;
+  max-width: 280px;
+
+  @media screen and (max-width: $tablet) {
+    width: calc(100% - 2 * 10px);
+  }
+  @media screen and (min-width: $tablet) {
+    max-width: 618px;
+    width: calc(100% - 2 * 15px);
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 882px;
+    width: calc(100% - 2 * 15px);
+    position: relative;
+  }
+}
+
+.close-trailer__position {
+  top: 6px;
+  right: 22px;
 }
 
 .is-open {

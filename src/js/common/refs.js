@@ -29,6 +29,9 @@ const refs = {
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
   closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
+  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
+  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
+  modalsWrapperRefs: document.querySelector('.modals'),
   openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
   closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
@@ -44,8 +47,6 @@ const refs = {
   arrowLeft: document.querySelector('.arrow-left-js'),
   arrowRight: document.querySelector('.arrow-right-js'),
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
-  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
-  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container')
 };
 
 export default { refs };
