@@ -66,6 +66,7 @@
 .team__description {
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .team__information-wrapper {
@@ -94,6 +95,10 @@
 
 .team__modal-item {
   border-radius: 43px;
+  border: 3px solid $main-orange-color;
+  box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
+  -webkit-box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
+  -moz-box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
 
   @media screen and (min-width: $tablet) {
     margin-bottom: unset;
@@ -110,7 +115,7 @@
 .team__photo {
   margin: auto;
   width: 280px;
-  border-radius: 43px;
+  border-radius: 38px;
 
   @media screen and (min-width: $tablet) {
     width: 340px;
