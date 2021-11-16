@@ -12,6 +12,10 @@ const refs = {
   toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
   headerWatchedBtnRefs: document.querySelector('#btn-watched'),
   headerQueueBtnRefs: document.querySelector('#btn-queue'),
+  ukrLangSvgRefs: document.querySelector('#ukr'),
+  engLangSvgRefs: document.querySelector('#eng'),
+  langlabelRefs: document.querySelector('.languages__label'),
+  btnLangRefs: document.querySelector('#btn-lang'),
 
   formSearchRefs: document.querySelector('.header-form'),
   inputSearchRefs: document.querySelector('.header-form__input'),
@@ -45,7 +49,7 @@ const refs = {
   arrowRight: document.querySelector('.arrow-right-js'),
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
   modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
-  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container')
+  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
 };
 
 export default { refs };
