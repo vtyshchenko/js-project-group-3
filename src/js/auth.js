@@ -3,7 +3,7 @@ import refs from './common/refs';
 const {
   backdropRefs,
   openModalAuthRefs,
-  closeModalAuthRefs,
+  // closeModalAuthRefs,
   modalAuthRefs,
   confirmCheckboxRefs,
   buttonRegistrationRefs,
@@ -14,13 +14,16 @@ const {
   authFormRefs,
 } = refs.refs;
 
+let app;
+let userCredentauls;
+
 openModalAuthRefs.addEventListener('click', onOpen);
+const closeModalAuthRefs = authFormRefs.querySelector('.close__button');
+
 confirmCheckboxRefs.checked = true;
 authNameRefs.innerHTML = '';
 authEmailRefs.innerHTML = '';
 authPasswordRefs.innerHTML = '';
-let app;
-let userCredentauls;
 
 function onOpen() {
   window.addEventListener('keydown', onKeyPress);
@@ -69,14 +72,13 @@ function onClose(e) {
 function onCheckboxChange(e) {
   console.log(e);
   let text = '';
+  authFormRefs.style.height = '360px';
   if (e.target.checked) {
     text = 'Registration';
     authNameGroupRefs.classList.remove('visually-hidden');
-    authFormRefs.style.height = '360px';
   } else {
     text = 'Log in';
     authNameGroupRefs.classList.add('visually-hidden');
-    authFormRefs.style.height = '300px';
   }
   buttonRegistrationRefs.innerHTML = text;
 }
