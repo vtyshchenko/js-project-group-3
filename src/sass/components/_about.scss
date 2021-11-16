@@ -27,8 +27,19 @@
   height: 30px;
   background-color: transparent;
   border: none;
+
   outline: none;
   cursor: pointer;
+
+  background-color: $main-orange-color;
+
+  transform: rotateZ(360deg);
+  transition: transform $anim-duration $anim-timing-function,
+    color $anim-duration $anim-timing-function;
+
+  &:hover {
+    transform: rotateZ(0deg);
+  }
 }
 
 .team__modal-icon {

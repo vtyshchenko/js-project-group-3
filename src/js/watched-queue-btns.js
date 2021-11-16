@@ -9,7 +9,7 @@ const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick)
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick)
-   
+
 function getMarkup(name) {
     let nameUser = getUser()
     let data = get(nameUser)
@@ -19,8 +19,7 @@ function getMarkup(name) {
         dataList = data.watched
         if (data.watched) {
             totalPages = numberOfPage(data.watched)
-        }
-        
+        }    
     } else {
         dataList = data.queue
         if (data.queue) {
@@ -28,6 +27,7 @@ function getMarkup(name) {
         }
     }
     localStorage.setItem('totalPages', totalPages);
+    localStorage.setItem('pageType', name);
     let genresList = onSearchGenresList(dataList)
     let year = onSearchYear(genresList)
     if (year) {
@@ -36,23 +36,17 @@ function getMarkup(name) {
         galleryListRefs.innerHTML = ''
         return notice({
             text: 'Oops! You have no movies here.',
-            delay: 3000,
+            delay: 2000,
         }) 
     }
 }
 
 function onWatchedBtnClick() {
     getMarkup('watched')
-    typeOfPage('watched')
 }
 
 function onQueueBtnClick() {
     getMarkup('queue')
-    typeOfPage('queue')
-}
-
-function typeOfPage(type) {
-    localStorage.setItem('pageType', type);
 }
 
 function numberOfPage(info) {
@@ -91,3 +85,5 @@ function onSearchYear(data) {
     })
   return newYear
 }
+
+export default { onWatchedBtnClick, onQueueBtnClick, getMarkup };
