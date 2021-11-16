@@ -1,19 +1,25 @@
 import refs from './common/refs.js';
 import  onWatchedBtnClick  from './watched-queue-btns'
-import { onSearchPopularFilms } from './render-popular-film'
-import {onMarkupButton} from './pagination'
+// import { onSearchPopularFilms } from './render-popular-film'
+// import {onMarkupButton} from './pagination'
+import  onMarkupButton  from './pagination';
+import { onSearchPopularFilms } from './render-popular-film.js';
+
 const {
   headerRefs,
   navHomeRefs,
   navLibrRefs,
   btnHomeRefs,
   btnLibrRefs,
+  btnLogin,
   formSearchRefs,
   librListRefs,
   logoRefs,
   galleryListRefs,
   toggleThemeRefs,
-  inputSearchRefs
+  inputSearchRefs,
+  headerWatchedBtnRefs,
+  headerQueueBtnRefs
 } = refs.refs;
 
 navLibrRefs.addEventListener('click', libOpenClick);
@@ -46,7 +52,7 @@ function libOpenClick() {
   galleryListRefs.innerHTML = '';
   localStorage.setItem('totalPages', 0);
   inputSearchRefs.value = '';
-  onWatchedBtnClick();
+  onWatchedBtnClick.onWatchedBtnClick();
 }
 
 function homeOpenClick() {
@@ -57,8 +63,10 @@ function homeOpenClick() {
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
   inputSearchRefs.value = '' 
-  onSearchPopularFilms()
-  onMarkupButton(localStorage.getItem('totalPages'), 1) 
+  onSearchPopularFilms();
+  onMarkupButton();
+  // onSearchPopularFilms()
+  // onMarkupButton(localStorage.getItem('totalPages'), 1) 
 }
 
 function inputChange(e) {
@@ -76,5 +84,38 @@ function changeClasses(removeClass, addClass) {
   document.body.classList.add(addClass);
 }
 
+const ref = {
+  ukrLangSvgRefs: document.querySelector('#ukr'),
+  engLangSvgRefs: document.querySelector('#eng'),
+  langlabelRefs: document.querySelector('.languages__label'),
+  btnLangRefs:document.querySelector('#btn-lang'),
+}
+const{ ukrLangSvgRefs, engLangSvgRefs, langlabelRefs, btnLangRefs } = ref
 
+ukrLangSvgRefs.addEventListener('click',ukrLangSvgClick);
+engLangSvgRefs.addEventListener('click',engLangSvgClick);
+
+function ukrLangSvgClick(){
+  langlabelRefs.innerHTML ='ук'
+  btnHomeRefs.innerHTML='Додому'
+  btnLibrRefs.innerHTML ='Моя бібліотека'
+  inputSearchRefs.placeholder= 'Искать фильмы'
+  btnLogin.innerHTML = 'Увійти'
+  btnLangRefs.innerHTML = 'Мова'
+  headerWatchedBtnRefs.innerHTML= 'Дивились'
+  headerQueueBtnRefs.innerHTML= 'Черга'
+  
+}
+// console.log(inputSearchRefs.placeholder);
+
+function engLangSvgClick(){
+  langlabelRefs.innerHTML ='en'
+  btnHomeRefs.innerHTML='Home'
+  btnLibrRefs.innerHTML ='My library'
+  inputSearchRefs.placeholder= 'Search movies'
+  btnLogin.innerHTML = 'login'
+  btnLangRefs.innerHTML = 'Lang'
+  headerWatchedBtnRefs.innerHTML= 'Watched'
+  headerQueueBtnRefs.innerHTML= 'Queue'
+}
 
