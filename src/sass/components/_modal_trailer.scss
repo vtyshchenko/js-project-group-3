@@ -1,61 +1,6 @@
-.modal-trailer {
-  top: 10%;
-  // left: 50%;
-  // transform: translateX(-50%);
-  // margin: 0 auto;
-  max-width: 280px;
-  background-color: $main-text-color;
-  border: 1px solid $third-text-color;
-
-  @media screen and (max-width: $tablet) {
-    padding: 50px 20px 40px 20px;
-    // width: calc(100% - 2 * 10px);
-  }
-  @media screen and (min-width: $tablet) {
-    max-width: 618px;
-    padding: 42px 30px 40px 28px;
-    // width: calc(100% - 2 * 15px);
-  }
-  @media screen and (min-width: $desktop) {
-    max-width: 882px;
-    padding: 50px 30px 40px 30px;
-    // width: calc(100% - 2 * 15px);
-    position: relative;
-  }
-}
-
-.modal-wrapper-trailer {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  // margin: 0 auto;
-  max-width: 280px;
-
-  @media screen and (max-width: $tablet) {
-    width: calc(100% - 2 * 10px);
-  }
-  @media screen and (min-width: $tablet) {
-    max-width: 618px;
-    width: calc(100% - 2 * 15px);
-  }
-  @media screen and (min-width: $desktop) {
-    max-width: 882px;
-    width: calc(100% - 2 * 15px);
-    // position: relative;
-  }
-}
-
-.close-trailer__position {
-  top: 6px;
-  right: 22px;
-}
-
-.is-open {
-  opacity: 1;
-  pointer-events: initial;
-}
 .trailer-iframe {
   width: 100%;
+  height: 100%;
   @media screen and (min-width: $tablet) {
     height: 340px;
   }
