@@ -25,10 +25,10 @@ const refs = {
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
   closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
-  wrapper: document.querySelector('.pagination__wrapper-js'),
-  arrowLeft: document.querySelector('.arrow-left-js'),
-  arrowRight: document.querySelector('.arrow-right-js'),
-  listernerEvent: document.querySelector('.pagination__wrapper-js'),
+  wrapperRefs: document.querySelector('.pagination__wrapper-js'),
+  arrowLeftRefs: document.querySelector('.arrow-left-js'),
+  arrowRightRefs: document.querySelector('.arrow-right-js'),
+  listernerEventRefs: document.querySelector('.pagination__wrapper-js'),
 };
 
 export default { refs };

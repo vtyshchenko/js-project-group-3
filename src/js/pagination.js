@@ -2,16 +2,16 @@ import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
 import { onSearchPopularFilms } from './render-popular-film.js';
 
-const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
+const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
 let totalPages = 1;
 let page = 1;
 const firstPage = 1;
 const countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
 
-arrowLeft.addEventListener('click', onClickArrowLeft);
-arrowRight.addEventListener('click', onClickArrowRight);
-listernerEvent.addEventListener('click', onClickButton);
+arrowLeftRefs.addEventListener('click', onClickArrowLeft);
+arrowRightRefs.addEventListener('click', onClickArrowRight);
+listernerEventRefs.addEventListener('click', onClickButton);
 
 function onGetTotalPages() {
   return localStorage.getItem('totalPages');
@@ -19,7 +19,6 @@ function onGetTotalPages() {
 
 function onClickArrowLeft() {
   page -= 1;
-  console.log('~ page', page);
   onMarkupPages(page);
   return page;
 }
@@ -46,6 +45,7 @@ function onClickButton(e) {
     } else {
       page -= 3;
     }
+    //? можливо поставити <=
     if (page < 0) {
       page = 1;
     } else {
@@ -57,12 +57,14 @@ function onClickButton(e) {
   onMarkupPages(page);
 }
 
-function onHideArrowLeft(page) {
-  page === 1 ? arrowLeft.classList.add('hidden') : arrowLeft.classList.remove('hidden');
+function onHideArrowLeft() {
+  page === 1 ? arrowLeftRefs.classList.add('hidden') : arrowLeftRefs.classList.remove('hidden');
 }
 
-function onHideArrowRight(page) {
-  page === totalPages ? arrowRight.classList.add('hidden') : arrowRight.classList.remove('hidden');
+function onHideArrowRight() {
+  page === totalPages
+    ? arrowRightRefs.classList.add('hidden')
+    : arrowRightRefs.classList.remove('hidden');
 }
 
 //* малюємо сторінки та кнопки в залежності від типу сторінки
@@ -93,17 +95,22 @@ function onMarkupPages(page) {
 export function onMarkupButton(page) {
   let beforePages;
   let afterPages;
+
   if (!page) {
     page = 1;
   }
+
   let totalPages = onGetTotalPages();
+
   if (totalPages === 1) {
   }
+
   if (page > 0 && page < 6) {
     beforePages = firstPage;
   } else {
     beforePages = page - 4;
   }
+
   if (page < totalPages - 3) {
     afterPages = page + 4;
   } else {
@@ -132,8 +139,9 @@ export function onMarkupButton(page) {
   } else {
     buttons += buttonsTpl({ id: '', name: totalPages - 1 });
   }
+
   buttons += buttonsTpl({ id: '', name: totalPages });
-  wrapper.innerHTML = buttons;
+  wrapperRefs.innerHTML = buttons;
 
   const initialPage = document.querySelectorAll('.pagination__link-js');
   for (const button of initialPage) {
@@ -146,4 +154,4 @@ export function onMarkupButton(page) {
   onHideArrowRight();
 }
 
-// onMarkupButton(1);
+onMarkupButton(page);
