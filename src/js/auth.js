@@ -1,3 +1,4 @@
+import { init, login } from './common/api-firebase';
 import refs from './common/refs';
 const {
   backdropRefs,
@@ -12,11 +13,14 @@ const {
   authPasswordRefs,
   authFormRefs,
 } = refs.refs;
+
 openModalAuthRefs.addEventListener('click', onOpen);
 confirmCheckboxRefs.checked = true;
 authNameRefs.innerHTML = '';
 authEmailRefs.innerHTML = '';
 authPasswordRefs.innerHTML = '';
+let app;
+let userCredentauls;
 
 function onOpen() {
   window.addEventListener('keydown', onKeyPress);
@@ -78,12 +82,19 @@ function onCheckboxChange(e) {
 }
 
 function onConfirm() {
-  let userName = authNameRefs.value;
-  let userEmail = authEmailRefs.value;
-  let userPassword = authPasswordRefs.value;
-  let isNewUser = confirmCheckboxRefs.checked;
-  console.log('userName', userName);
-  console.log('userEmail', userEmail);
-  console.log('userPassword', userPassword);
-  console.log('isNewUser', isNewUser);
+  if (!app || !userCredentauls) {
+    app = init();
+    let userName = authNameRefs.value;
+    let userEmail = authEmailRefs.value;
+    let userPassword = authPasswordRefs.value;
+    let isNewUser = confirmCheckboxRefs.checked;
+    console.log('userName', userName);
+    console.log('userEmail', userEmail);
+    console.log('userPassword', userPassword);
+    console.log('isNewUser', isNewUser);
+    userCredentauls = login(app, userName, password, email, newUser);
+    if (userCredentauls) {
+      openModalAuthRefs.innerHTML = 'Log out';
+    }
+  }
 }
