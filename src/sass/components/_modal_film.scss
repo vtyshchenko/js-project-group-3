@@ -31,9 +31,14 @@
 .modal-wrapper-film {
   position: absolute;
   top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0 auto;
-  width: calc(100% - 2 * 10px);
+  width: 280px;
 
+  @media screen and (min-width: $mobile-min) {
+    width: calc(100% - 2 * 10px);
+  }
   @media screen and (min-width: $mobile) {
     width: calc($mobile - 2 * 10px);
   }
@@ -44,7 +49,7 @@
   @media screen and (min-width: $desktop) {
     max-width: 990px;
     width: calc(100% - 2 * 15px);
-    position: relative;
+    // position: relative;
   }
 }
 
@@ -93,13 +98,14 @@
 .movie-image {
   border-radius: 5px;
   margin: 0 auto 30px auto;
-  min-width: 264px;
-  height: 400px;
+
   @media screen and (min-width: $mobile) {
-    min-width: unset;
+    min-width: 264px;
+    height: 400px;
   }
   @media screen and (min-width: $tablet) {
     margin-bottom: 0;
+    min-width: unset;
   }
   @media screen and (min-width: $desktop) {
     height: 600px;

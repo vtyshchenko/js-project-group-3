@@ -1,6 +1,8 @@
 .modal-trailer {
   top: 10%;
-  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  // margin: 0 auto;
   max-width: 280px;
   background-color: $main-text-color;
   border: 1px solid $third-text-color;
@@ -24,7 +26,9 @@
 
 .modal-wrapper-trailer {
   top: 10%;
-  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  // margin: 0 auto;
   max-width: 280px;
 
   @media screen and (max-width: $tablet) {
@@ -37,7 +41,7 @@
   @media screen and (min-width: $desktop) {
     max-width: 882px;
     width: calc(100% - 2 * 15px);
-    position: relative;
+    // position: relative;
   }
 }
 
