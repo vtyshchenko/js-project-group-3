@@ -1,15 +1,15 @@
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '7cb7f2a84f35ebc2678afebafcd2cb5f';
 
-// ========== Пошук по ключовому слову
+// ========== Search by keyword
 
-function fetchMovies(query) {
+function fetchMovies(query, page) {
   const LANG = localStorage.getItem('language')
-  return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${LANG}&page=1&include_adult=false`)
+  return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${LANG}&page=${page}&include_adult=false`)
       .then(response => response.json())
 }
 
-// ========== Фільм по id
+// ========== Film id
 
 function fetchMovie(movie_id) {
   const LANG = localStorage.getItem('language')
@@ -17,7 +17,7 @@ function fetchMovie(movie_id) {
         .then(response => response.json())
 }
 
-// ========== Трейлер
+// ========== Trailer
 
 function fetchTrailer(movie_id) {
   const LANG = localStorage.getItem('language')
@@ -25,7 +25,7 @@ function fetchTrailer(movie_id) {
         .then(response => response.json())
 }
 
-// ========== Популярні фільми
+// ========== Popular films
 
 function fetchPopularFilms(page) {
   const LANG = localStorage.getItem('language')
@@ -34,7 +34,7 @@ function fetchPopularFilms(page) {
   })
 }
 
-// ========== Список жанрів
+// ========== Genres
  
 function fetchGenres() {
   const LANG = localStorage.getItem('language')
