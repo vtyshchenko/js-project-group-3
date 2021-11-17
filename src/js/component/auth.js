@@ -1,5 +1,5 @@
-import { init, login } from './common/api-firebase';
-import refs from './common/refs';
+import { init, login } from '../common/api-firebase';
+import refs from '../common/refs';
 const {
   backdropRefs,
   openModalAuthRefs,

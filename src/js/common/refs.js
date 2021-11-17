@@ -57,8 +57,6 @@ const refs = {
   arrowLeft: document.querySelector('.arrow-left-js'),
   arrowRight: document.querySelector('.arrow-right-js'),
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
-  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
-  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
 };
 
 export default { refs };
