@@ -1,4 +1,8 @@
 import refs from './common/refs.js';
+import { onMarkupButton } from './pagination.js';
+import { onSearchPopularFilms } from './render-popular-film.js';
+import { onSearch } from './search-by-keyword.js';
+import { notice } from '@pnotify/core';
 
 const {
   headerRefs,
@@ -11,12 +15,30 @@ const {
   logoRefs,
   galleryListRefs,
   toggleThemeRefs,
+  inputSearchRefs,
+  wrapperRefs,
 } = refs.refs;
 
 navLibrRefs.addEventListener('click', libOpenClick);
 navHomeRefs.addEventListener('click', homeOpenClick);
 logoRefs.addEventListener('click', homeOpenClick);
 toggleThemeRefs.addEventListener('change', inputChange);
+
+const debounce = require('lodash.debounce');
+inputSearchRefs.addEventListener('input', debounce(onSearchFilm, 500));
+
+async function onSearchFilm() {
+  if (!inputSearchRefs.value) {
+    return notice({
+      text: 'Please enter your search query.',
+      delay: 2000,
+    });
+  }
+  await onSearch(1);
+  console.log('~ onMarkupButton before');
+  onMarkupButton(1);
+  console.log('~ onMarkupButton after');
+}
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -42,15 +64,22 @@ function libOpenClick() {
   btnHomeRefs.classList.remove('current');
   galleryListRefs.innerHTML = '';
   localStorage.setItem('totalPages', 0);
+  onMarkupButton();
+  wrapperRefs.innerHTML = '';
 }
 
-function homeOpenClick() {
+async function homeOpenClick() {
   headerRefs.classList.remove('header__library');
   headerRefs.classList.add('header__home');
   formSearchRefs.classList.remove('is-hidden');
   librListRefs.classList.add('is-hidden');
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
+  await onSearchPopularFilms();
+  console.log('~ onSearchPopularFilms');
+  wrapperRefs.innerHTML = '';
+  onMarkupButton();
+  console.log('~ onMarkupButton');
 }
 
 function inputChange(e) {

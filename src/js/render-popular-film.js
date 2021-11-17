@@ -5,18 +5,18 @@ import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 
 const { galleryListRefs } = refs.refs;
 
-export function onSearchPopularFilms(page) {
+export async function onSearchPopularFilms(page) {
   if (!page) {
     page = 1;
   }
 
-  API.fetchGenres()
+  await API.fetchGenres()
     .then(data => {
       return data.genres;
     })
     .then(onSaveGenres);
 
-  API.fetchPopularFilms(page)
+  await API.fetchPopularFilms(page)
     .then(onSearchGenresList)
     .then(onSearchYear)
     .then(data => {

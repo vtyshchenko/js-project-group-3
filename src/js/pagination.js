@@ -1,8 +1,12 @@
 import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
 import { onSearchPopularFilms } from './render-popular-film.js';
+import myLibraryBtn from './watched-queue-btns';
+import onSearchFilm from './header.js';
 
 const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
+const { onWatchedBtnClick, onQueueBtnClick } = myLibraryBtn;
+
 let totalPages = 1;
 let page = 1;
 const firstPage = 1;
@@ -57,18 +61,22 @@ function onClickButton(e) {
   onMarkupPages(page);
 }
 
-function onHideArrowLeft() {
-  page === 1 ? arrowLeftRefs.classList.add('hidden') : arrowLeftRefs.classList.remove('hidden');
+function onHideArrowLeft(page) {
+  page === 1 || totalPages < countShowSumbols
+    ? arrowLeftRefs.classList.add('hidden')
+    : arrowLeftRefs.classList.remove('hidden');
 }
 
-function onHideArrowRight() {
-  page === totalPages
+function onHideArrowRight(page, totalPages) {
+  console.log('~ totalPages', totalPages);
+  console.log('page', page);
+  page === totalPages || totalPages < countShowSumbols
     ? arrowRightRefs.classList.add('hidden')
     : arrowRightRefs.classList.remove('hidden');
 }
 
 //* малюємо сторінки та кнопки в залежності від типу сторінки
-function onMarkupPages(page) {
+export function onMarkupPages(page) {
   const pageType = localStorage.getItem('pageType');
 
   if (!pageType) {
@@ -79,13 +87,13 @@ function onMarkupPages(page) {
       onSearchPopularFilms(page);
       break;
     case 'search by keyword':
-      onSearchPopularFilms(page);
+      onSearchFilm(page);
       break;
     case 'watched':
-      onWatchedBtnClick();
+      onWatchedBtnClick(page);
       break;
     case 'queue':
-      onQueueBtnClick();
+      onQueueBtnClick(page);
       break;
   }
   onMarkupButton(page);
@@ -95,52 +103,65 @@ function onMarkupPages(page) {
 export function onMarkupButton(page) {
   let beforePages;
   let afterPages;
+  let buttons = '';
+  let totalPages = onGetTotalPages();
+  // console.log('~ totalPages', totalPages);
 
   if (!page) {
     page = 1;
   }
 
-  let totalPages = onGetTotalPages();
+  wrapperRefs.innerHTML = '';
 
-  if (totalPages === 1) {
+  if (!totalPages) {
+    totalPages = 1;
   }
+  let nextPage;
+  let endPage;
 
-  if (page > 0 && page < 6) {
-    beforePages = firstPage;
-  } else {
-    beforePages = page - 4;
-  }
-
-  if (page < totalPages - 3) {
-    afterPages = page + 4;
-  } else {
-    afterPages = totalPages;
-    beforePages = totalPages - countShowSumbols + 1;
-  }
-
-  onHideArrowLeft(page);
-
-  let buttons = '';
-  //* якщо сторінка від 1 до 5 не для мобілки 108-114
   buttons += buttonsTpl({ id: '', name: 1 });
-  if (page > 5) {
-    buttons += buttonsTpl({ id: 'prev', name: MOVE_PAGE_TEXT });
-  } else {
-    buttons += buttonsTpl({ id: '', name: 2 });
-    afterPages = countShowSumbols;
+
+  if (totalPages > 1) {
+    if (page > 4) {
+      buttons += buttonsTpl({ id: 'prev', name: MOVE_PAGE_TEXT });
+
+      if (totalPages === page) {
+        nextPage = page - 6;
+        endPage = totalPages;
+      } else {
+        nextPage = totalPages - page > 3 ? page - 2 : page - (6 - totalPages + page);
+        endPage = page < totalPages - 4 ? page + 2 : totalPages - 2;
+      }
+    } else {
+      buttons += buttonsTpl({ id: '', name: 2 });
+      nextPage = totalPages > 2 ? 3 : 2;
+      endPage = totalPages >= 7 ? 7 : totalPages;
+      afterPages = countShowSumbols;
+    }
+    if (totalPages > 2) {
+      for (let page = nextPage; page <= endPage; page++) {
+        buttons += buttonsTpl({ id: '', name: page });
+      }
+    }
+    console.log('~ nextPage', nextPage);
+    console.log('totalPages', totalPages);
+    console.log('endPage', endPage);
+    console.log('page', page);
+    if (totalPages > endPage) {
+      console.log('not work');
+      if (totalPages - countShowSumbols > 0 && totalPages - page > 3) {
+        buttons += buttonsTpl({ id: 'next', name: MOVE_PAGE_TEXT });
+      } else {
+        buttons += buttonsTpl({ id: '', name: totalPages - 1 });
+      }
+      // if (totalPages > endPage + 1) {
+      buttons += buttonsTpl({ id: '', name: totalPages });
+      // }
+    }
   }
 
-  for (let pageLength = beforePages + 2; pageLength <= afterPages - 2; pageLength++) {
-    buttons += buttonsTpl({ id: '', name: pageLength });
-  }
-  //* не для мобілки 120-126
-  if (totalPages - page > 4) {
-    buttons += buttonsTpl({ id: 'next', name: MOVE_PAGE_TEXT });
-  } else {
-    buttons += buttonsTpl({ id: '', name: totalPages - 1 });
-  }
+  // console.log('~ buttons', buttons);
 
-  buttons += buttonsTpl({ id: '', name: totalPages });
   wrapperRefs.innerHTML = buttons;
 
   const initialPage = document.querySelectorAll('.pagination__link-js');
@@ -150,8 +171,10 @@ export function onMarkupButton(page) {
       break;
     }
   }
-
-  onHideArrowRight();
+  onHideArrowLeft(page);
+  onHideArrowRight(page, totalPages);
+  console.log(page);
+  console.log(totalPages);
 }
 
 onMarkupButton(page);

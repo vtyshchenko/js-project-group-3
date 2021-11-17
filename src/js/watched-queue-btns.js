@@ -5,30 +5,37 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs;
+import { onMarkupButton } from './pagination';
+const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, wrapperRefs } = refs.refs;
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick);
 
-function getMarkup(name) {
+function getMarkup(name, page) {
   let nameUser = getUser();
+  if (!page) {
+    page = 1;
+  }
   let data = get(nameUser);
   let dataList = '';
   let totalPages = 0;
   if (name === 'watched') {
     dataList = data.watched;
-    if (data.watched) {
-      totalPages = numberOfPage(data.watched);
-    }
   } else {
     dataList = data.queue;
-    if (data.queue) {
-      totalPages = numberOfPage(data.queue);
-    }
+  }
+  if (dataList) {
+    totalPages = numberOfPage(dataList);
   }
   localStorage.setItem('totalPages', totalPages);
   localStorage.setItem('pageType', name);
-  let genresList = onSearchGenresList(dataList);
+  let firstIndex = (page - 1) * 20;
+  let lastIndex = page * 20 - 1;
+  if (lastIndex > dataList.length) {
+    lastIndex = dataList.length - 1;
+  }
+  let resultPage = dataList.slice(firstIndex, lastIndex);
+  let genresList = onSearchGenresList(resultPage);
   let year = onSearchYear(genresList);
   if (year) {
     galleryListRefs.innerHTML = watchedQueueTpl(year);
@@ -43,10 +50,16 @@ function getMarkup(name) {
 
 function onWatchedBtnClick() {
   getMarkup('watched');
+  console.log('~ watched');
+  wrapperRefs.innerHTML = '';
+  onMarkupButton();
+  console.log('~ after watched');
 }
 
 function onQueueBtnClick() {
   getMarkup('queue');
+  wrapperRefs.innerHTML = '';
+  onMarkupButton();
 }
 
 function numberOfPage(info) {
