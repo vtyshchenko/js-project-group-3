@@ -1,12 +1,13 @@
 import watchedQueueTpl from '../partials/hbs/watched-queue-markup.hbs';
 import refs from './common/refs';
-import { get, getUser } from './common/api-data';
+import { get, getUser, getLanguage } from './common/api-data';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
 import { onMarkupButton } from './pagination';
 const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, wrapperRefs } = refs.refs
+const lang = getLanguage()
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick);
@@ -73,13 +74,13 @@ function onSearchGenresList(data) {
     let genre = elem.genres.map(item => item.name);
     if (genre.length === 0) {
       genre = ['No genre'];
-      if (localStorage.getItem('language') === 'uk-UA') {
+      if (lang === 'uk-UA') {
           genre = ["Нема жанру"]
         }
     }
     if (genre.length >= 3) {
       genre = genre.slice(0, 2);
-      if (localStorage.getItem('language') === 'uk-UA') {
+      if (lang === 'uk-UA') {
           genre.push('Інше')
         } else {
           genre.push('Other')
@@ -100,7 +101,7 @@ function onSearchYear(data) {
   newYear = newYear.map(elem => {
     if (elem.release_date) {
       elem.release_date = elem.release_date.split('-')[0];
-     }  else if( localStorage.getItem('language') === 'uk-UA')  {
+     }  else if(lang === 'uk-UA')  {
       elem.release_date = 'Нема даних'
     } else {
      elem.release_date = 'No date'

@@ -5,6 +5,7 @@ import { getLanguage } from './common/api-data'
 const footerRightsRef = document.querySelector('.footer-cont__txt-rights');
 const footerDeveloped = document.querySelector('.footer-cont__txt-developed');
 const byFooterRef = document.querySelector('.footer-cont__text-by');
+const lang = getLanguage()
 
 const{ ukrLangSvgRefs, engLangSvgRefs, btnHomeRefs, btnLibrRefs, inputSearchRefs, btnLogin, headerWatchedBtnRefs,
   headerQueueBtnRefs, watchedBtnRefs, queueBtnRefs, openModalBtnRefs } = refs.refs
@@ -23,7 +24,7 @@ function onChangeLangUS() {
 }
 
 function ukrLangSvgClick() {
-  if (localStorage.getItem('language') === 'uk-UA') {
+  if (lang === 'uk-UA') {
     btnHomeRefs.innerHTML='Головна'
     btnLibrRefs.innerHTML ='Моя бібліотека'
     inputSearchRefs.placeholder = 'Шукати фільми'
@@ -41,7 +42,7 @@ function ukrLangSvgClick() {
 }
 
 function engLangSvgClick(){
-  if (localStorage.getItem('language') === 'en-US') {
+  if (lang === 'en-US') {
     engLangSvgRefs.style.border = '1px solid #ff6b01'
   }
 }
