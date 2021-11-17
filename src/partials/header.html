@@ -18,6 +18,24 @@
     <svg class="theme-switch__icon" aria-label="Иконка луны">
       <use href="./images/symbol-defs.svg#moon"></use>
     </svg>
+    <div class="languages">
+     <ul class="languages__list list">
+       <li class="languages__item">
+         <a href="#" class="languages__link link" >
+         <svg class="languages__icon" id="eng" width="14" height="14">
+           <use href="./images/symbol-defs.svg#icon-us"></use>
+         </svg>
+         </a>
+       </li>
+       <li class="languages__item">
+         <a href="#" class="languages__link" >
+         <svg class="languages__icon" id="ukr" width="14" height="14">
+           <use href="./images/symbol-defs.svg#icon-ua"></use>
+         </svg>
+         </a>
+       </li>
+       </ul>
+   </div>
   </div>
 
   <div class="container">
@@ -41,7 +59,7 @@
       <input class="header-form__input" type="text" name="query" placeholder="Search movies"></input>
       <button type="button" class="header-form__button"></button>
     </form>
-    <ul class="library__list is-hidden list">
+    <ul class="library__list visually-hidden list">
       <li class="library__item">
         <button class="btn__watched" id="btn-watched" type="button">
           Watched</button>
