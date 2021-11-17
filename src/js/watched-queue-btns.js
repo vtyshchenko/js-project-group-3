@@ -68,10 +68,17 @@ function onSearchGenresList(data) {
     let genre = elem.genres.map(item => item.name);
     if (genre.length === 0) {
       genre = ['No genre'];
+      if (localStorage.getItem('language') === 'uk-UA') {
+          genre = ["Нема жанру"]
+        }
     }
     if (genre.length >= 3) {
       genre = genre.slice(0, 2);
-      genre.push('Other');
+      if (localStorage.getItem('language') === 'uk-UA') {
+          genre.push('Інше')
+        } else {
+          genre.push('Other')
+        }
     }
     genre = genre.join(', ');
     elem.genres = genre;
