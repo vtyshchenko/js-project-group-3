@@ -95,9 +95,11 @@ function onSearchYear(data) {
   newYear = newYear.map(elem => {
     if (elem.release_date) {
       elem.release_date = elem.release_date.split('-')[0];
+     }  else if( localStorage.getItem('language') === 'uk-UA')  {
+      elem.release_date = 'Нема даних'
     } else {
-      elem.release_date = 'No date';
-    }
+     elem.release_date = 'No date'
+   }
     return elem;
   });
   return newYear;
