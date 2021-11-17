@@ -11,6 +11,7 @@ function trackScroll() {
   if (scrolled < 100) {
     goTopBtn.classList.remove('up-button-show');
   }
+}
 
   if (coords - scrolled > 100) {
     btnScrollDown.classList.add('up-button-show');
@@ -42,4 +43,3 @@ function scrollDown() {
 
 window.addEventListener('scroll', trackScroll);
 goTopBtn.addEventListener('click', upButton);
-btnScrollDown.addEventListener('click', scrollDown);

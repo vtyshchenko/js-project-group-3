@@ -33,23 +33,23 @@ export function login(app, userName, password, email, newUser) {
   if (!password) {
     password = 'test123';
   }
-  let uaerCredentauls;
+  let userCredentauls;
 
   let auth = getAuth(app);
   console.log('auth.currentUser', auth.currentUser);
   console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
-    uaerCredentauls = createNewUser(auth, email, password);
+    userCredentauls = createNewUser(auth, email, password);
     updateProfile(auth.currentUser, {
       displayName: userName,
     }).catch(error => {
       console.log(error);
     });
   } else {
-    uaerCredentauls = signInWithExistingUser(auth, email, password);
+    userCredentauls = signInWithExistingUser(auth, email, password);
   }
-  console.log(uaerCredentauls);
+  console.log(userCredentauls);
 
   onAuthStateChanged(userData => {
     if (userData) {
@@ -58,6 +58,7 @@ export function login(app, userName, password, email, newUser) {
       onError(userData);
     }
   });
+  return userCredentauls;
 }
 
 async function createNewUser(auth, email, password) {

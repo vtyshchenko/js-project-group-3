@@ -14,5 +14,5 @@ import './js/watched-queue-btns';
 
 import './js/render-popular-film.js';
 import './js/watched-queue-btns.js';
-import './js/auth.js';
+import './js/component/auth.js';
 import './js/pagination.js';
