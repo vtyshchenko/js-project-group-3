@@ -27,8 +27,8 @@ function trackScroll() {
   // console.log('coords', coords, scrolled);
   // console.log('coords - scrolled', coords - scrolled);
 
-  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('up-button-show')) {
-    btnScrollDown.classList.remove('up-button-show');
+  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('button-doun-show')) {
+    btnScrollDown.classList.remove('button-doun-show');
   }
 
 
@@ -66,3 +66,4 @@ function scrollDown() {
 
 window.addEventListener('scroll', trackScroll);
 goTopBtn.addEventListener('click', upButton);
+btnScrollDown.addEventListener('click', scrollDown);
