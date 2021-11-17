@@ -31,17 +31,25 @@ const refs = {
   queueBtnRefs: document.querySelector('.btn-queue'),
 
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
-  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
   modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
   modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
   modalsWrapperRefs: document.querySelector('.modals'),
   openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
-  closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
   confirmCheckboxRefs: document.querySelector('.auth__confirm-checkbox'),
-  buttonRegistrationRefs: document.querySelector('#registration'),
-
+  authFormRefs: document.querySelector('.auth__form'),
+  authTitleRefs: document.querySelector('.auth__title'),
+  authSignUpBtnRefs: document.querySelector('#registration'),
+  authCancelBtnRefs: document.querySelector('.button-submit-close'),
+  authNameGroupRefs: document.querySelector('#auth-input-group-name'),
+  authNameRefs: document.querySelector('#user-name'),
+  authNameTextRefs: document.querySelector('#name-text'),
+  authEmailRefs: document.querySelector('#user-email'),
+  authEmailTextRefs: document.querySelector('#email-text'),
+  authPasswordRefs: document.querySelector('#user-password'),
+  authPasswordTextRefs: document.querySelector('#password-text'),
+  authCheckboxText: document.querySelector('.auth__confirm-conditions'),
   paginationRefs: document.querySelector('.pagination'),
 
   WATCHED: 'watched',
@@ -51,8 +59,6 @@ const refs = {
   arrowLeft: document.querySelector('.arrow-left-js'),
   arrowRight: document.querySelector('.arrow-right-js'),
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
-  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
-  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
 };
 
 export default { refs };
