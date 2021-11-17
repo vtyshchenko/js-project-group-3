@@ -5,7 +5,8 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
 import { notice } from '@pnotify/core';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs } = refs.refs;
+import { onMarkupButton } from './pagination';
+const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, wrapperRefs } = refs.refs
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick);
@@ -48,11 +49,15 @@ function getMarkup(name, page) {
 }
 
 function onWatchedBtnClick() {
-  getMarkup('watched');
+    getMarkup('watched')
+    wrapperRefs.innerHTML = '';
+    onMarkupButton();
 }
 
 function onQueueBtnClick() {
-  getMarkup('queue');
+    getMarkup('queue')
+    wrapperRefs.innerHTML = '';
+    onMarkupButton();
 }
 
 function numberOfPage(info) {
