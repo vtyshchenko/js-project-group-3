@@ -30,9 +30,9 @@ function getMarkup(name, page) {
   localStorage.setItem('totalPages', totalPages);
   localStorage.setItem('pageType', name);
   let firstIndex = (page - 1) * 20;
-  let lastIndex = page * 20 - 1;
+  let lastIndex = page * 20;
   if (lastIndex > dataList.length) {
-    lastIndex = dataList.length - 1;
+    lastIndex = dataList.length;
   }
   let resultPage = dataList.slice(firstIndex, lastIndex);
   let genresList = onSearchGenresList(resultPage);
@@ -50,10 +50,8 @@ function getMarkup(name, page) {
 
 function onWatchedBtnClick() {
   getMarkup('watched');
-  console.log('~ watched');
   wrapperRefs.innerHTML = '';
   onMarkupButton();
-  console.log('~ after watched');
 }
 
 function onQueueBtnClick() {

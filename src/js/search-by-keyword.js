@@ -13,7 +13,6 @@ export async function onSearch(page) {
   if (!page) {
     page = 1;
   }
-
   await API.fetchMovies(inputSearchRefs.value.trim(), page)
     .then(onSearchYear)
     .then(onSearchGenresList)

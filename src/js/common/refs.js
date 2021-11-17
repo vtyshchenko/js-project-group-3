@@ -12,6 +12,10 @@ const refs = {
   toggleThemeRefs: document.querySelector('.theme-switch__toggle'),
   headerWatchedBtnRefs: document.querySelector('#btn-watched'),
   headerQueueBtnRefs: document.querySelector('#btn-queue'),
+  ukrLangSvgRefs: document.querySelector('#ukr'),
+  engLangSvgRefs: document.querySelector('#eng'),
+  langlabelRefs: document.querySelector('.languages__label'),
+  btnLangRefs: document.querySelector('#btn-lang'),
 
   formSearchRefs: document.querySelector('.header-form'),
   inputSearchRefs: document.querySelector('.header-form__input'),
@@ -27,8 +31,10 @@ const refs = {
   queueBtnRefs: document.querySelector('.btn-queue'),
 
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
-  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
+  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
+  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
+  modalsWrapperRefs: document.querySelector('.modals'),
   openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
   closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),

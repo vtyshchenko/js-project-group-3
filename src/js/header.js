@@ -1,4 +1,5 @@
 import refs from './common/refs.js';
+import onWatchedBtnClick from './watched-queue-btns';
 import { onMarkupButton } from './pagination.js';
 import { onSearchPopularFilms } from './render-popular-film.js';
 import { onSearch } from './search-by-keyword.js';
@@ -56,12 +57,14 @@ toggleThemeRefs.checked = savedTheme === DARK;
 function libOpenClick() {
   headerRefs.classList.add('header__library');
   headerRefs.classList.remove('header__home');
-  formSearchRefs.classList.add('is-hidden');
-  librListRefs.classList.remove('is-hidden');
+  formSearchRefs.classList.add('visually-hidden');
+  librListRefs.classList.remove('visually-hidden');
   btnLibrRefs.classList.add('current');
   btnHomeRefs.classList.remove('current');
   galleryListRefs.innerHTML = '';
   localStorage.setItem('totalPages', 0);
+  inputSearchRefs.value = '';
+  onWatchedBtnClick.onWatchedBtnClick();
   onMarkupButton();
   wrapperRefs.innerHTML = '';
 }
@@ -69,10 +72,11 @@ function libOpenClick() {
 async function homeOpenClick() {
   headerRefs.classList.remove('header__library');
   headerRefs.classList.add('header__home');
-  formSearchRefs.classList.remove('is-hidden');
-  librListRefs.classList.add('is-hidden');
+  formSearchRefs.classList.remove('visually-hidden');
+  librListRefs.classList.add('visually-hidden');
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
+  inputSearchRefs.value = '';
   await onSearchPopularFilms();
   wrapperRefs.innerHTML = '';
   onMarkupButton();
