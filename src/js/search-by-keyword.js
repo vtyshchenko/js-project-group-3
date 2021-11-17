@@ -5,24 +5,15 @@ import refs from './common/refs';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/desktop/dist/PNotifyDesktop';
 import '@pnotify/core/dist/BrightTheme.css';
-import { notice, error } from '@pnotify/core';
+import { error } from '@pnotify/core';
 
 const { galleryListRefs, inputSearchRefs } = refs.refs;
 
-const debounce = require('lodash.debounce');
-inputSearchRefs.addEventListener('input', debounce(onSearch, 500));
-
-function onSearch(page) {
+export async function onSearch(page) {
   if (!page) {
     page = 1;
-    }
-  if (!inputSearchRefs.value) {
-    return notice({
-      text: 'Please enter your search query.',
-      delay: 2000,
-    });
   }
-  API.fetchMovies(inputSearchRefs.value.trim(), page)
+  await API.fetchMovies(inputSearchRefs.value.trim(), page)
     .then(onSearchYear)
     .then(onSearchGenresList)
     .then(movieStatus)
