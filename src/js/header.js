@@ -35,9 +35,7 @@ async function onSearchFilm() {
     });
   }
   await onSearch(1);
-  console.log('~ onMarkupButton before');
   onMarkupButton(1);
-  console.log('~ onMarkupButton after');
 }
 
 const Theme = {
@@ -76,10 +74,8 @@ async function homeOpenClick() {
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
   await onSearchPopularFilms();
-  console.log('~ onSearchPopularFilms');
   wrapperRefs.innerHTML = '';
   onMarkupButton();
-  console.log('~ onMarkupButton');
 }
 
 function inputChange(e) {

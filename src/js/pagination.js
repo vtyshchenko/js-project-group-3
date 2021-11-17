@@ -9,7 +9,6 @@ const { onWatchedBtnClick, onQueueBtnClick } = myLibraryBtn;
 
 let totalPages = 1;
 let page = 1;
-const firstPage = 1;
 const countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
 
@@ -49,7 +48,6 @@ function onClickButton(e) {
     } else {
       page -= 3;
     }
-    //? можливо поставити <=
     if (page < 0) {
       page = 1;
     } else {
@@ -68,20 +66,16 @@ function onHideArrowLeft(page) {
 }
 
 function onHideArrowRight(page, totalPages) {
-  console.log('~ totalPages', totalPages);
-  console.log('page', page);
   page === totalPages || totalPages < countShowSumbols
     ? arrowRightRefs.classList.add('hidden')
     : arrowRightRefs.classList.remove('hidden');
 }
 
-//* малюємо сторінки та кнопки в залежності від типу сторінки
-export function onMarkupPages(page) {
-  const pageType = localStorage.getItem('pageType');
-
+function onConditionPageType(pageType) {
   if (!pageType) {
     pageType = 'popular';
   }
+
   switch (pageType) {
     case 'popular':
       onSearchPopularFilms(page);
@@ -96,16 +90,19 @@ export function onMarkupPages(page) {
       onQueueBtnClick(page);
       break;
   }
+}
+
+export function onMarkupPages(page) {
+  const pageType = localStorage.getItem('pageType');
+
+  onConditionPageType(pageType);
   onMarkupButton(page);
 }
 
 //* малюємо кнопки
 export function onMarkupButton(page) {
-  let beforePages;
-  let afterPages;
   let buttons = '';
   let totalPages = onGetTotalPages();
-  // console.log('~ totalPages', totalPages);
 
   if (!page) {
     page = 1;
@@ -136,31 +133,21 @@ export function onMarkupButton(page) {
       buttons += buttonsTpl({ id: '', name: 2 });
       nextPage = totalPages > 2 ? 3 : 2;
       endPage = totalPages >= 7 ? 7 : totalPages;
-      afterPages = countShowSumbols;
     }
     if (totalPages > 2) {
       for (let page = nextPage; page <= endPage; page++) {
         buttons += buttonsTpl({ id: '', name: page });
       }
     }
-    console.log('~ nextPage', nextPage);
-    console.log('totalPages', totalPages);
-    console.log('endPage', endPage);
-    console.log('page', page);
     if (totalPages > endPage) {
-      console.log('not work');
       if (totalPages - countShowSumbols > 0 && totalPages - page > 3) {
         buttons += buttonsTpl({ id: 'next', name: MOVE_PAGE_TEXT });
       } else {
         buttons += buttonsTpl({ id: '', name: totalPages - 1 });
       }
-      // if (totalPages > endPage + 1) {
       buttons += buttonsTpl({ id: '', name: totalPages });
-      // }
     }
   }
-
-  // console.log('~ buttons', buttons);
 
   wrapperRefs.innerHTML = buttons;
 
@@ -173,8 +160,6 @@ export function onMarkupButton(page) {
   }
   onHideArrowLeft(page);
   onHideArrowRight(page, totalPages);
-  console.log(page);
-  console.log(totalPages);
 }
 
 onMarkupButton(page);
