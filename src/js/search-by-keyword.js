@@ -35,9 +35,9 @@ function movieStatus(results) {
 function onRenderMoviesCard(movies) {
   const markup = movieCardTpl(movies.results);
   galleryListRefs.innerHTML = markup;
-  const ratingRefs = document.querySelectorAll(".video-average")
+  const ratingRefs = document.querySelectorAll('.video-average');
   for (const el of ratingRefs) {
-    el.classList.remove('visually-hidden')
+    el.classList.remove('visually-hidden');
   }
 }
 

@@ -31,8 +31,10 @@ const refs = {
   queueBtnRefs: document.querySelector('.btn-queue'),
 
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
-  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
+  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
+  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
+  modalsWrapperRefs: document.querySelector('.modals'),
   openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
   closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
