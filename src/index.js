@@ -8,6 +8,7 @@ import './js/header.js';
 import './js/render-popular-film';
 import './js/modal-film.js';
 import './js/up-button';
+import './js/button-doun';
 import './js/spinner';
 import './js/watched-queue-btns';
 
