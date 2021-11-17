@@ -15,3 +15,4 @@ import './js/render-popular-film.js';
 import './js/watched-queue-btns.js';
 import './js/auth.js';
 import './js/pagination.js';
+import './js/change-language.js'
