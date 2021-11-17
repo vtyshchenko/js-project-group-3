@@ -251,16 +251,16 @@
     width: 136px;
   }
 }
-.is-hidden {
-  display: none;
-}
 
 //Theme
 
 body.light-theme {
   background-color: $main-text-color;
-  fill: $main-text-color;
+  fill: $title-color;
   color: $title-color;
+}
+body.light-theme .theme-switch__icon {
+  fill: $main-text-color;
 }
 
 body.dark-theme {
@@ -279,12 +279,10 @@ body.dark-theme {
 }
 
 .theme-switch__icon {
+  
   color: currentColor;
   height: 20px;
   width: 26px;
-  &:not(:last-child) {
-    margin-left: 20px;
-  }
 }
 
 .theme-switch__control {
@@ -344,3 +342,35 @@ body.dark-theme {
 .theme-switch__toggle:checked ~ .theme-switch__marker {
   transform: translateX(35px);
 }
+//lang
+
+.languages{
+  position: absolute;
+  padding: 0;
+   top: 5px;
+   left: -40%;
+   &:hover,&:focus {
+    & .languages__list {
+      display: flex;
+      
+    }
+  }
+}
+.languages__list {
+  display: flex;
+  
+}
+.languages__link {
+  cursor: pointer;
+}
+  .languages__item{
+    
+    padding: 0;
+    &:not(:last-child){
+      margin-right: 10px;
+  }
+  }
+
+ .languages__icon {
+  &:hover,&:focus{transform: scale(1.2);} 
+ }

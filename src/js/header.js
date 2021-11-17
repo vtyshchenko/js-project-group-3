@@ -1,4 +1,9 @@
 import refs from './common/refs.js';
+import  onWatchedBtnClick  from './watched-queue-btns'
+import { onMarkupButton } from './pagination.js';
+import { onSearchPopularFilms } from './render-popular-film.js';
+import { onSearch } from './search-by-keyword.js';
+import { notice } from '@pnotify/core';
 
 const {
   headerRefs,
@@ -11,12 +16,31 @@ const {
   logoRefs,
   galleryListRefs,
   toggleThemeRefs,
+  inputSearchRefs,
+
 } = refs.refs;
+
 
 navLibrRefs.addEventListener('click', libOpenClick);
 navHomeRefs.addEventListener('click', homeOpenClick);
 logoRefs.addEventListener('click', homeOpenClick);
 toggleThemeRefs.addEventListener('change', inputChange);
+
+
+const debounce = require('lodash.debounce');
+inputSearchRefs.addEventListener('input', debounce(onSearchFilm, 500));
+
+async function onSearchFilm() {
+  if (!inputSearchRefs.value) {
+    return notice({
+      text: 'Please enter your search query.',
+      delay: 2000,
+    });
+  }
+  await onSearch(1);
+  onMarkupButton(1);
+}
+
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -30,27 +54,34 @@ if (!savedTheme) {
   localStorage.setItem('theme', savedTheme);
 }
 
+
 document.body.classList.add(savedTheme);
 toggleThemeRefs.checked = savedTheme === DARK;
 
 function libOpenClick() {
   headerRefs.classList.add('header__library');
   headerRefs.classList.remove('header__home');
-  formSearchRefs.classList.add('is-hidden');
-  librListRefs.classList.remove('is-hidden');
+  formSearchRefs.classList.add('visually-hidden');
+  librListRefs.classList.remove('visually-hidden');
   btnLibrRefs.classList.add('current');
   btnHomeRefs.classList.remove('current');
   galleryListRefs.innerHTML = '';
   localStorage.setItem('totalPages', 0);
+  inputSearchRefs.value = '';
+  onWatchedBtnClick.onWatchedBtnClick();
 }
+
 
 function homeOpenClick() {
   headerRefs.classList.remove('header__library');
   headerRefs.classList.add('header__home');
-  formSearchRefs.classList.remove('is-hidden');
-  librListRefs.classList.add('is-hidden');
+  formSearchRefs.classList.remove('visually-hidden');
+  librListRefs.classList.add('visually-hidden');
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
+  inputSearchRefs.value = '' 
+  onSearchPopularFilms();
+  onMarkupButton();
 }
 
 function inputChange(e) {
@@ -67,3 +98,6 @@ function changeClasses(removeClass, addClass) {
   document.body.classList.remove(removeClass);
   document.body.classList.add(addClass);
 }
+
+
+
