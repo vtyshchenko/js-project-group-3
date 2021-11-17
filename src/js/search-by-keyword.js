@@ -2,12 +2,10 @@ import API from './api-service';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
 import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 import refs from './common/refs';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/desktop/dist/PNotifyDesktop';
-import '@pnotify/core/dist/BrightTheme.css';
-import { error } from '@pnotify/core';
 
-const { galleryListRefs, inputSearchRefs } = refs.refs;
+const { galleryListRefs, inputSearchRefs, errorPictureRefs, emptySearchRefs } = refs.refs;
+
+const emptySearch = document.querySelector('.empty-search');
 
 export async function onSearch(page) {
   if (!page) {
@@ -27,23 +25,25 @@ export async function onSearch(page) {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onFetchError();
+    emptySearchRefs.classList.add('visually-hidden');
+    errorPictureRefs.classList.remove('visually-hidden');
+    galleryListRefs.innerHTML = '';
   }
   return Promise.resolve(results);
 }
 
 function onRenderMoviesCard(movies) {
   const markup = movieCardTpl(movies.results);
+  emptySearchRefs.classList.add('visually-hidden');
   galleryListRefs.innerHTML = markup;
-  const ratingRefs = document.querySelectorAll(".video-average")
+  const ratingRefs = document.querySelectorAll('.video-average');
   for (const el of ratingRefs) {
-    el.classList.remove('visually-hidden')
+    el.classList.remove('visually-hidden');
   }
 }
 
 function onFetchError() {
-  return error({
-    text: 'Search result not successful. Enter the correct movie name!',
-    delay: 3000,
-  });
+  errorPictureRefs.classList.add('visually-hidden');
+  emptySearchRefs.classList.remove('visually-hidden');
+  galleryListRefs.innerHTML = '';
 }

@@ -1,12 +1,14 @@
 import watchedQueueTpl from '../partials/hbs/watched-queue-markup.hbs';
 import refs from './common/refs';
 import { get, getUser } from './common/api-data';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/desktop/dist/PNotifyDesktop';
-import '@pnotify/core/dist/BrightTheme.css';
-import { notice } from '@pnotify/core';
 import { onMarkupButton } from './pagination';
-const { galleryListRefs, headerWatchedBtnRefs, headerQueueBtnRefs, wrapperRefs } = refs.refs
+const {
+  galleryListRefs,
+  headerWatchedBtnRefs,
+  headerQueueBtnRefs,
+  wrapperRefs,
+  emptyWatchedQueueRefs,
+} = refs.refs;
 
 headerWatchedBtnRefs.addEventListener('click', onWatchedBtnClick);
 headerQueueBtnRefs.addEventListener('click', onQueueBtnClick);
@@ -26,6 +28,8 @@ function getMarkup(name, page) {
   }
   if (dataList) {
     totalPages = numberOfPage(dataList);
+  } else {
+    dataList = [];
   }
   localStorage.setItem('totalPages', totalPages);
   localStorage.setItem('pageType', name);
@@ -37,27 +41,24 @@ function getMarkup(name, page) {
   let resultPage = dataList.slice(firstIndex, lastIndex);
   let genresList = onSearchGenresList(resultPage);
   let year = onSearchYear(genresList);
-  if (year) {
+  if (year && year.length > 0) {
     galleryListRefs.innerHTML = watchedQueueTpl(year);
+    emptyWatchedQueueRefs.classList.add('visually-hidden');
   } else {
-    galleryListRefs.innerHTML = '';
-    return notice({
-      text: 'Oops! You have no movies here.',
-      delay: 2000,
-    });
+    emptyWatchedQueueRefs.classList.remove('visually-hidden');
   }
 }
 
 function onWatchedBtnClick() {
-    getMarkup('watched')
-    wrapperRefs.innerHTML = '';
-    onMarkupButton();
+  getMarkup('watched');
+  wrapperRefs.innerHTML = '';
+  onMarkupButton();
 }
 
 function onQueueBtnClick() {
-    getMarkup('queue')
-    wrapperRefs.innerHTML = '';
-    onMarkupButton();
+  getMarkup('queue');
+  wrapperRefs.innerHTML = '';
+  onMarkupButton();
 }
 
 function numberOfPage(info) {

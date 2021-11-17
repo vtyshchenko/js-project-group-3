@@ -1,0 +1,17 @@
+.empty-search-image,
+.error-image {
+  width: 664px;
+  margin: 0 auto;
+}
+.watched-queue-image {
+  width: 360px;
+  margin: 0 auto;
+}
+.error-text,
+.empty-search-text,
+.watched-queue-text {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: $error-color;
+}

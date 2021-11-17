@@ -52,6 +52,9 @@ const refs = {
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
   modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
   modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
+  emptyWatchedQueueRefs: document.querySelector('.watched-queue'),
+  errorPictureRefs: document.querySelector('.error'),
+  emptySearchRefs: document.querySelector('.empty-search'),
 };
 
 export default { refs };
