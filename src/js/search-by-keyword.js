@@ -12,15 +12,22 @@ const { galleryListRefs, inputSearchRefs } = refs.refs;
 const debounce = require('lodash.debounce');
 inputSearchRefs.addEventListener('input', debounce(onSearch, 500));
 
+const errorPicture = document.querySelector('.error');
+const emptySearch = document.querySelector('.empty-search');
+
 function onSearch(page) {
   if (!page) {
     page = 1;
-    }
+  }
   if (!inputSearchRefs.value) {
-    return notice({
-      text: 'Please enter your search query.',
-      delay: 2000,
-    });
+    errorPicture.classList.add('visually-hidden');
+    emptySearch.classList.remove('visually-hidden');
+    // return notice({
+    //   text: 'Please enter your search query.',
+    //   delay: 2000,
+    // });
+    // emptySearch.classList.remove('visually-hidden');
+    // galleryListRefs.innerHTML = emptySearch;
   }
   API.fetchMovies(inputSearchRefs.value.trim(), page)
     .then(onSearchYear)
@@ -28,6 +35,7 @@ function onSearch(page) {
     .then(movieStatus)
     .then(results => {
       onRenderMoviesCard(results);
+
       localStorage.setItem('pageType', 'search by keyword');
       localStorage.setItem('totalPages', results.total_pages);
     })
@@ -42,17 +50,34 @@ function movieStatus(results) {
 }
 
 function onRenderMoviesCard(movies) {
+  // emptySearch.classList.add('visually-hidden');
+  // errorPicture.classList.add('visually-hidden');
   const markup = movieCardTpl(movies.results);
   galleryListRefs.innerHTML = markup;
-  const ratingRefs = document.querySelectorAll(".video-average")
+  const ratingRefs = document.querySelectorAll('.video-average');
   for (const el of ratingRefs) {
-    el.classList.remove('visually-hidden')
+    el.classList.remove('visually-hidden');
   }
 }
 
 function onFetchError() {
-  return error({
-    text: 'Search result not successful. Enter the correct movie name!',
-    delay: 3000,
-  });
+  errorPicture.classList.remove('visually-hidden');
+  // galleryListRefs.innerHTML = emptySearch;
+  galleryListRefs.innerHTML = '';
+  // emptySearch.classList.remove('visually-hidden');
+  // return error({
+  //   text: 'Search result not successful. Enter the correct movie name!',
+  //   delay: 3000,
+  // });
+}
+
+function clearError() {
+  // if (results.total_results === 0) {
+  //   emptySearch.classList.add('visually-hidden');
+  //   errorPicture.classList.remove('visually-hidden');
+  // }
+  // if (!inputSearchRefs.value) {
+  //   emptySearch.classList.remove('visually-hidden');
+  //   errorPicture.classList.add('visually-hidden');
+  // }
 }
