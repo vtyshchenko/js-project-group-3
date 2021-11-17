@@ -1,31 +1,35 @@
 import refs from './common/refs';
-const { backdropRefs, modalsWrapperRefs, closeBtnModalRefs, openModalBtnRefs, modalRefs} = refs.refs
-    openModalBtnRefs.addEventListener('click', onOpenTeamBtn);
+const { backdropRefs, openModalBtnRefs, modalRefs} = refs.refs
+openModalBtnRefs.addEventListener('click', onOpenTeamBtn);
+    
+const closeModalAboutRefs = modalRefs.querySelector('.close__button');
 
 function onOpenTeamBtn() {
     modalRefs.classList.toggle('visually-hidden');
     modalRefs.classList.toggle('is-open')
-    closeBtnModalRefs.classList.add('team-btn-close');
+    closeModalAboutRefs.classList.add('team-btn-close');
     backdropRefs.classList.remove('visually-hidden')
     window.addEventListener('keydown', onEcsKeyPress)
-  closeBtnModalRefs.addEventListener('click', onCloseTeamBtn);
+  closeModalAboutRefs.addEventListener('click', onCloseTeamBtn);
   backdropRefs.addEventListener('click', onCloseTeamBtn)
   document.body.classList.toggle('modal-open');
 
-  modalsWrapperRefs.classList.remove('visually-hidden');
-  modalsWrapperRefs.classList.add('is-open');
-  modalsWrapperRefs.classList.remove('modal-wrapper-film');
-  modalsWrapperRefs.classList.remove('modal-wrapper-trailer');
+
 
   let theme = localStorage.getItem('theme');
   if (theme === 'dark-theme') {
-    modalRefs.style.color =  'rgb(255, 255, 255)';
-      modalRefs.style.backgroundColor = 'rgb(5, 5, 5)';
+    themeStyleModal('inherit', 'rgb(5, 5, 5)', 'rgb(255, 255, 255)')
   } else {
-    closeBtnModalRefs.style.fill = 'rgb(0, 0, 0)'
+    themeStyleModal('rgb(0, 0, 0)', '', '')
     }
 
-  }
+}
+  
+function themeStyleModal(fill, backgroundColor, color) {
+  closeModalAboutRefs.style.fill = fill;
+  modalRefs.style.backgroundColor = backgroundColor;
+  modalRefs.style.color = color
+}
 
 function onCloseTeamBtn(e) {
 
@@ -46,14 +50,10 @@ function removeonCloseTeamBtn() {
     modalRefs.classList.toggle('visually-hidden');
     modalRefs.classList.toggle('is-open')
     backdropRefs.classList.add('visually-hidden')
-       closeBtnModalRefs.removeEventListener('click', onCloseTeamBtn);
+       closeModalAboutRefs.removeEventListener('click', onCloseTeamBtn);
  backdropRefs.removeEventListener('click', onCloseTeamBtn)
   document.body.classList.remove('modal-open');
 
-   modalsWrapperRefs.classList.add('visually-hidden');
-  modalsWrapperRefs.classList.remove('is-open');
-    modalsWrapperRefs.classList.add('modal-wrapper-film');
-  modalsWrapperRefs.classList.add('modal-wrapper-trailer');
 }
 
 function onEcsKeyPress(e) {

@@ -10,43 +10,17 @@
   margin-right: auto;
   position: relative;
   background-color: $main-text-color;
+  border: 2px solid $main-text-color;
 
   @media screen and (min-width: $desktop) {
     padding-bottom: 40px;
   }
 }
 
-// .team__modal-button {
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 30px;
-//   height: 30px;
-//   background-color: transparent;
-//   border: none;
-//   outline: none;
-//   cursor: pointer;
-//   transform: rotateZ(360deg);
-//   transition: transform $anim-duration $anim-timing-function,
-//     color $anim-duration $anim-timing-function;
-
-//   &:hover {
-//     transform: rotateZ(0deg);
-//   }
-// }
-
 .team-btn-close {
-  top: 6px;
-  right: 60px;
+  top: 15px;
+  right: 15px;
 }
-
-// .team__modal-icon {
-//   width: 30px;
-//   height: 30px;
-// }
 
 .team__modal-title {
   margin-bottom: 40px;
@@ -87,19 +61,25 @@
 }
 
 .team__modal-list {
-  width: 743px;
+  width: 288px;
 
   @media screen and (min-width: $tablet) {
     display: flex;
     margin-top: -30px;
     margin-left: -30px;
     flex-wrap: wrap;
+    width: 585px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 784px;
   }
 }
 
 .team__modal-item {
   border-radius: 43px;
-  border: 3px solid $main-orange-color;
+  border: 4px solid $main-orange-color;
+  margin-bottom: 30px;
   box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
   -webkit-box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
   -moz-box-shadow: 10px 10px 95px -33px rgba(244, 121, 11, 0.75);
