@@ -30,32 +30,8 @@
   }
 }
 
-.after {
-  position: static;
-
-  &::after {
-    position: absolute;
-    display: block;
-    content: '';
-    width: 117px;
-    height: 1px;
-    background-color: $secondary-text-color;
-    border-radius: 2px;
-    margin-left: 25px;
-
-    @media screen and (min-width: $mobile-min) {
-      width: 97px;
-      margin-left: 20px;
-    }
-  }
-}
-
 .footer-cont__text {
   display: flex;
-}
-
-.link {
-  text-decoration: none;
 }
 
 .footer-container__text {
