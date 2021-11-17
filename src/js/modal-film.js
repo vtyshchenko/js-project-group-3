@@ -17,7 +17,8 @@ const {
   modalsWrapperRefs,
 } = refs.refs;
 
-import { move, getUser } from './common/api-data';
+import { move, getUser, getLanguage } from './common/api-data';
+const lang = getLanguage()
 
 galleryListRefs.addEventListener('click', onClickMovie);
 
@@ -59,6 +60,7 @@ export async function onClickMovie(e) {
     idMovie = await API.fetchMovie(temp.id).then(results => {
       if (temp.id == results.id) {
         modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
+        translateModal()
         return results;
       }
     });
@@ -92,7 +94,7 @@ export async function onClickMovie(e) {
       styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
     }
   }
-
+ 
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal);
   window.addEventListener('keydown', onEcsKeyPress);
   watchedBtnRefs.addEventListener('click', onClickWatchedBtn);
@@ -141,6 +143,10 @@ function onClickWatchedBtn(e) {
   move(name, QUEUE, WATCHED, idMovie);
   watchedBtnRefs.textContent = 'watched';
   queueBtnRefs.textContent = 'add to queue';
+    if (lang === 'uk-UA') {
+    watchedBtnRefs.textContent = 'Переглянуто';
+  queueBtnRefs.textContent = 'Додати в чергу';
+  }
 }
 
 function onClickQueueBtn(e) {
@@ -148,6 +154,10 @@ function onClickQueueBtn(e) {
   move(name, WATCHED, QUEUE, idMovie);
   watchedBtnRefs.textContent = 'add to watched';
   queueBtnRefs.textContent = 'queue';
+  if (lang === 'uk-UA') {
+  watchedBtnRefs.textContent = 'Переглянути';
+  queueBtnRefs.textContent = 'Додано в чергу';
+  }
 }
 
 function onCloseBtnModal(e) {
@@ -186,3 +196,18 @@ export default function onEcsKeyPress(e) {
     removeMovieListenier();
   }
 }
+
+ function translateModal() {
+      const about = document.querySelector('.movie-title__desc')
+      const voteVotes = document.querySelector('.movie-flex-vote')
+      const popularity = document.querySelector('.movie-flex-popularity')
+      const title = document.querySelector('.movie-flex-title')
+      const genreUK = document.querySelector('.movie-flex-genre')
+      if (lang === 'uk-UA') {
+        about.innerHTML = "Про фільм"
+        voteVotes.innerHTML = 'Рейтинг'
+        title.innerHTML = 'Оригінальна назва'
+        genreUK.innerHTML = 'Жанри'
+        popularity.innerHTML= 'Вподобання'
+      }
+  }
