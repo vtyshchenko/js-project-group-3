@@ -1,41 +1,45 @@
 let goTopBtn = document.querySelector('.up-button');
-console.log('window.pageYOffset', window.pageYOffset);
-
-window.addEventListener('scroll', trackScroll);
-goTopBtn.addEventListener('click', upButton);
-goTopBtn.addEventListener('click', downButton);
+let btnScrollDown = document.querySelector('#scroll-down');
 
 function trackScroll() {
   let scrolled = window.pageYOffset;
-  let coords = document.documentElement.clientHeight;
+  let coords = document.documentElement.scrollTopMax;
 
-  if (scrolled > coords) {
+  if (scrolled > 100 && !Array.from(goTopBtn.classList).includes('up-button-show')) {
     goTopBtn.classList.add('up-button-show');
   }
-  if (scrolled < coords) {
+  if (scrolled < 100) {
     goTopBtn.classList.remove('up-button-show');
   }
 }
 
+  if (coords - scrolled > 100) {
+    btnScrollDown.classList.add('up-button-show');
+  }
+  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('up-button-show')) {
+    btnScrollDown.classList.remove('up-button-show');
+  }
+}
+
 function upButton() {
-  console.log('window.pageYOffset', window.pageYOffset);
   if (window.pageYOffset > 0) {
     window.scrollBy(0, -30);
-    setTimeout(upButton, 0);
-  } else {
-    let coords = document.documentElement.clientHeight;
-    console.log('coords window.pageYOffset', coords);
-    window.scrollBy(0, coords);
     setTimeout(upButton, 0);
   }
 }
 
-function downButton() {
-  console.log('window.pageYOffset', window.pageYOffset);
-  if (window.pageYOffset === 0) {
-    let coords = document.documentElement.clientHeight;
-    console.log('coords window.pageYOffset', coords);
-    window.scrollBy(0, coords);
-    setTimeout(upButton, 0);
-  }
+function scrollDown() {
+  var windowCoords = document.documentElement.clientHeight;
+  (function scroll() {
+    if (window.pageYOffset < windowCoords) {
+      window.scrollBy(0, 10);
+      setTimeout(scroll, 0);
+    }
+    if (window.pageYOffset > windowCoords) {
+      window.scrollTo(0, windowCoords);
+    }
+  })();
 }
+
+window.addEventListener('scroll', trackScroll);
+goTopBtn.addEventListener('click', upButton);
