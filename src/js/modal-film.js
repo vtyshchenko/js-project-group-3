@@ -178,7 +178,9 @@ function removeMovieListenier() {
   watchedBtnRefs.removeEventListener('click', onClickWatchedBtn);
   queueBtnRefs.removeEventListener('click', onClickQueueBtn);
   window.removeEventListener('keydown', onEcsKeyPress);
-  closeBtnModalRefs.classList.remove('close_position');
+  closeBtnModalRefs.classList.remove('close-film__position');
+  closeBtnModalRefs.classList.remove('close-trailer__position');;
+
 }
 
 export default function onEcsKeyPress(e) {

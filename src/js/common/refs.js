@@ -31,7 +31,6 @@ const refs = {
   queueBtnRefs: document.querySelector('.btn-queue'),
 
   openModalBtnRefs: document.querySelector('[data-modal-open]'),
-  closeModalBtnRefs: document.querySelector('[data-modal-close]'),
   modalRefs: document.querySelector('[data-modal]'),
   modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
   modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
