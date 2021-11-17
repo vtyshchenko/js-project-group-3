@@ -1,4 +1,3 @@
-
 import modalFilm from '../partials/hbs/modal-film.hbs';
 import modalTrailer from '../partials/hbs/modal-trailer.hbs';
 import API from './api-service';
@@ -6,7 +5,6 @@ import refs from './common/refs';
 const {
   modalTrailerContainerRefs,
   modalTrailerWindowRefs,
-  buttonsModalFilmRefs,
   modalFilmContainerRefs,
   backdropRefs,
   closeBtnModalRefs,
@@ -16,6 +14,7 @@ const {
   QUEUE,
   watchedBtnRefs,
   queueBtnRefs,
+  modalsWrapperRefs,
 } = refs.refs;
 
 import { move, getUser } from './common/api-data';
@@ -24,7 +23,7 @@ galleryListRefs.addEventListener('click', onClickMovie);
 
 let idMovie;
 
-async function onClickMovie(e) {
+export async function onClickMovie(e) {
   e.preventDefault();
   let temp = e.target;
   if (e.target.nodeName !== 'LI') {
@@ -42,7 +41,6 @@ async function onClickMovie(e) {
 
   if (isTrailer) {
     API.fetchTrailer(temp.id).then(results => {
-      const trailerId = results.id;
       const trailer = results.results[0].key;
       if (temp.id == results.id) {
         results.trailer = trailer;
@@ -52,6 +50,10 @@ async function onClickMovie(e) {
     });
     if (theme === 'dark-theme') {
       modalTrailerWindowRefs.style.backgroundColor = 'rgb(5, 5, 5)';
+      closeBtnModalRefs.style.fill = 'inherit';
+    } else {
+      modalTrailerWindowRefs.style.backgroundColor = '';
+      closeBtnModalRefs.style.fill = 'rgb(0, 0, 0)';
     }
   } else {
     idMovie = await API.fetchMovie(temp.id).then(results => {
@@ -99,15 +101,19 @@ async function onClickMovie(e) {
 
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.remove('visually-hidden');
+  modalsWrapperRefs.classList.remove('visually-hidden');
   modalFilmContainerRefs.classList.add('is-open');
 
   if (isTrailer) {
     modalTrailerWindowRefs.classList.remove('visually-hidden');
     modalTrailerWindowRefs.classList.add('is-open');
-    closeBtnModalRefs.classList.add('close_position');
+    closeBtnModalRefs.classList.add('close-trailer__position');
+    modalsWrapperRefs.classList.add('modal-wrapper-trailer');
   } else {
     modalWindowRefs.classList.remove('visually-hidden');
     modalWindowRefs.classList.add('is-open');
+    closeBtnModalRefs.classList.add('close-film__position');
+    modalsWrapperRefs.classList.add('modal-wrapper-film');
   }
 }
 
@@ -166,7 +172,7 @@ function removeMovieListenier() {
 
   document.body.classList.toggle('modal-open');
   backdropRefs.classList.add('visually-hidden');
-
+  modalsWrapperRefs.classList.add('visually-hidden');
   closeBtnModalRefs.removeEventListener('click', onCloseBtnModal);
   backdropRefs.removeEventListener('click', onCloseBtnModal);
   watchedBtnRefs.removeEventListener('click', onClickWatchedBtn);
