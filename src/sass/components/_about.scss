@@ -9,7 +9,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  background-color: $team-bg-color;
+  background-color: $main-text-color;
 
   @media screen and (min-width: $desktop) {
     padding-bottom: 40px;
@@ -55,7 +55,6 @@
   align-items: center;
   flex-direction: column;
   padding-top: 30px;
-  color: $main-text-color;
 }
 
 .team__name {

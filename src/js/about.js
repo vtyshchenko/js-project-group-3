@@ -10,6 +10,11 @@ function onOpenTeamBtn() {
   closeModalBtnRefs.addEventListener('click', onCloseTeamBtn);
   backdropRefs.addEventListener('click', onCloseTeamBtn)
   document.body.classList.toggle('modal-open');
+  let theme = localStorage.getItem('theme');
+  if (theme === 'dark-theme') {
+    modalRefs.style.color =  'rgb(255, 255, 255)';
+      modalRefs.style.backgroundColor = 'rgb(5, 5, 5)';
+    }
 
   }
 
