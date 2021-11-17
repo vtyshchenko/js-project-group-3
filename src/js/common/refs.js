@@ -36,9 +36,15 @@ const refs = {
   modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
   modalsWrapperRefs: document.querySelector('.modals'),
   openModalAuthRefs: document.querySelector('[data-auth-modal-open]'),
-  closeModalAuthRefs: document.querySelector('[data-auth-modal-close]'),
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
   confirmCheckboxRefs: document.querySelector('.auth__confirm-checkbox'),
+  authFormRefs: document.querySelector('.auth__form'),
+
+  authNameGroupRefs: document.querySelector('#auth-input-group-name'),
+  authNameRefs: document.querySelector('#user-name'),
+  authEmailRefs: document.querySelector('#user-email'),
+  authPasswordRefs: document.querySelector('#user-password'),
+
   buttonRegistrationRefs: document.querySelector('#registration'),
 
   paginationRefs: document.querySelector('.pagination'),
@@ -50,8 +56,6 @@ const refs = {
   arrowLeft: document.querySelector('.arrow-left-js'),
   arrowRight: document.querySelector('.arrow-right-js'),
   listernerEvent: document.querySelector('.pagination__wrapper-js'),
-  modalTrailerWindowRefs: document.querySelector('.modal-trailer'),
-  modalTrailerContainerRefs: document.querySelector('.modal-trailer-container'),
 };
 
 export default { refs };
