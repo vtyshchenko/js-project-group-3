@@ -5,8 +5,6 @@
 //  Button close svg
 .close__button {
   position: absolute;
-  top: 10px;
-  right: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,12 +23,39 @@
     transform: rotateZ(0deg);
   }
 }
-.close_position {
-  top: -470px;
+
+.close-film__position,
+.close-trailer__position {
+  top: 3px;
+  right: 20px;
+}
+.modal-wrapper-film,
+.modal-wrapper-trailer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+
+  @media screen and (min-width: $mobile-min) {
+    width: calc(100% - 2 * 10px);
+  }
+  @media screen and (min-width: $mobile) {
+    width: calc($mobile - 2 * 10px);
+  }
+  @media screen and (min-width: $tablet) {
+    max-width: calc($tablet - 2 * 15px);
+    width: calc(100% - 2 * 15px);
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 990px;
+    width: calc(100% - 2 * 15px);
+  }
 }
 
 //modal wimdow
-.modal-film {
+.modal-film,
+.modal-trailer {
   position: absolute;
   top: 15%;
   left: 50%;
@@ -74,13 +99,14 @@
 .movie-image {
   border-radius: 5px;
   margin: 0 auto 30px auto;
-  min-width: 264px;
-  height: 400px;
+
   @media screen and (min-width: $mobile) {
-    min-width: unset;
+    min-width: 264px;
+    height: 400px;
   }
   @media screen and (min-width: $tablet) {
     margin-bottom: 0;
+    min-width: unset;
   }
   @media screen and (min-width: $desktop) {
     height: 600px;

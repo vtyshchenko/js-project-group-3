@@ -12,17 +12,17 @@ const { galleryListRefs, inputSearchRefs } = refs.refs;
 const debounce = require('lodash.debounce');
 inputSearchRefs.addEventListener('input', debounce(onSearch, 500));
 
-function onSearch(page) {
+export async function onSearch(page) {
   if (!page) {
     page = 1;
-    }
+  }
   if (!inputSearchRefs.value) {
     return notice({
       text: 'Please enter your search query.',
       delay: 2000,
     });
   }
-  API.fetchMovies(inputSearchRefs.value.trim(), page)
+  await API.fetchMovies(inputSearchRefs.value.trim(), page)
     .then(onSearchYear)
     .then(onSearchGenresList)
     .then(movieStatus)
@@ -44,9 +44,9 @@ function movieStatus(results) {
 function onRenderMoviesCard(movies) {
   const markup = movieCardTpl(movies.results);
   galleryListRefs.innerHTML = markup;
-  const ratingRefs = document.querySelectorAll(".video-average")
+  const ratingRefs = document.querySelectorAll('.video-average');
   for (const el of ratingRefs) {
-    el.classList.remove('visually-hidden')
+    el.classList.remove('visually-hidden');
   }
 }
 
