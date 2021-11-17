@@ -3,6 +3,7 @@ let btnScrollDown = document.querySelector('#scroll-down');
 // console.log('btnScrollDown', btnScrollDown);
 // console.log('document.documentElement', document.documentElement);
 
+
 function trackScroll() {
   let scrolled = window.pageYOffset;
   let coords = document.documentElement.scrollTopMax;
@@ -13,6 +14,7 @@ function trackScroll() {
   if (scrolled < 100) {
     goTopBtn.classList.remove('up-button-show');
   }
+}
 
   
   if (coords - scrolled > 100) {
@@ -24,7 +26,12 @@ function trackScroll() {
   }
   // console.log('coords', coords, scrolled);
   // console.log('coords - scrolled', coords - scrolled);
-}
+
+  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('up-button-show')) {
+    btnScrollDown.classList.remove('up-button-show');
+  }
+
+
 
 function upButton() {
   if (window.pageYOffset > 0) {
@@ -35,6 +42,7 @@ function upButton() {
 
 
 function scrollDown() {
+
   let coords = document.documentElement.scrollHeight;
   // console.log(window.pageYOffset);
   // console.log('document.documentElement.clientHeight', coords);
@@ -42,8 +50,19 @@ function scrollDown() {
     window.scrollBy(0, 20);
     setTimeout(scrollDown, 0);
   }
+
+  var windowCoords = document.documentElement.clientHeight;
+  (function scroll() {
+    if (window.pageYOffset < windowCoords) {
+      window.scrollBy(0, 10);
+      setTimeout(scroll, 0);
+    }
+    if (window.pageYOffset > windowCoords) {
+      window.scrollTo(0, windowCoords);
+    }
+  })();
+
 }
 
 window.addEventListener('scroll', trackScroll);
 goTopBtn.addEventListener('click', upButton);
-btnScrollDown.addEventListener('click', scrollDown);

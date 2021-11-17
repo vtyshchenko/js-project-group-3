@@ -1,19 +1,14 @@
-<div class="modals">
-    <button type="button" class="close__button" data-action="close-btn-modal">
-        <svg class="close-button__icon" width="30" height="30">
-            <use class="use-close-button" href="./images/symbol-defs.svg#icon-close-button"></use>
-        </svg>
-    </button>
+<div class="modals visually-hidden">
+    <include src="./partials/button-close.html"></include>
     <div id="modal-film" class="modal-film visually-hidden">
         <div class="modal-film-container">
             <div class="movie-container-film"> </div>
             <div class="btn-container">
                 <button class="btn-watched button-add" type="button">add to Watched</button>
                 <button class="btn-queue button-add" type="button">add to queue</button>
-            </div>
-        </div>
     </div>
-    <div class="modal-trailer visually-hidden">
-        <div class="modal-trailer-container"></div>
-    </div>
+  </div>
+  <div class="modal-trailer visually-hidden">
+    <div class="modal-trailer-container"></div>
+  </div>
 </div>
