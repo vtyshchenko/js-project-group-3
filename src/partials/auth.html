@@ -1,11 +1,11 @@
-<div class="auth-wrapper container visually-hidden" data-auth-modal>
+<div class="auth-wrapper visually-hidden" data-auth-modal>
   <form class="auth__form">
     <include src="./partials/button-close.html"></include>
-    <p class="auth__title">Register or log in</p>
+    <p class="auth__title">Please enter user details:</p>
 
     <div class="auth__inputs">
       <label class="auth__group">
-        <span class="auth__label">Mail</span>
+        <span class="auth__label" id="email-text">Mail</span>
         <span class="auth__input-group">
           <input
             id="user-email"
@@ -30,7 +30,7 @@
     Min 8 chars and Max 12 chars
     -->
       <label class="auth__group">
-        <span class="auth__label">Password</span>
+        <span class="auth__label" id="password-text">Password</span>
         <span class="auth__input-group">
           <input
             id="user-password"
@@ -50,7 +50,7 @@
       </label>
 
       <label class="auth__group" id="auth-input-group-name">
-        <span class="auth__label">Name</span>
+        <span class="auth__label" id="name-text">Name</span>
         <span class="auth__input-group">
           <input
             id="user-name"
@@ -76,13 +76,13 @@
           checked
         />
         <span class="auth__checkbox-icon"></span>
-        <span class="auth__confirm-conditions">Register new user</span>
+        <span class="auth__confirm-conditions">Register a new user</span>
       </label>
 
       <div class="auth__button-group">
-        <button class="button-submit" id="registration" type="submit">Registration</button>
+        <button class="button-submit" id="registration" type="submit">Sign up</button>
         <button class="button-submit button-submit-close" type="button" data-modal-close>
-          Cancel
+          Close
         </button>
       </div>
     </div>

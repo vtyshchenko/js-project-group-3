@@ -40,14 +40,17 @@ const refs = {
   modalAuthRefs: document.querySelector('[data-auth-modal]'),
   confirmCheckboxRefs: document.querySelector('.auth__confirm-checkbox'),
   authFormRefs: document.querySelector('.auth__form'),
-
+  authTitleRefs: document.querySelector('.auth__title'),
+  authSignUpBtnRefs: document.querySelector('#registration'),
+  authCancelBtnRefs: document.querySelector('.button-submit-close'),
   authNameGroupRefs: document.querySelector('#auth-input-group-name'),
   authNameRefs: document.querySelector('#user-name'),
+  authNameTextRefs: document.querySelector('#name-text'),
   authEmailRefs: document.querySelector('#user-email'),
+  authEmailTextRefs: document.querySelector('#email-text'),
   authPasswordRefs: document.querySelector('#user-password'),
-
-  buttonRegistrationRefs: document.querySelector('#registration'),
-
+  authPasswordTextRefs: document.querySelector('#password-text'),
+  authCheckboxText: document.querySelector('.auth__confirm-conditions'),
   paginationRefs: document.querySelector('.pagination'),
 
   WATCHED: 'watched',
