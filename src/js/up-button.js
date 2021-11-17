@@ -1,7 +1,7 @@
 let goTopBtn = document.querySelector('.up-button');
 let btnScrollDown = document.querySelector('#scroll-down');
-console.log('btnScrollDown', btnScrollDown);
-console.log('document.documentElement', document.documentElement);
+// console.log('btnScrollDown', btnScrollDown);
+// console.log('document.documentElement', document.documentElement);
 
 function trackScroll() {
   let scrolled = window.pageYOffset;
@@ -14,31 +14,33 @@ function trackScroll() {
     goTopBtn.classList.remove('up-button-show');
   }
 
+  
   if (coords - scrolled > 100) {
-    btnScrollDown.classList.add('up-button-show');
+    btnScrollDown.classList.add('button-doun-show');
   }
-  console.log('classes', btnScrollDown.classList);
-  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('up-button-show')) {
-    btnScrollDown.classList.remove('up-button-show');
+  // console.log('classes', btnScrollDown.classList);
+  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('button-doun-show')) {
+    btnScrollDown.classList.remove('button-doun-show');
   }
-  console.log('coords', coords, scrolled);
-  console.log('coords - scrolled', coords - scrolled);
+  // console.log('coords', coords, scrolled);
+  // console.log('coords - scrolled', coords - scrolled);
 }
 
 function upButton() {
   if (window.pageYOffset > 0) {
-    window.scrollBy(0, -30);
+    window.scrollBy(0, -20);
     setTimeout(upButton, 0);
   }
 }
 
+
 function scrollDown() {
-  let coords = document.documentElement.scrollTop;
-  console.log(window.pageYOffset);
-  console.log('document.documentElement.clientHeight', coords);
+  let coords = document.documentElement.scrollHeight;
+  // console.log(window.pageYOffset);
+  // console.log('document.documentElement.clientHeight', coords);
   if (window.pageYOffset < coords) {
-    window.scrollBy(0, 10);
-    setTimeout(scroll, 0);
+    window.scrollBy(0, 20);
+    setTimeout(scrollDown, 0);
   }
 }
 

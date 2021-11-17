@@ -1,4 +1,4 @@
-// var btnScrollDown = document.querySelector('#scroll_down');
+// let btnScrollDown = document.querySelector('#scroll-down');
 // console.log(document);
 
 // function scrollDown() {
