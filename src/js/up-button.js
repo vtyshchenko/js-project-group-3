@@ -1,8 +1,5 @@
 let goTopBtn = document.querySelector('.up-button');
 let btnScrollDown = document.querySelector('#scroll-down');
-// console.log('btnScrollDown', btnScrollDown);
-// console.log('document.documentElement', document.documentElement);
-
 
 function trackScroll() {
   let scrolled = window.pageYOffset;
@@ -14,54 +11,33 @@ function trackScroll() {
   if (scrolled < 100) {
     goTopBtn.classList.remove('up-button-show');
   }
-}
 
-  
   if (coords - scrolled > 100) {
-    btnScrollDown.classList.add('button-doun-show');
+    btnScrollDown.classList.add('up-button-show');
   }
-  // console.log('classes', btnScrollDown.classList);
-  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('button-doun-show')) {
-    btnScrollDown.classList.remove('button-doun-show');
+  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('up-button-show')) {
+    btnScrollDown.classList.remove('up-button-show');
   }
-  // console.log('coords', coords, scrolled);
-  // console.log('coords - scrolled', coords - scrolled);
-
-  if (coords - scrolled < 100 && !Array.from(btnScrollDown.classList).includes('button-doun-show')) {
-    btnScrollDown.classList.remove('button-doun-show');
-  }
-
-
+}
 
 function upButton() {
   if (window.pageYOffset > 0) {
-    window.scrollBy(0, -20);
+    window.scrollBy(0, -30);
     setTimeout(upButton, 0);
   }
 }
 
-
 function scrollDown() {
-
-  let coords = document.documentElement.scrollHeight;
-  // console.log(window.pageYOffset);
-  // console.log('document.documentElement.clientHeight', coords);
-  if (window.pageYOffset < coords) {
-    window.scrollBy(0, 20);
-    setTimeout(scrollDown, 0);
-  }
-
-  var windowCoords = document.documentElement.clientHeight;
+  let windowCoords = document.documentElement.scrollHeight;
   (function scroll() {
     if (window.pageYOffset < windowCoords) {
       window.scrollBy(0, 10);
-      setTimeout(scroll, 0);
+      setTimeout(scrollDown, 0);
     }
     if (window.pageYOffset > windowCoords) {
       window.scrollTo(0, windowCoords);
     }
   })();
-
 }
 
 window.addEventListener('scroll', trackScroll);
