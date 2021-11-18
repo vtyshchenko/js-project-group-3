@@ -1,34 +1,50 @@
 import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
-import onSearchPopularFilms from './render-popular-film.js';
+import { onSearchPopularFilms } from './render-popular-film.js';
+import { onWatchedBtnClick, onQueueBtnClick } from './watched-queue-btns';
+import onSearchFilm from './header.js';
 
-const { wrapper, arrowLeft, arrowRight, listernerEvent } = refs.refs;
+const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
 
-const firstPage = 1;
+let totalPages = 1;
 let page = 1;
-const totalPages = localStorage.getItem('totalPages');
 const countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
 
-arrowLeft.addEventListener('click', onClickArrowLeft);
-arrowRight.addEventListener('click', onClickArrowRight);
-listernerEvent.addEventListener('click', onClickButton);
+arrowLeftRefs.addEventListener('click', onClickArrowLeft);
+arrowRightRefs.addEventListener('click', onClickArrowRight);
+listernerEventRefs.addEventListener('click', onClickButton);
 
-function onClickArrowLeft(e) {
+function onGetTotalPages() {
+  totalPages = localStorage.getItem('totalPages');
+  if (!totalPages) {
+    return 1;
+  }
+  return totalPages;
+}
+
+function onGetPageType() {
+  let pageType = localStorage.getItem('pageType');
+  if (!pageType) {
+    return (pageType = 'popular');
+  }
+  return pageType;
+}
+
+function onClickArrowLeft() {
   page -= 1;
-  onMarkupButton(totalPages, page);
-  onSearchPopularFilms(e, page);
+  onMarkupPages(page);
   return page;
 }
 
-function onClickArrowRight(e) {
+function onClickArrowRight() {
   page += 1;
-  onMarkupButton(totalPages, page);
-  onSearchPopularFilms(e, page);
+  onMarkupPages(page);
   return page;
 }
 
 function onClickButton(e) {
+  totalPages = onGetTotalPages();
   let buttonText = e.target.innerText;
   if (buttonText !== MOVE_PAGE_TEXT) {
     page = Number(buttonText);
@@ -45,75 +61,119 @@ function onClickButton(e) {
     }
     if (page < 0) {
       page = 1;
-    } else if (page > totalPages) {
-      page = totalPages;
+    } else {
+      if (page > totalPages) {
+        page = totalPages;
+      }
+    }
+  }
+  onMarkupPages(page);
+}
+
+function onHideArrowLeft(page) {
+  page === 1 || totalPages < countShowSumbols
+    ? arrowLeftRefs.classList.add('hidden')
+    : arrowLeftRefs.classList.remove('hidden');
+}
+
+function onHideArrowRight(page, totalPages) {
+  page === totalPages || totalPages < countShowSumbols
+    ? arrowRightRefs.classList.add('hidden')
+    : arrowRightRefs.classList.remove('hidden');
+}
+
+function onConditionPageType(pageType) {
+  if (!pageType) {
+    pageType = 'popular';
+  }
+
+  switch (pageType) {
+    case 'popular':
+      onSearchPopularFilms(page);
+      break;
+    case 'search by keyword':
+      onSearchFilm(page);
+      break;
+    case 'watched':
+      onWatchedBtnClick(page);
+      break;
+    case 'queue':
+      onQueueBtnClick(page);
+      break;
+  }
+}
+
+export function onMarkupPages(page) {
+  if (!page) {
+    page = 1;
+  }
+  const pageType = onGetPageType();
+
+  onConditionPageType(pageType);
+  onMarkupButton(page);
+}
+
+//* малюємо кнопки
+export function onMarkupButton(page) {
+  let buttons = '';
+  let totalPages = onGetTotalPages();
+
+  if (!page) {
+    page = 1;
+  }
+
+  wrapperRefs.innerHTML = '';
+
+  if (!totalPages) {
+    totalPages = 1;
+  }
+  let nextPage;
+  let endPage;
+
+  buttons += buttonsTpl({ id: '', name: 1 });
+
+  if (totalPages > 1) {
+    if (page > 4) {
+      buttons += buttonsTpl({ id: 'prev', name: MOVE_PAGE_TEXT });
+
+      if (totalPages === page) {
+        nextPage = page - 6;
+        endPage = totalPages;
+      } else {
+        nextPage = totalPages - page > 3 ? page - 2 : page - (6 - totalPages + page);
+        endPage = page < totalPages - 4 ? page + 2 : totalPages - 2;
+      }
+    } else {
+      buttons += buttonsTpl({ id: '', name: 2 });
+      nextPage = totalPages > 2 ? 3 : 2;
+      endPage = totalPages >= 7 ? 7 : totalPages;
+    }
+    if (totalPages > 2) {
+      for (let page = nextPage; page <= endPage; page++) {
+        buttons += buttonsTpl({ id: '', name: page });
+      }
+    }
+    if (totalPages > endPage) {
+      if (totalPages - countShowSumbols > 0 && totalPages - page > 3) {
+        buttons += buttonsTpl({ id: 'next', name: MOVE_PAGE_TEXT });
+      } else {
+        buttons += buttonsTpl({ id: '', name: totalPages - 1 });
+      }
+      buttons += buttonsTpl({ id: '', name: totalPages });
     }
   }
 
-  onSearchPopularFilms(e, page);
-  onMarkupButton(totalPages, page);
-}
-
-function onHideArrowLeft() {
-  page === 1 ? arrowLeft.classList.add('hidden') : arrowLeft.classList.remove('hidden');
-}
-
-function onHideArrowRight() {
-  page === totalPages ? arrowRight.classList.add('hidden') : arrowRight.classList.remove('hidden');
-}
-
-function onMarkupButton(totalPages, page) {
-  let beforePages;
-  let afterPages;
-
-  if (page > 0 && page < 6) {
-    beforePages = firstPage;
-  } else {
-    beforePages = page - 4;
-  }
-
-  if (page < totalPages - 3) {
-    afterPages = page + 4;
-  } else {
-    afterPages = totalPages;
-    beforePages = totalPages - countShowSumbols + 1;
-  }
-
-  onHideArrowLeft(page);
-
-  let buttons = '';
-  //* якщо сторінка від 1 до 5 не для мобілки 108-114
-  buttons += buttonsTpl({ id: '', name: 1 });
-  if (page > 5) {
-    buttons += buttonsTpl({ id: 'prev', name: MOVE_PAGE_TEXT });
-  } else {
-    buttons += buttonsTpl({ id: '', name: 2 });
-    afterPages = countShowSumbols;
-  }
-
-  for (let pageLength = beforePages + 2; pageLength <= afterPages - 2; pageLength++) {
-    buttons += buttonsTpl({ id: '', name: pageLength });
-  }
-  //* не для мобілки 120-126
-  if (totalPages - page > 4) {
-    buttons += buttonsTpl({ id: 'next', name: MOVE_PAGE_TEXT });
-  } else {
-    buttons += buttonsTpl({ id: '', name: totalPages - 1 });
-  }
-
-  buttons += buttonsTpl({ id: '', name: totalPages });
-  wrapper.innerHTML = buttons;
+  wrapperRefs.innerHTML = buttons;
 
   const initialPage = document.querySelectorAll('.pagination__link-js');
   for (const button of initialPage) {
     if (button.innerText === String(page)) {
-      //*Додати клас "pagination__link-current"
       button.classList.add('pagination__link-current');
       break;
     }
   }
-
-  onHideArrowRight();
+  onHideArrowLeft(page);
+  onHideArrowRight(page, totalPages);
 }
 
-onMarkupButton(totalPages, page);
+onMarkupButton(page);
