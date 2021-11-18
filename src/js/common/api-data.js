@@ -64,8 +64,8 @@ export function put(user, key, data) {
 
 export function getUser() {
   let data = localStorage.getItem('loginUser');
-  if (!data.loginUser) {
-    data.loginUser = 'local';
+  if (!data) {
+    data = 'local';
     saveData(data);
   }
   return data.loginUser;
