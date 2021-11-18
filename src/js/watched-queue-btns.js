@@ -49,6 +49,7 @@ function getMarkup(name, page) {
     emptyWatchedQueueRefs.classList.add('visually-hidden');
   } else {
     emptyWatchedQueueRefs.classList.remove('visually-hidden');
+    galleryListRefs.innerHTML = '';
     if (lang === 'uk-UA') {
       watchedQueueTextRefs.textContent = 'Упс... Ваш список порожній!';
     }
