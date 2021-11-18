@@ -1,5 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import 'firebase/database';
+import { getDatabase } from 'firebase/database';
+
+// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
 import {
   getAuth,
   updateProfile,
@@ -18,12 +21,22 @@ const firebaseConfig = {
   messagingSenderId: '752565238788',
   appId: '1:752565238788:web:5f9744ba69c8ecc4964951',
   measurementId: 'G-VENZM40NT5',
+  databaseURL: 'https://project-filmoteka.firebaseio.com',
 };
 
 export async function init() {
   const app = await initializeApp(firebaseConfig, 'filmoteka');
 
   return app;
+}
+
+export async function getDb(app) {
+  const db = getDatabase(
+    app,
+    'https://project-filmoteka-default-rtdb.europe-west1.firebasedatabase.app/',
+  );
+  console.log('db', db);
+  return db;
 }
 
 export async function login(app, userName, password, email, newUser) {

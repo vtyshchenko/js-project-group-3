@@ -1,5 +1,5 @@
-import { init, login } from '../common/api-firebase';
-import { getLanguage, getUser } from '../common/api-data';
+import { init, login, getDb } from '../common/api-firebase';
+import { getLanguage } from '../common/api-data';
 import refs from '../common/refs';
 
 const {
@@ -198,5 +198,7 @@ async function onConfirm() {
       }
       openModalAuthRefs.innerHTML = logOutText;
     }
+    let db = await getDb(app);
+    console.log('db', db);
   }
 }
