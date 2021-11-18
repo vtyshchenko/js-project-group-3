@@ -8,6 +8,7 @@ const {
   openModalAuthRefs,
   modalAuthRefs,
   confirmCheckboxRefs,
+  authTitleRefs,
   authNameGroupRefs,
   authNameRefs,
   authNameTextRefs,
@@ -26,6 +27,7 @@ let userCredentauls;
 let theme;
 let signUpBtnText;
 let logInBtnText;
+let logOutText;
 
 let onmouseover = function () {
   if (theme === 'dark-theme') {
@@ -46,6 +48,7 @@ confirmCheckboxRefs.checked = true;
 authNameRefs.innerHTML = '';
 authEmailRefs.innerHTML = '';
 authPasswordRefs.value = '';
+translate();
 
 function styleThemeModal(bck, color, fill) {
   authFormRefs.style.backgroundColor = bck;
@@ -55,35 +58,51 @@ function styleThemeModal(bck, color, fill) {
 
 function translate() {
   let lang = getLanguage();
-  if (lang === 'en-US') {
-    // formTitle = '';
-    // mailTitle = -'';
-    // passwordTitle = '';
-    // nameTitle = '';
-    // checkboxText = '';
-    console.log('authFormRefs', authFormRefs);
-    authFormRefs.password.placeholder = 'Enter password';
-    authFormRefs.name.placeholder = 'John Jonson';
-    // authFormRefs[5].innerText = 'Sign up';
-    // authFormRefs[6].innerText = 'Close';
-    authCancelBtnRefs.innerHTML = 'Close';
-    signUpBtnText = 'Sign Up';
-    logInBtnText = 'Log In';
-  } else {
-    // authFormRefs.name.placeholder = 'Козаченко Микола';
-    // formTitle = '';
-    // mailTitle = -'';
-    // mailPlaceholder = '';
-    // passwordTitle = '';
-    // passwordPlaceholder = '';
+  console.log(lang);
 
-    // nameTitle = '';
-    // namePlaceholder = '';
-    // checkboxText = '';
-    authCancelBtnRefs.innerHTML = 'Закрити';
-    signUpBtnText = 'Зареєструватися';
-    logInBtnText = 'Увійти';
+  if (lang === 'en-US') {
+    setText({
+      title: 'Please enter user details:',
+      email: 'Mail',
+      password: 'Password',
+      passwordPlaceholder: 'Enter password',
+      name: 'Name',
+      namePlaceholder: 'John Jonson',
+      checkboxText: 'Register a new user',
+      cancelBtn: 'Close',
+      signUpBtn: 'Sign Up',
+      logInBtn: 'Log In',
+      logOut: 'Log Out',
+    });
+  } else {
+    setText({
+      title: 'Будь ласка введіть дані користувача:',
+      email: 'Пошта',
+      password: 'Пароль',
+      passwordPlaceholder: 'Введіть пароль',
+      name: "Ім'я",
+      namePlaceholder: 'Козаченко Микола',
+      checkboxText: 'Зареєструвати нового користувача',
+      cancelBtn: 'Закрити',
+      signUpBtn: 'Реєстрація',
+      logInBtn: 'Увійти',
+      logOut: 'Вийти',
+    });
   }
+}
+
+function setText(data) {
+  authTitleRefs.innerHTML = data.title;
+  authEmailTextRefs.innerHTML = data.email;
+  authPasswordTextRefs.innerHTML = data.password;
+  authNameTextRefs.innerHTML = data.name;
+  authCheckboxText.innerHTML = data.checkboxText;
+  authFormRefs.password.placeholder = data.passwordPlaceholder;
+  authFormRefs.name.placeholder = data.namePlaceholder;
+  authCancelBtnRefs.innerHTML = data.cancelBtn;
+  signUpBtnText = data.signUpBtn;
+  logInBtnText = data.logInBtn;
+  logOutText = data.logOut;
 }
 
 function removeListeners() {
@@ -121,6 +140,7 @@ function onOpen() {
   authSignUpBtnRefs.onmouseover = onmouseover;
   authSignUpBtnRefs.onmouseout = onmouseout;
   translate();
+  authSignUpBtnRefs.innerHTML = signUpBtnText;
 }
 
 function onKeyPress(e) {
