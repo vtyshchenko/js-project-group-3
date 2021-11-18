@@ -150,6 +150,7 @@ function onKeyPress(e) {
 }
 
 function onClose(e) {
+  e.preventDefault();
   let classes = e.target.classList;
   if (
     classes.contains('backdrop') ||
@@ -179,9 +180,9 @@ function onCheckboxChange(e) {
   authSignUpBtnRefs.innerHTML = text;
 }
 
-function onConfirm() {
+async function onConfirm() {
   if (!app || !userCredentauls) {
-    app = init();
+    app = await init();
     let userName = authNameRefs.value;
     let userEmail = authEmailRefs.value;
     let userPassword = authPasswordRefs.value;
@@ -190,9 +191,10 @@ function onConfirm() {
     console.log('userEmail', userEmail);
     console.log('userPassword', userPassword);
     console.log('isNewUser', isNewUser);
-    userCredentauls = login(app, userName, password, email, newUser);
-    if (userCredentauls) {
-      openModalAuthRefs.innerHTML = 'Log out';
+    userCredentauls = await login(app, userName, userPassword, userEmail, isNewUser);
+    console.log('userCredentauls', userCredentauls);
+    if (userCredentauls.state !== 'rejected') {
+      openModalAuthRefs.innerHTML = logOutText;
     }
   }
 }

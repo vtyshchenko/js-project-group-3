@@ -20,11 +20,13 @@ const firebaseConfig = {
 };
 
 export async function init() {
-  return initializeApp(firebaseConfig, 'filmoteka');
+  const app = await initializeApp(firebaseConfig, 'filmoteka');
+
+  return app;
 }
 
-export function login(app, userName, password, email, newUser) {
-  if (!user) {
+export async function login(app, userName, password, email, newUser) {
+  if (!userName) {
     userName = 'test';
   }
   if (!email) {
@@ -35,29 +37,31 @@ export function login(app, userName, password, email, newUser) {
   }
   let userCredentauls;
 
-  let auth = getAuth(app);
+  console.log('app', app);
+  let auth = await getAuth(app);
+  console.log('auth', auth);
   console.log('auth.currentUser', auth.currentUser);
   console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
-    userCredentauls = createNewUser(auth, email, password);
-    updateProfile(auth.currentUser, {
-      displayName: userName,
-    }).catch(error => {
-      console.log(error);
-    });
+    userCredentauls = await createNewUser(auth, email, password);
+    // updateProfile(auth.currentUser, {
+    //   displayName: userName,
+    // }).catch(error => {
+    //   console.log(error);
+    // });
   } else {
     userCredentauls = signInWithExistingUser(auth, email, password);
   }
   console.log(userCredentauls);
 
-  onAuthStateChanged(userData => {
-    if (userData) {
-      onSignIn(userData);
-    } else {
-      onError(userData);
-    }
-  });
+  // onAuthStateChanged(userData => {
+  //   if (userData) {
+  //     onSignIn(userData);
+  //   } else {
+  //     onError(userData);
+  //   }
+  // });
   return userCredentauls;
 }
 
@@ -93,10 +97,10 @@ function onSignIn(userCredential) {
   return user;
 }
 
-function put(data) {}
+// function put(data) {}
 
-function get() {}
+// function get() {}
 
-function update() {}
+// function update() {}
 
-function del() {}
+// function del() {}
