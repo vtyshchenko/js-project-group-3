@@ -21,6 +21,12 @@ function fetchMovie(movie_id) {
   );
 }
 
+function fetchMovieByLang(movie_id, lang) {
+  return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=${lang}`).then(response =>
+    response.json(),
+  );
+}
+
 // ========== Trailer
 
 function fetchTrailer(movie_id) {
@@ -71,4 +77,5 @@ export default {
   fetchGenres,
   fetchTrailer,
   themoviedb,
+  fetchMovieByLang,
 };
