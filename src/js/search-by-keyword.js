@@ -1,13 +1,19 @@
 import API from './api-service';
 import movieCardTpl from '../partials/hbs/video-card.hbs';
+import { getLanguage } from './common/api-data';
 import { onSearchYear, onSearchGenresList } from './search-genres-and-year.js';
 import refs from './common/refs';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/desktop/dist/PNotifyDesktop';
-import '@pnotify/core/dist/BrightTheme.css';
-import { error } from '@pnotify/core';
 
-const { galleryListRefs, inputSearchRefs } = refs.refs;
+const {
+  galleryListRefs,
+  inputSearchRefs,
+  errorPictureRefs,
+  emptySearchRefs,
+  emptySearchTextRefs,
+  errorTextRefs,
+} = refs.refs;
+
+const lang = getLanguage();
 
 export async function onSearch(page) {
   if (!page) {
@@ -27,13 +33,19 @@ export async function onSearch(page) {
 
 function movieStatus(results) {
   if (results.total_results === 0) {
-    onFetchError();
+    emptySearchRefs.classList.add('visually-hidden');
+    errorPictureRefs.classList.remove('visually-hidden');
+    if (lang === 'uk-UA') {
+      errorTextRefs.textContent = 'Такого фільму не знайдено. Введіть правильну назву!';
+    }
+    galleryListRefs.innerHTML = '';
   }
   return Promise.resolve(results);
 }
 
 function onRenderMoviesCard(movies) {
   const markup = movieCardTpl(movies.results);
+  emptySearchRefs.classList.add('visually-hidden');
   galleryListRefs.innerHTML = markup;
   const ratingRefs = document.querySelectorAll('.video-average');
   for (const el of ratingRefs) {
@@ -42,8 +54,10 @@ function onRenderMoviesCard(movies) {
 }
 
 function onFetchError() {
-  return error({
-    text: 'Search result not successful. Enter the correct movie name!',
-    delay: 3000,
-  });
+  errorPictureRefs.classList.add('visually-hidden');
+  emptySearchRefs.classList.remove('visually-hidden');
+  if (lang === 'uk-UA') {
+    emptySearchTextRefs.textContent = 'Будь-ласка введіть назву фільму!';
+  }
+  galleryListRefs.innerHTML = '';
 }

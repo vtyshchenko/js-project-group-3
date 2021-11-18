@@ -3,7 +3,7 @@ import onWatchedBtnClick from './watched-queue-btns';
 import { onMarkupButton } from './pagination.js';
 import { onSearchPopularFilms } from './render-popular-film.js';
 import { onSearch } from './search-by-keyword.js';
-import { notice } from '@pnotify/core';
+
 
 const {
   headerRefs,
@@ -18,6 +18,10 @@ const {
   toggleThemeRefs,
   inputSearchRefs,
   wrapperRefs,
+  errorPictureRefs,
+  emptyWatchedQueueRefs,
+  emptySearchRefs,
+
 } = refs.refs;
 
 navLibrRefs.addEventListener('click', libOpenClick);
@@ -30,10 +34,9 @@ inputSearchRefs.addEventListener('input', debounce(onSearchFilm, 500));
 
 async function onSearchFilm() {
   if (!inputSearchRefs.value) {
-    return notice({
-      text: 'Please enter your search query.',
-      delay: 2000,
-    });
+    emptySearchRefs.classList.remove('visually-hidden');
+    errorPictureRefs.classList.add('visually-hidden');
+    galleryListRefs.innerHTML = '';
   }
   await onSearch(1);
   onMarkupButton(1);
@@ -55,6 +58,9 @@ document.body.classList.add(savedTheme);
 toggleThemeRefs.checked = savedTheme === DARK;
 
 function libOpenClick() {
+  errorPictureRefs.classList.add('visually-hidden');
+  emptySearchRefs.classList.add('visually-hidden');
+  emptyWatchedQueueRefs.classList.add('visually-hidden');
   headerRefs.classList.add('header__library');
   headerRefs.classList.remove('header__home');
   formSearchRefs.classList.add('visually-hidden');
@@ -70,6 +76,9 @@ function libOpenClick() {
 }
 
 async function homeOpenClick() {
+  errorPictureRefs.classList.add('visually-hidden');
+  emptySearchRefs.classList.add('visually-hidden');
+  emptyWatchedQueueRefs.classList.add('visually-hidden');
   headerRefs.classList.remove('header__library');
   headerRefs.classList.add('header__home');
   formSearchRefs.classList.remove('visually-hidden');
