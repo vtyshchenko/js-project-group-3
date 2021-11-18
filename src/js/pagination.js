@@ -2,7 +2,7 @@ import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
 import { onSearchPopularFilms } from './render-popular-film.js';
 import { onWatchedBtnClick, onQueueBtnClick } from './watched-queue-btns';
-import onSearchFilm from './header.js';
+import { onSearch } from './search-by-keyword.js';
 
 const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
 
@@ -14,6 +14,47 @@ const MOVE_PAGE_TEXT = '...';
 arrowLeftRefs.addEventListener('click', onClickArrowLeft);
 arrowRightRefs.addEventListener('click', onClickArrowRight);
 listernerEventRefs.addEventListener('click', onClickButton);
+
+//* General content rendering
+export function onMarkupPages(page) {
+  onConditionPageType(page);
+  onMarkupButton(page);
+}
+
+//* Rendering cards by location
+async function onConditionPageType(page) {
+  let pageType = onGetPageType();
+
+  if (!pageType) {
+    pageType = 'popular';
+  }
+
+  switch (pageType) {
+    case 'popular':
+      await onSearchPopularFilms(page);
+      break;
+    case 'search by keyword':
+      await onSearch(page);
+      break;
+    case 'watched':
+      await onWatchedBtnClick(page);
+      break;
+    case 'queue':
+      await onQueueBtnClick(page);
+      break;
+  }
+}
+
+//* Buttons rendering
+export function onMarkupButton(page) {
+  if (!page) {
+    page = 1;
+  }
+  onButtonRenderingLogicDangerKeepOut(page);
+  onAddCurrentPage(page);
+  onHideArrowLeft(page, totalPages);
+  onHideArrowRight(page, totalPages);
+}
 
 function onGetTotalPages() {
   totalPages = localStorage.getItem('totalPages');
@@ -45,6 +86,11 @@ function onClickArrowRight() {
 
 function onClickButton(e) {
   totalPages = onGetTotalPages();
+  onButtonClickLogic(e);
+  onMarkupPages(page);
+}
+
+function onButtonClickLogic(e) {
   let buttonText = e.target.innerText;
   if (buttonText !== MOVE_PAGE_TEXT) {
     page = Number(buttonText);
@@ -67,62 +113,28 @@ function onClickButton(e) {
       }
     }
   }
-  onMarkupPages(page);
 }
 
-function onHideArrowLeft(page) {
+function onHideArrowLeft(page, totalPages) {
   page === 1 || totalPages < countShowSumbols
-    ? arrowLeftRefs.classList.add('hidden')
-    : arrowLeftRefs.classList.remove('hidden');
+    ? arrowLeftRefs.classList.add('visually-hidden')
+    : arrowLeftRefs.classList.remove('visually-hidden');
 }
 
 function onHideArrowRight(page, totalPages) {
   page === totalPages || totalPages < countShowSumbols
-    ? arrowRightRefs.classList.add('hidden')
-    : arrowRightRefs.classList.remove('hidden');
+    ? arrowRightRefs.classList.add('visually-hidden')
+    : arrowRightRefs.classList.remove('visually-hidden');
 }
 
-function onConditionPageType(pageType) {
-  if (!pageType) {
-    pageType = 'popular';
-  }
-
-  switch (pageType) {
-    case 'popular':
-      onSearchPopularFilms(page);
-      break;
-    case 'search by keyword':
-      onSearchFilm(page);
-      break;
-    case 'watched':
-      onWatchedBtnClick(page);
-      break;
-    case 'queue':
-      onQueueBtnClick(page);
-      break;
-  }
-}
-
-export function onMarkupPages(page) {
-  if (!page) {
-    page = 1;
-  }
-  const pageType = onGetPageType();
-
-  onConditionPageType(pageType);
-  onMarkupButton(page);
-}
-
-//* малюємо кнопки
-export function onMarkupButton(page) {
+function onButtonRenderingLogicDangerKeepOut(page) {
+  wrapperRefs.innerHTML = '';
   let buttons = '';
   let totalPages = onGetTotalPages();
 
   if (!page) {
     page = 1;
   }
-
-  wrapperRefs.innerHTML = '';
 
   if (!totalPages) {
     totalPages = 1;
@@ -164,16 +176,17 @@ export function onMarkupButton(page) {
   }
 
   wrapperRefs.innerHTML = buttons;
+}
 
+function onAddCurrentPage(page) {
   const initialPage = document.querySelectorAll('.pagination__link-js');
+
   for (const button of initialPage) {
     if (button.innerText === String(page)) {
       button.classList.add('pagination__link-current');
       break;
     }
   }
-  onHideArrowLeft(page);
-  onHideArrowRight(page, totalPages);
 }
 
 onMarkupButton(page);

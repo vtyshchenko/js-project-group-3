@@ -30,7 +30,7 @@ toggleThemeRefs.addEventListener('change', inputChange);
 const debounce = require('lodash.debounce');
 inputSearchRefs.addEventListener('input', debounce(onSearchFilm, 500));
 
-async function onSearchFilm() {
+export async function onSearchFilm() {
   if (!inputSearchRefs.value) {
     emptySearchRefs.classList.remove('visually-hidden');
     errorPictureRefs.classList.add('visually-hidden');
@@ -69,8 +69,8 @@ function libOpenClick() {
   localStorage.setItem('totalPages', 0);
   inputSearchRefs.value = '';
   onWatchedBtnClick.onWatchedBtnClick();
-  onMarkupButton();
   wrapperRefs.innerHTML = '';
+  onMarkupButton(1);
 }
 
 async function homeOpenClick() {
