@@ -1,11 +1,10 @@
 import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
 import { onSearchPopularFilms } from './render-popular-film.js';
-import myLibraryBtn from './watched-queue-btns';
+import { onWatchedBtnClick, onQueueBtnClick } from './watched-queue-btns';
 import onSearchFilm from './header.js';
 
 const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
-const { onWatchedBtnClick, onQueueBtnClick } = myLibraryBtn;
 
 let totalPages = 1;
 let page = 1;
@@ -17,7 +16,19 @@ arrowRightRefs.addEventListener('click', onClickArrowRight);
 listernerEventRefs.addEventListener('click', onClickButton);
 
 function onGetTotalPages() {
-  return localStorage.getItem('totalPages');
+  totalPages = localStorage.getItem('totalPages');
+  if (!totalPages) {
+    return (totalPages = 1);
+  }
+  return totalPages;
+}
+
+function onGetPageType() {
+  pageType = localStorage.getItem('pageType');
+  if (!pageType) {
+    return (pageType = 1);
+  }
+  return pageType;
 }
 
 function onClickArrowLeft() {
@@ -93,7 +104,10 @@ function onConditionPageType(pageType) {
 }
 
 export function onMarkupPages(page) {
-  const pageType = localStorage.getItem('pageType');
+  if (!page) {
+    page = 1;
+  }
+  const pageType = onGetPageType();
 
   onConditionPageType(pageType);
   onMarkupButton(page);

@@ -21,7 +21,6 @@ export async function onSearch(page) {
       onRenderMoviesCard(results);
       localStorage.setItem('pageType', 'search by keyword');
       localStorage.setItem('totalPages', results.total_pages);
-      console.log('Vika totalPages');
     })
     .catch(onFetchError);
 }
