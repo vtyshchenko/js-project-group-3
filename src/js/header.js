@@ -1,9 +1,8 @@
 import refs from './common/refs.js';
-import  onWatchedBtnClick  from './watched-queue-btns'
+import onWatchedBtnClick from './watched-queue-btns';
 import { onMarkupButton } from './pagination.js';
 import { onSearchPopularFilms } from './render-popular-film.js';
 import { onSearch } from './search-by-keyword.js';
-
 
 const {
   headerRefs,
@@ -17,18 +16,16 @@ const {
   galleryListRefs,
   toggleThemeRefs,
   inputSearchRefs,
+  wrapperRefs,
   errorPictureRefs,
   emptyWatchedQueueRefs,
   emptySearchRefs,
-
 } = refs.refs;
-
 
 navLibrRefs.addEventListener('click', libOpenClick);
 navHomeRefs.addEventListener('click', homeOpenClick);
 logoRefs.addEventListener('click', homeOpenClick);
 toggleThemeRefs.addEventListener('change', inputChange);
-
 
 const debounce = require('lodash.debounce');
 inputSearchRefs.addEventListener('input', debounce(onSearchFilm, 500));
@@ -43,7 +40,6 @@ async function onSearchFilm() {
   onMarkupButton(1);
 }
 
-
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -55,7 +51,6 @@ if (!savedTheme) {
   savedTheme = LIGHT;
   localStorage.setItem('theme', savedTheme);
 }
-
 
 document.body.classList.add(savedTheme);
 toggleThemeRefs.checked = savedTheme === DARK;
@@ -74,10 +69,11 @@ function libOpenClick() {
   localStorage.setItem('totalPages', 0);
   inputSearchRefs.value = '';
   onWatchedBtnClick.onWatchedBtnClick();
+  onMarkupButton();
+  wrapperRefs.innerHTML = '';
 }
 
-
-function homeOpenClick() {
+async function homeOpenClick() {
   errorPictureRefs.classList.add('visually-hidden');
   emptySearchRefs.classList.add('visually-hidden');
   emptyWatchedQueueRefs.classList.add('visually-hidden');
@@ -87,8 +83,9 @@ function homeOpenClick() {
   librListRefs.classList.add('visually-hidden');
   btnHomeRefs.classList.add('current');
   btnLibrRefs.classList.remove('current');
-  inputSearchRefs.value = '' 
-  onSearchPopularFilms();
+  inputSearchRefs.value = '';
+  await onSearchPopularFilms();
+  wrapperRefs.innerHTML = '';
   onMarkupButton();
 }
 
@@ -106,6 +103,3 @@ function changeClasses(removeClass, addClass) {
   document.body.classList.remove(removeClass);
   document.body.classList.add(addClass);
 }
-
-
-
