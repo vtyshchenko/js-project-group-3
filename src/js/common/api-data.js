@@ -1,3 +1,4 @@
+// Language
 export function getLanguage() {
   let data = localStorage.getItem('language');
   if (!data) {
@@ -11,13 +12,15 @@ export function setLanguage(lang) {
   localStorage.setItem('language', String(lang));
 }
 
+// data operation
 export function del(user, key, data) {
   if (!user) {
     return true;
   }
 
+  let lang = getLanguage();
   let tmp = getData();
-  if (!tmp || !tmp[user] || !tmp[user][key]) {
+  if (!tmp || !tmp[user] || !tmp[user][lang][key]) {
     return true;
   }
 
@@ -62,6 +65,44 @@ export function put(user, key, data) {
   return saveData(tmp);
 }
 
+function getData() {
+  let data = localStorage.getItem('themoviedb');
+  if (!data) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(data);
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return {};
+  }
+}
+
+function addData(data, value) {
+  let res = -1;
+  for (const obj of data) {
+    if (obj.id === value.id) {
+      res = 1;
+    }
+  }
+  if (res === -1) {
+    data.push(value);
+  }
+}
+
+function saveData(data) {
+  try {
+    let tmp = JSON.stringify(data);
+    localStorage.setItem('themoviedb', tmp);
+    return true;
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return false;
+  }
+}
+
+// user
 export function getUser() {
   let data = localStorage.getItem('loginUser');
   if (!data) {
@@ -96,39 +137,9 @@ function setKey(data, key, value) {
   return data;
 }
 
-function addData(data, value) {
-  let res = -1;
-  for (const obj of data) {
-    if (obj.id === value.id) {
-      res = 1;
-    }
-  }
-  if (res === -1) {
-    data.push(value);
-  }
-}
-
-function getData() {
-  let data = localStorage.getItem('themoviedb');
-  if (!data) {
-    return {};
-  }
-
-  try {
-    return JSON.parse(data);
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return {};
-  }
-}
-
-function saveData(data) {
-  try {
-    let tmp = JSON.stringify(data);
-    localStorage.setItem('themoviedb', tmp);
-    return true;
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return false;
-  }
+function reloadMovieInfo() {
+  let data = getData();
+  let user = getUser();
+  let lang = getLanguage();
+  //
 }
