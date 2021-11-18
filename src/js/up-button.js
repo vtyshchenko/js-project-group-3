@@ -5,6 +5,7 @@ function trackScroll() {
   let scrolled = window.pageYOffset;
   let coords = document.documentElement.scrollTopMax;
 
+  console.log(scrolled, coords);
   if (scrolled > 100 && !Array.from(goTopBtn.classList).includes('up-button-show')) {
     goTopBtn.classList.add('up-button-show');
   }
