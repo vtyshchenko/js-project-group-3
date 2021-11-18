@@ -23,6 +23,7 @@ const lang = getLanguage();
 galleryListRefs.addEventListener('click', onClickMovie);
 
 let idMovie;
+let theme;
 
 let onmouseover = function () {
   if (theme === 'dark-theme') {
@@ -62,10 +63,12 @@ function getTrailer(nodeData) {
 }
 
 async function getFilm(nodeData) {
-  await API.fetchMovie(nodeData.id).then(results => {
+  return await API.fetchMovie(nodeData.id).then(results => {
+    console.log(nodeData);
     if (nodeData.id == results.id) {
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
       translateModal();
+      console.log(results);
       return results;
     }
   });
@@ -75,7 +78,7 @@ export async function onClickMovie(e) {
   e.preventDefault();
   let temp = getNode(e);
 
-  let theme = localStorage.getItem('theme');
+  theme = localStorage.getItem('theme');
   let isTrailer = Array.from(e.target.classList).includes('card__overlay');
 
   if (isTrailer) {
@@ -87,11 +90,11 @@ export async function onClickMovie(e) {
     }
   } else {
     idMovie = await getFilm(temp);
-
-    watchedBtnRefs.onmouseover = onmouseover;
-    watchedBtnRefs.onmouseout = onmouseout;
-    queueBtnRefs.onmouseover = onmouseover;
-    queueBtnRefs.onmouseout = onmouseout;
+    onMouseOutOver();
+    // watchedBtnRefs.onmouseover = onmouseover;
+    // watchedBtnRefs.onmouseout = onmouseout;
+    // queueBtnRefs.onmouseover = onmouseover;
+    // queueBtnRefs.onmouseout = onmouseout;
 
     if (theme === 'dark-theme') {
       styleThemeModal(
@@ -117,6 +120,13 @@ export async function onClickMovie(e) {
 }
 
 // end function
+
+function onMouseOutOver() {
+  watchedBtnRefs.onmouseover = onmouseover;
+  watchedBtnRefs.onmouseout = onmouseout;
+  queueBtnRefs.onmouseover = onmouseover;
+  queueBtnRefs.onmouseout = onmouseout;
+}
 
 function addEventListeners() {
   closeBtnModalRefs.addEventListener('click', onCloseBtnModal);
@@ -173,6 +183,8 @@ function getName() {
 
 function onClickWatchedBtn(e) {
   let name = getName();
+  console.log(name);
+  console.log(idMovie);
   move(name, QUEUE, WATCHED, idMovie);
   watchedBtnRefs.textContent = 'watched';
   queueBtnRefs.textContent = 'add to queue';
