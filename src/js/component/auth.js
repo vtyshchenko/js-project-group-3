@@ -1,7 +1,6 @@
 import { init, login } from '../common/api-firebase';
-import { getLanguage } from '../common/api-data';
+import { getLanguage, getUser } from '../common/api-data';
 import refs from '../common/refs';
-// import { title } from 'process';
 
 const {
   backdropRefs,
@@ -23,7 +22,7 @@ const {
 } = refs.refs;
 
 let app;
-let userCredentauls;
+let userData;
 let theme;
 let signUpBtnText;
 let logInBtnText;
@@ -121,7 +120,7 @@ function classToggle() {
   closeModalAuthRefs.classList.toggle('auth__button-close');
 }
 
-function onOpen() {
+function onOpen(e) {
   theme = localStorage.getItem('theme');
   window.addEventListener('keydown', onKeyPress);
   closeModalAuthRefs.addEventListener('click', onClose);
@@ -150,7 +149,6 @@ function onKeyPress(e) {
 }
 
 function onClose(e) {
-  e.preventDefault();
   let classes = e.target.classList;
   if (
     classes.contains('backdrop') ||
@@ -183,17 +181,21 @@ function onCheckboxChange(e) {
 async function onConfirm() {
   if (!app || !userCredentauls) {
     app = await init();
-    let userName = authNameRefs.value;
-    let userEmail = authEmailRefs.value;
-    let userPassword = authPasswordRefs.value;
-    let isNewUser = confirmCheckboxRefs.checked;
+    const userName = authNameRefs.value;
+    const userEmail = authEmailRefs.value;
+    const userPassword = authPasswordRefs.value;
+    const isNewUser = confirmCheckboxRefs.checked;
+    console.log('userName', userName);
     console.log('userName', userName);
     console.log('userEmail', userEmail);
     console.log('userPassword', userPassword);
     console.log('isNewUser', isNewUser);
-    userCredentauls = await login(app, userName, userPassword, userEmail, isNewUser);
-    console.log('userCredentauls', userCredentauls);
-    if (userCredentauls.state !== 'rejected') {
+    userData = await login(app, userName, userPassword, userEmail, isNewUser);
+    if (userData) {
+      if (userData.operationType === 'signIn') {
+        console.log(userData);
+        localStorage.setItem('loginUser', userData.user.email);
+      }
       openModalAuthRefs.innerHTML = logOutText;
     }
   }

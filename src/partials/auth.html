@@ -27,7 +27,7 @@
     At least 1 Lowercase
     At least 1 Number
     At least 1 Symbol, symbol allowed -- > !@#$%^&*_=+-
-    Min 8 chars and Max 16 chars
+    Min 8 chars and Max 12 chars
     -->
       <label class="auth__group">
         <span class="auth__label" id="password-text">Password</span>
@@ -58,6 +58,7 @@
             name="name"
             title="Please enter your name."
             placeholder="John Jonson"
+            pattern="^[a-zA-Z]+$"
             minlength="8"
           />
           <svg class="auth__input-icon">

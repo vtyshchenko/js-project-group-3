@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/database';
 import {
   getAuth,
+  updateProfile,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -37,31 +38,30 @@ export async function login(app, userName, password, email, newUser) {
   }
   let userCredentauls;
 
-  console.log('app', app);
   let auth = await getAuth(app);
-  console.log('auth', auth);
   console.log('auth.currentUser', auth.currentUser);
   console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
     userCredentauls = await createNewUser(auth, email, password);
-    // updateProfile(auth.currentUser, {
-    //   displayName: userName,
-    // }).catch(error => {
-    //   console.log(error);
-    // });
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+    }).catch(error => {
+      console.log(error);
+    });
   } else {
-    userCredentauls = signInWithExistingUser(auth, email, password);
+    userCredentauls = await signInWithExistingUser(auth, email, password);
   }
   console.log(userCredentauls);
 
-  // onAuthStateChanged(userData => {
-  //   if (userData) {
-  //     onSignIn(userData);
-  //   } else {
-  //     onError(userData);
-  //   }
-  // });
+  onAuthStateChanged(auth, userData => {
+    console.log('userData', userData);
+    if (userData) {
+      onSignIn(userData);
+    } else {
+      onError(userData);
+    }
+  });
   return userCredentauls;
 }
 
@@ -92,15 +92,14 @@ function onError(error) {
 }
 
 function onSignIn(userCredential) {
-  const user = userCredential.user;
-  console.log(`user = ${user}`);
-  return user;
+  console.log('userCredential.email', userCredential.email);
+  return userCredential;
 }
 
-// function put(data) {}
+function put(data) {}
 
-// function get() {}
+function get() {}
 
-// function update() {}
+function update() {}
 
-// function del() {}
+function del() {}

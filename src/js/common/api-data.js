@@ -63,12 +63,12 @@ export function put(user, key, data) {
 }
 
 export function getUser() {
-  let tmp = getData();
-  if (!tmp.loginUser) {
-    tmp.loginUser = 'local';
-    saveData(tmp);
+  let data = localStorage.getItem('loginUser');
+  if (!data.loginUser) {
+    data.loginUser = 'local';
+    saveData(data);
   }
-  return tmp.loginUser;
+  return data.loginUser;
 }
 
 function checkUser(data, user) {
