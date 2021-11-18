@@ -8,6 +8,7 @@ const {
   headerQueueBtnRefs,
   wrapperRefs,
   emptyWatchedQueueRefs,
+  watchedQueueTextRefs,
 } = refs.refs;
 
 const lang = getLanguage();
@@ -48,6 +49,9 @@ function getMarkup(name, page) {
     emptyWatchedQueueRefs.classList.add('visually-hidden');
   } else {
     emptyWatchedQueueRefs.classList.remove('visually-hidden');
+    if (lang === 'uk-UA') {
+      watchedQueueTextRefs.textContent = 'Упс... Ваш список порожній!';
+    }
   }
 }
 
