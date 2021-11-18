@@ -4,7 +4,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 230px;
-  padding-top: 46px;
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
@@ -12,7 +11,6 @@
   }
 
   @media screen and (min-width: $tablet) {
-    padding-top: 41px;
     background-image: linear-gradient($bg-image-darkening, $bg-image-darkening),
       url('../images/hero-home-tablet.png');
 
@@ -40,7 +38,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 230px;
-  padding-top: 46px;
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
@@ -49,7 +46,6 @@
   }
 
   @media screen and (min-width: $tablet) {
-    padding-top: 41px;
     background-image: linear-gradient($bg-image-darkening, $bg-image-darkening),
       url('../images/hero-library-tablet.png');
 
@@ -70,6 +66,15 @@
     }
   }
 }
+.header__wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 14px;
+   @media screen and (min-width: $tablet) {
+      margin-top: 9px;
+   }
+}
 .logo {
   @media screen and (min-width: $tablet) {
     display: inline-flex;
@@ -77,10 +82,10 @@
     line-height: 1.16;
     display: flex;
     align-items: center;
-    text-align: center;
     color: $main-text-color;
   }
 }
+
 .logo__icon {
   background-image: url('../images/film.svg');
   background-repeat: no-repeat;
@@ -112,13 +117,9 @@
   display: none;
 
   @media screen and (min-width: $tablet) {
-    display: block;
+      display: block;
+
   }
-}
-.header__wrapper {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
 }
 .nav__list {
   display: flex;
@@ -209,7 +210,7 @@
   background-color: transparent;
   border: none;
   position: absolute;
-  bottom: 10%;
+  bottom: 3px;
   right: 0;
   @media screen and (min-width: $tablet) {
     right: 0px;
@@ -273,13 +274,13 @@ body.dark-theme {
   color: currentColor;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  justify-content: flex-end;
+}
+.btn-login{
+  margin-right: 5px;
 }
 
 .theme-switch__icon {
-  
   color: currentColor;
   height: 20px;
   width: 26px;
@@ -345,10 +346,8 @@ body.dark-theme {
 //lang
 
 .languages{
-  position: absolute;
   padding: 0;
-   top: 5px;
-   left: -40%;
+  margin-right: 10px;
    &:hover,&:focus {
     & .languages__list {
       display: flex;
