@@ -51,6 +51,9 @@ function onRenderMoviesCard(movies) {
   for (const el of ratingRefs) {
     el.classList.remove('visually-hidden');
   }
+  if (markup) {
+    errorPictureRefs.classList.add('visually-hidden');
+  }
 }
 
 function onFetchError() {
