@@ -18,15 +18,15 @@ listernerEventRefs.addEventListener('click', onClickButton);
 function onGetTotalPages() {
   totalPages = localStorage.getItem('totalPages');
   if (!totalPages) {
-    return (totalPages = 1);
+    return 1;
   }
   return totalPages;
 }
 
 function onGetPageType() {
-  pageType = localStorage.getItem('pageType');
+  let pageType = localStorage.getItem('pageType');
   if (!pageType) {
-    return (pageType = 1);
+    return (pageType = 'popular');
   }
   return pageType;
 }
