@@ -20,11 +20,12 @@ export function del(user, key, data) {
 
   let lang = getLanguage();
   let tmp = getData();
-  if (!tmp || !tmp[user] || !tmp[user][lang][key]) {
+  if (!tmp || !tmp[user] || !tmp[user][lang] || !tmp[user][lang][key]) {
     return true;
   }
 
-  tmp[user][key] = tmp[user][key].filter(item => item.id != data.id);
+  tmp[user]['en-US'][key] = tmp[user]['en-US'][key].filter(item => item.id != data.id);
+  tmp[user]['uk-UA'][key] = tmp[user]['uk-UA'][key].filter(item => item.id != data.id);
   return saveData(tmp);
 }
 
@@ -47,10 +48,11 @@ export function get(user) {
     return data;
   }
 
-  if (!data[user]) {
+  let lang = getLanguage();
+  if (!data[user] || !data[user][lang]) {
     return [];
   } else {
-    return data[user];
+    return data[user][lang];
   }
 }
 
@@ -115,6 +117,9 @@ export function getUser() {
 function checkUser(data, user) {
   if (!data) {
     data = { [user]: {} };
+  }
+  if (!data[user]) {
+    data[user] = {};
   }
   if (!data[user]) {
     data[user] = {};
