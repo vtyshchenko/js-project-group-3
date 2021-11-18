@@ -60,15 +60,18 @@ function getTrailer(nodeData) {
       return results;
     }
   });
+  if (theme === 'dark-theme') {
+    styleThemeTrailerModal('rgb(5, 5, 5)', 'inherit');
+  } else {
+    styleThemeTrailerModal('', 'rgb(0, 0, 0)');
+  }
 }
 
 async function getFilm(nodeData) {
   return await API.fetchMovie(nodeData.id).then(results => {
-    console.log(nodeData);
     if (nodeData.id == results.id) {
       modalFilmContainerRefs.insertAdjacentHTML('beforeend', modalFilm(results));
       translateModal();
-      console.log(results);
       return results;
     }
   });
@@ -83,30 +86,10 @@ export async function onClickMovie(e) {
 
   if (isTrailer) {
     getTrailer(temp);
-    if (theme === 'dark-theme') {
-      styleThemeTrailerModal('rgb(5, 5, 5)', 'inherit');
-    } else {
-      styleThemeTrailerModal('', 'rgb(0, 0, 0)');
-    }
   } else {
     idMovie = await getFilm(temp);
     onMouseOutOver();
-    // watchedBtnRefs.onmouseover = onmouseover;
-    // watchedBtnRefs.onmouseout = onmouseout;
-    // queueBtnRefs.onmouseover = onmouseover;
-    // queueBtnRefs.onmouseout = onmouseout;
-
-    if (theme === 'dark-theme') {
-      styleThemeModal(
-        'rgb(5, 5, 5)',
-        'rgb(255, 255, 255)',
-        'rgb(83, 83, 83)',
-        'inherit',
-        'rgba(255, 107, 0, 0.75)',
-      );
-    } else {
-      styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
-    }
+    setThemeSettings();
   }
 
   addEventListeners();
@@ -119,7 +102,19 @@ export async function onClickMovie(e) {
   }
 }
 
-// end function
+function setThemeSettings() {
+  if (theme === 'dark-theme') {
+    styleThemeModal(
+      'rgb(5, 5, 5)',
+      'rgb(255, 255, 255)',
+      'rgb(83, 83, 83)',
+      'inherit',
+      'rgba(255, 107, 0, 0.75)',
+    );
+  } else {
+    styleThemeModal('', '', '', 'rgb(0, 0, 0)', '');
+  }
+}
 
 function onMouseOutOver() {
   watchedBtnRefs.onmouseover = onmouseover;
@@ -183,8 +178,6 @@ function getName() {
 
 function onClickWatchedBtn(e) {
   let name = getName();
-  console.log(name);
-  console.log(idMovie);
   move(name, QUEUE, WATCHED, idMovie);
   watchedBtnRefs.textContent = 'watched';
   queueBtnRefs.textContent = 'add to queue';
