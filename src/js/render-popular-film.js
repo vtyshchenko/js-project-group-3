@@ -10,13 +10,15 @@ export async function onSearchPopularFilms(page) {
     page = 1;
   }
 
-  await API.fetchGenres()
+
+ await API.fetchGenres()
     .then(data => {
       return data.genres;
     })
     .then(onSaveGenres);
 
-  await API.fetchPopularFilms(page)
+
+await  API.fetchPopularFilms(page)
     .then(onSearchGenresList)
     .then(onSearchYear)
     .then(data => {
