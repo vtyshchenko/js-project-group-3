@@ -64,7 +64,6 @@ export async function login(app, userName, password, email, newUser) {
   } else {
     userCredentauls = await signInWithExistingUser(auth, email, password);
   }
-  console.log(userCredentauls);
 
   onAuthStateChanged(auth, userData => {
     console.log('userData', userData);
