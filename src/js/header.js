@@ -90,7 +90,7 @@ async function homeOpenClick() {
 }
 
 function inputChange(e) {
-  if (e.target.checked === true) {
+  if (e.target.checked) {
     localStorage.setItem('theme', DARK);
     changeClasses(LIGHT, DARK);
   } else {
