@@ -51,8 +51,6 @@ export async function login(app, userName, password, email, newUser) {
   let userCredentauls;
 
   let auth = await getAuth(app);
-  console.log('auth.currentUser', auth.currentUser);
-  console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
     userCredentauls = await createNewUser(auth, email, password);
@@ -66,7 +64,6 @@ export async function login(app, userName, password, email, newUser) {
   }
 
   onAuthStateChanged(auth, userData => {
-    console.log('userData', userData);
     if (userData) {
       onSignIn(userData);
     } else {
@@ -103,7 +100,6 @@ function onError(error) {
 }
 
 function onSignIn(userCredential) {
-  console.log('userCredential.email', userCredential.email);
   return userCredential;
 }
 

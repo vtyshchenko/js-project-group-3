@@ -58,7 +58,6 @@ function styleThemeModal(bck, color, fill) {
 
 function translate() {
   let lang = getLanguage();
-  console.log(lang);
 
   if (lang === 'en-US') {
     setText({
@@ -187,24 +186,18 @@ async function onConfirm(e) {
     const userEmail = authEmailRefs.value;
     const userPassword = authPasswordRefs.value;
     const isNewUser = confirmCheckboxRefs.checked;
-    console.log('userName', userName);
-    console.log('userName', userName);
-    console.log('userEmail', userEmail);
-    console.log('userPassword', userPassword);
-    console.log('isNewUser', isNewUser);
+
     userData = await login(app, userName, userPassword, userEmail, isNewUser);
     if (userData) {
       if (userData.operationType === 'signIn') {
-        console.log(userData);
         localStorage.setItem('loginUser', userData.user.email);
       }
       openModalAuthRefs.innerHTML = logOutText;
     }
     let db = await getDb(app);
-    console.log('db', db);
+
     let body = get();
     let key = userData.user.email.split('@')[0];
     let res = await writeNewData(db, key, body);
-    console.log('res', res);
   }
 }

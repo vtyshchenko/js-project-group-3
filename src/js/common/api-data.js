@@ -1,10 +1,7 @@
 import { fetchMovieByLang } from '../api-service.js';
 import { getDb, writeNewData } from '../common/api-firebase';
 
-console.log(fetchMovieByLang);
-
 function getData() {
-  console.log('getData');
   let data = localStorage.getItem('themoviedb');
   if (!data) {
     return {};
@@ -19,7 +16,6 @@ function getData() {
 }
 
 function checkUser(data, user) {
-  console.log('checkUser', data, user);
   if (!data) {
     data = { [user]: {} };
   }
@@ -31,7 +27,6 @@ function checkUser(data, user) {
 
 // Language
 export function getLanguage() {
-  console.log('getLanguage');
   let lang = localStorage.getItem('language');
   if (!lang) {
     return 'en-US';
@@ -41,13 +36,11 @@ export function getLanguage() {
 }
 
 export function setLanguage(lang) {
-  console.log('setLanguage', lang);
   localStorage.setItem('language', String(lang));
 }
 
 // data operation
 export function del(user, key, data) {
-  console.log('del', user, key, data);
   if (!user || !key || !data) {
     return true;
   }
@@ -65,7 +58,6 @@ export function del(user, key, data) {
 }
 
 export function move(user, keyFrom, keyTo, data) {
-  console.log('move', user, keyFrom, keyTo, data);
   let res = del(user, keyFrom, data);
   if (res) {
     res = put(user, keyTo, data);
@@ -74,7 +66,6 @@ export function move(user, keyFrom, keyTo, data) {
 }
 
 export function get(user) {
-  console.log('get', user);
   let data = getData();
 
   if (!data) {
@@ -95,17 +86,12 @@ export function get(user) {
 
 //  дописати
 export async function put(user, key, data) {
-  console.log('put', user, key, data);
   if (!user) {
     return false;
   }
 
   let dataSL = getData();
   let lang = getLanguage();
-
-  console.log('dataSL', dataSL);
-  console.log('lang', lang);
-  console.log('user', user);
 
   dataSL = checkUser(dataSL, user);
   if (!dataSL[user][lang]) {
@@ -119,21 +105,19 @@ export async function put(user, key, data) {
   if (!dataSL[user][lang2]) {
     dataSL[user][lang2] = {};
   }
-  console.log('movie', movie);
+
   dataSL[user][lang2] = setKey(dataSL[user][lang2], key, movie);
 
   if (user != 'local') {
     let db = await getDb(app);
-    console.log('db', db);
     let body = get();
     let key = user.split('@')[0];
-    let res = await writeNewData(db, key, body);
+    await writeNewData(db, key, body);
   }
   return saveData(dataSL);
 }
 
 function addData(data, value) {
-  console.log('addData', data, value);
   let res = -1;
   for (const obj of data) {
     if (obj.id === value.id) {
@@ -146,7 +130,6 @@ function addData(data, value) {
 }
 
 function saveData(data) {
-  console.log('saveData', data);
   try {
     let tmp = JSON.stringify(data);
     localStorage.setItem('themoviedb', tmp);
@@ -159,7 +142,6 @@ function saveData(data) {
 
 // user
 export function getUser() {
-  console.log('getUser');
   let loginUser = localStorage.getItem('loginUser');
   if (!loginUser) {
     loginUser = 'local';
@@ -169,7 +151,6 @@ export function getUser() {
 }
 
 function setKey(data, key, value) {
-  console.log('setKey', data, key, value);
   if (!data[key] || !Array.isArray(data[key])) {
     data[key] = [];
   }
