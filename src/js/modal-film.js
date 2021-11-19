@@ -161,6 +161,7 @@ function styleThemeModal(bck, color, votesbck, fill, containerBc) {
   votes.style.backgroundColor = votesbck;
   closeBtnModalRefs.style.fill = fill;
   companyContainerRef.style.backgroundColor = containerBc;
+  companyContainerRef.style.borderRadius = '10px';
 }
 
 function styleThemeTrailerModal(bck, fill) {
@@ -227,17 +228,16 @@ function removeMovieListenier() {
   queueBtnRefs.removeEventListener('click', onClickQueueBtn);
   window.removeEventListener('keydown', onEcsKeyPress);
   closeBtnModalRefs.classList.remove('close_position');
-  clearBtns()
+  clearBtns();
 }
 
 function clearBtns() {
-   watchedBtnRefs.textContent = 'add to watched';
-   queueBtnRefs.textContent = 'add to queue';
-   if (lang === 'uk-UA'){
-     queueBtnRefs.textContent = 'Додати в чергу';
-     watchedBtnRefs.textContent = 'Переглянути';
-   }
-  
+  watchedBtnRefs.textContent = 'add to watched';
+  queueBtnRefs.textContent = 'add to queue';
+  if (lang === 'uk-UA') {
+    queueBtnRefs.textContent = 'Додати в чергу';
+    watchedBtnRefs.textContent = 'Переглянути';
+  }
 }
 
 export default function onEcsKeyPress(e) {
