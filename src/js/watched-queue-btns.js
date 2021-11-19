@@ -68,6 +68,18 @@ function onQueueBtnClick() {
   onMarkupButton();
 }
 
+export function watchedBtnClick(page) {
+  getMarkup('watched', page);
+  wrapperRefs.innerHTML = '';
+  onMarkupButton(page);
+}
+
+export function queueBtnClick(page) {
+  getMarkup('queue', page);
+  wrapperRefs.innerHTML = '';
+  onMarkupButton(page);
+}
+
 function numberOfPage(info) {
   return Math.floor(info.length / 20) + 1;
 }

@@ -1,9 +1,13 @@
 import refs from './common/refs';
 import buttonsTpl from '../partials/hbs/pagination.hbs';
 import { onSearchPopularFilms } from './render-popular-film.js';
-import { onWatchedBtnClick, onQueueBtnClick } from './watched-queue-btns';
 import { onSearch } from './search-by-keyword.js';
 
+import { watchedBtnClick, queueBtnClick } from './watched-queue-btns';
+
+// import funcs from './watched-queue-btns';
+// console.log('pafination onWatchedBtnClick', onWatchedBtnClick);
+// console.log('pafination onQueueBtnClick', onQueueBtnClick);
 const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
 
 let totalPages = 1;
@@ -16,13 +20,13 @@ arrowRightRefs.addEventListener('click', onClickArrowRight);
 listernerEventRefs.addEventListener('click', onClickButton);
 
 //* General content rendering
-export function onMarkupPages(page) {
-  onConditionPageType(page);
-  onMarkupButton(page);
+export function onMarkupPages(pageNumber) {
+  onConditionPageType(pageNumber);
+  onMarkupButton(pageNumber);
 }
 
 //* Rendering cards by location
-async function onConditionPageType(page) {
+async function onConditionPageType(pageNumber) {
   let pageType = onGetPageType();
 
   if (!pageType) {
@@ -31,29 +35,29 @@ async function onConditionPageType(page) {
 
   switch (pageType) {
     case 'popular':
-      await onSearchPopularFilms(page);
+      await onSearchPopularFilms(pageNumber);
       break;
     case 'search by keyword':
-      await onSearch(page);
+      await onSearch(pageNumber);
       break;
     case 'watched':
-      await onWatchedBtnClick(page);
+      await watchedBtnClick(pageNumber);
       break;
     case 'queue':
-      await onQueueBtnClick(page);
+      await queueBtnClick(pageNumber);
       break;
   }
 }
 
 //* Buttons rendering
-export function onMarkupButton(page) {
-  if (!page) {
-    page = 1;
+export function onMarkupButton(pageNumber) {
+  if (!pageNumber) {
+    pageNumber = 1;
   }
-  onButtonRenderingLogicDangerKeepOut(page);
-  onAddCurrentPage(page);
-  onHideArrowLeft(page, totalPages);
-  onHideArrowRight(page, totalPages);
+  onButtonRenderingLogicDangerKeepOut(pageNumber);
+  onAddCurrentPage();
+  onHideArrowLeft();
+  onHideArrowRight();
 }
 
 function onGetTotalPages() {
@@ -61,13 +65,13 @@ function onGetTotalPages() {
   if (!totalPages) {
     return 1;
   }
-  return totalPages;
+  return Number(totalPages);
 }
 
 function onGetPageType() {
   let pageType = localStorage.getItem('pageType');
   if (!pageType) {
-    return (pageType = 'popular');
+    return 'popular';
   }
   return pageType;
 }
@@ -115,25 +119,28 @@ function onButtonClickLogic(e) {
   }
 }
 
-function onHideArrowLeft(page, totalPages) {
+function onHideArrowLeft() {
   page === 1 || totalPages < countShowSumbols
     ? arrowLeftRefs.classList.add('visually-hidden')
     : arrowLeftRefs.classList.remove('visually-hidden');
 }
 
-function onHideArrowRight(page, totalPages) {
-  page === totalPages || totalPages < countShowSumbols
+function onHideArrowRight() {
+  console.log('page', page);
+  console.log('totalPages', totalPages);
+  console.log('countShowSumbols', countShowSumbols);
+  totalPages < countShowSumbols || page === totalPages
     ? arrowRightRefs.classList.add('visually-hidden')
     : arrowRightRefs.classList.remove('visually-hidden');
 }
 
-function onButtonRenderingLogicDangerKeepOut(page) {
+function onButtonRenderingLogicDangerKeepOut(pageNumber) {
   wrapperRefs.innerHTML = '';
   let buttons = '';
-  let totalPages = onGetTotalPages();
+  totalPages = onGetTotalPages();
 
-  if (!page) {
-    page = 1;
+  if (!pageNumber) {
+    pageNumber = 1;
   }
 
   if (!totalPages) {
@@ -145,15 +152,16 @@ function onButtonRenderingLogicDangerKeepOut(page) {
   buttons += buttonsTpl({ id: '', name: 1 });
 
   if (totalPages > 1) {
-    if (page > 4) {
+    if (pageNumber > 4) {
       buttons += buttonsTpl({ id: 'prev', name: MOVE_PAGE_TEXT });
 
-      if (totalPages === page) {
-        nextPage = page - 6;
+      if (totalPages === pageNumber) {
+        nextPage = pageNumber - 6;
         endPage = totalPages;
       } else {
-        nextPage = totalPages - page > 3 ? page - 2 : page - (6 - totalPages + page);
-        endPage = page < totalPages - 4 ? page + 2 : totalPages - 2;
+        nextPage =
+          totalPages - pageNumber > 3 ? pageNumber - 2 : pageNumber - (6 - totalPages + pageNumber);
+        endPage = pageNumber < totalPages - 4 ? pageNumber + 2 : totalPages - 2;
       }
     } else {
       buttons += buttonsTpl({ id: '', name: 2 });
@@ -161,8 +169,8 @@ function onButtonRenderingLogicDangerKeepOut(page) {
       endPage = totalPages >= 7 ? 7 : totalPages;
     }
     if (totalPages > 2) {
-      for (let page = nextPage; page <= endPage; page++) {
-        buttons += buttonsTpl({ id: '', name: page });
+      for (let pageNum = nextPage; pageNum <= endPage; pageNum += 1) {
+        buttons += buttonsTpl({ id: '', name: pageNum });
       }
     }
     if (totalPages > endPage) {
@@ -178,7 +186,7 @@ function onButtonRenderingLogicDangerKeepOut(page) {
   wrapperRefs.innerHTML = buttons;
 }
 
-function onAddCurrentPage(page) {
+function onAddCurrentPage() {
   const initialPage = document.querySelectorAll('.pagination__link-js');
 
   for (const button of initialPage) {
