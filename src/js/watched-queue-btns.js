@@ -57,15 +57,25 @@ function getMarkup(name, page) {
 }
 
 function onWatchedBtnClick() {
-  getMarkup('watched');
-  wrapperRefs.innerHTML = '';
-  onMarkupButton();
+  showMarkup('watched');
 }
 
 function onQueueBtnClick() {
-  getMarkup('queue');
+  showMarkup('queue');
+}
+
+export function watchedBtnClick(page) {
+  showMarkup('watched', page);
+}
+
+export function queueBtnClick(page) {
+  showMarkup('queue', page);
+}
+
+function showMarkup(name, page) {
+  getMarkup(name, page);
   wrapperRefs.innerHTML = '';
-  onMarkupButton();
+  onMarkupButton(page);
 }
 
 function numberOfPage(info) {
