@@ -61,7 +61,6 @@ function translate() {
     // passwordTitle = '';
     // nameTitle = '';
     // checkboxText = '';
-    console.log('authFormRefs', authFormRefs);
     authFormRefs.password.placeholder = 'Enter password';
     authFormRefs.name.placeholder = 'John Jonson';
     // authFormRefs[5].innerText = 'Sign up';
@@ -166,10 +165,6 @@ function onConfirm() {
     let userEmail = authEmailRefs.value;
     let userPassword = authPasswordRefs.value;
     let isNewUser = confirmCheckboxRefs.checked;
-    console.log('userName', userName);
-    console.log('userEmail', userEmail);
-    console.log('userPassword', userPassword);
-    console.log('isNewUser', isNewUser);
     userCredentauls = login(app, userName, password, email, newUser);
     if (userCredentauls) {
       openModalAuthRefs.innerHTML = 'Log out';

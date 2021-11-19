@@ -36,8 +36,6 @@ export function login(app, userName, password, email, newUser) {
   let userCredentauls;
 
   let auth = getAuth(app);
-  console.log('auth.currentUser', auth.currentUser);
-  console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
     userCredentauls = createNewUser(auth, email, password);
@@ -49,7 +47,6 @@ export function login(app, userName, password, email, newUser) {
   } else {
     userCredentauls = signInWithExistingUser(auth, email, password);
   }
-  console.log(userCredentauls);
 
   onAuthStateChanged(userData => {
     if (userData) {
@@ -89,14 +86,5 @@ function onError(error) {
 
 function onSignIn(userCredential) {
   const user = userCredential.user;
-  console.log(`user = ${user}`);
   return user;
 }
-
-function put(data) {}
-
-function get() {}
-
-function update() {}
-
-function del() {}

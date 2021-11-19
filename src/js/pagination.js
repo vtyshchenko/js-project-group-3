@@ -123,9 +123,6 @@ function onHideArrowLeft() {
 }
 
 function onHideArrowRight() {
-  console.log('page', page);
-  console.log('totalPages', totalPages);
-  console.log('countShowSumbols', countShowSumbols);
   totalPages < countShowSumbols || page === totalPages
     ? arrowRightRefs.classList.add('visually-hidden')
     : arrowRightRefs.classList.remove('visually-hidden');
