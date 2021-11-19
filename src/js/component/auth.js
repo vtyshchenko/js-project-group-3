@@ -1,6 +1,7 @@
-import { init, login, getDb } from '../common/api-firebase';
+import { init, login, getDb, writeNewData } from '../common/api-firebase';
 import { getLanguage } from '../common/api-data';
 import refs from '../common/refs';
+import { get } from '../common/api-data';
 
 const {
   backdropRefs,
@@ -178,8 +179,9 @@ function onCheckboxChange(e) {
   authSignUpBtnRefs.innerHTML = text;
 }
 
-async function onConfirm() {
-  if (!app || !userCredentauls) {
+async function onConfirm(e) {
+  // e.preventDefault();
+  if (!app || !userData) {
     app = await init();
     const userName = authNameRefs.value;
     const userEmail = authEmailRefs.value;
@@ -200,5 +202,9 @@ async function onConfirm() {
     }
     let db = await getDb(app);
     console.log('db', db);
+    let body = get();
+    let key = userData.user.email.split('@')[0];
+    let res = await writeNewData(db, key, body);
+    console.log('res', res);
   }
 }

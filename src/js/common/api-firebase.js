@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, ref, update } from 'firebase/database';
 
 // import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
@@ -35,7 +35,6 @@ export async function getDb(app) {
     app,
     'https://project-filmoteka-default-rtdb.europe-west1.firebasedatabase.app/',
   );
-  console.log('db', db);
   return db;
 }
 
@@ -109,10 +108,8 @@ function onSignIn(userCredential) {
   return userCredential;
 }
 
-function put(data) {}
-
-function get() {}
-
-function update() {}
-
-function del() {}
+export async function writeNewData(db, username, body) {
+  const updates = {};
+  updates[username] = body;
+  return await update(ref(db), updates);
+}

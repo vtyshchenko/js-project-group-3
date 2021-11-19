@@ -1,4 +1,5 @@
 import { fetchMovieByLang } from '../api-service.js';
+import { getDb, writeNewData } from '../common/api-firebase';
 
 console.log(fetchMovieByLang);
 
@@ -121,6 +122,13 @@ export async function put(user, key, data) {
   console.log('movie', movie);
   dataSL[user][lang2] = setKey(dataSL[user][lang2], key, movie);
 
+  if (user != 'local') {
+    let db = await getDb(app);
+    console.log('db', db);
+    let body = get();
+    let key = user.split('@')[0];
+    let res = await writeNewData(db, key, body);
+  }
   return saveData(dataSL);
 }
 
