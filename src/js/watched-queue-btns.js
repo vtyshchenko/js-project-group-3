@@ -57,25 +57,23 @@ function getMarkup(name, page) {
 }
 
 function onWatchedBtnClick() {
-  getMarkup('watched');
-  wrapperRefs.innerHTML = '';
-  onMarkupButton();
+  showMarkup('watched');
 }
 
 function onQueueBtnClick() {
-  getMarkup('queue');
-  wrapperRefs.innerHTML = '';
-  onMarkupButton();
+  showMarkup('queue');
 }
 
 export function watchedBtnClick(page) {
-  getMarkup('watched', page);
-  wrapperRefs.innerHTML = '';
-  onMarkupButton(page);
+  showMarkup('watched', page);
 }
 
 export function queueBtnClick(page) {
-  getMarkup('queue', page);
+  showMarkup('queue', page);
+}
+
+function showMarkup(name, page) {
+  getMarkup(name, page);
   wrapperRefs.innerHTML = '';
   onMarkupButton(page);
 }
