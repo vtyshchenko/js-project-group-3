@@ -1,5 +1,7 @@
 import { fetchMovieByLang } from '../api-service.js';
 
+console.log(fetchMovieByLang);
+
 function getData() {
   console.log('getData');
   let data = localStorage.getItem('themoviedb');
@@ -105,10 +107,17 @@ export async function put(user, key, data) {
   console.log('user', user);
 
   dataSL = checkUser(dataSL, user);
+  if (!dataSL[user][lang]) {
+    dataSL[user][lang] = {};
+  }
+
   dataSL[user][lang] = setKey(dataSL[user][lang], key, data);
 
   let lang2 = lang === 'uk-UA' ? 'en-US' : 'uk-UA';
   let movie = await fetchMovieByLang(data.id, lang2);
+  if (!dataSL[user][lang2]) {
+    dataSL[user][lang2] = {};
+  }
   console.log('movie', movie);
   dataSL[user][lang2] = setKey(dataSL[user][lang2], key, movie);
 
@@ -146,7 +155,7 @@ export function getUser() {
   let loginUser = localStorage.getItem('loginUser');
   if (!loginUser) {
     loginUser = 'local';
-    saveData(loginUser);
+    localStorage.setItem('loginUser', loginUser);
   }
   return loginUser;
 }
