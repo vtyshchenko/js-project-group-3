@@ -5,9 +5,6 @@ import { onSearch } from './search-by-keyword.js';
 
 import { watchedBtnClick, queueBtnClick } from './watched-queue-btns';
 
-// import funcs from './watched-queue-btns';
-// console.log('pafination onWatchedBtnClick', onWatchedBtnClick);
-// console.log('pafination onQueueBtnClick', onQueueBtnClick);
 const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.refs;
 
 let totalPages = 1;
