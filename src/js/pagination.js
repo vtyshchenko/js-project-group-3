@@ -9,8 +9,9 @@ const { wrapperRefs, arrowLeftRefs, arrowRightRefs, listernerEventRefs } = refs.
 
 let totalPages = 1;
 let page = 1;
-const countShowSumbols = 9;
+let countShowSumbols = 9;
 const MOVE_PAGE_TEXT = '...';
+const VIEWPORT = window.innerWidth;
 
 arrowLeftRefs.addEventListener('click', onClickArrowLeft);
 arrowRightRefs.addEventListener('click', onClickArrowRight);
@@ -38,10 +39,10 @@ async function onConditionPageType(pageNumber) {
       await onSearch(pageNumber);
       break;
     case 'watched':
-      await watchedBtnClick(pageNumber);
+      watchedBtnClick(pageNumber);
       break;
     case 'queue':
-      await queueBtnClick(pageNumber);
+      queueBtnClick(pageNumber);
       break;
   }
 }
@@ -51,7 +52,12 @@ export function onMarkupButton(pageNumber) {
   if (!pageNumber) {
     pageNumber = 1;
   }
-  onButtonRenderingLogicDangerKeepOut(pageNumber);
+  if (VIEWPORT < 768) {
+    countShowSumbols = 5;
+    onButtonRenderingLogicMobile(pageNumber);
+  } else {
+    onButtonRenderingLogicDangerKeepOut(pageNumber);
+  }
   onAddCurrentPage();
   onHideArrowLeft();
   onHideArrowRight();
@@ -126,6 +132,44 @@ function onHideArrowRight() {
   totalPages < countShowSumbols || page === totalPages
     ? arrowRightRefs.classList.add('visually-hidden')
     : arrowRightRefs.classList.remove('visually-hidden');
+}
+
+function onButtonRenderingLogicMobile(pageNumber) {
+  wrapperRefs.innerHTML = '';
+  let buttons = '';
+  totalPages = onGetTotalPages();
+  if (!totalPages) {
+    totalPages = 1;
+  }
+  let nextPage;
+  let endPage;
+
+  if (totalPages > 1) {
+    if (totalPages < 6) {
+      nextPage = 1;
+      endPage = totalPages;
+    } else {
+      if (pageNumber < 3) {
+        nextPage = 1;
+        endPage = 5;
+      } else {
+        if (pageNumber <= totalPages - 2) {
+          nextPage = pageNumber - 2;
+          endPage = pageNumber + 2;
+        } else {
+          nextPage = totalPages - 4;
+          endPage = totalPages;
+        }
+      }
+    }
+
+    for (let pageNum = nextPage; pageNum <= endPage; pageNum += 1) {
+      buttons += buttonsTpl({ id: '', name: pageNum });
+    }
+  } else {
+    buttons += buttonsTpl({ id: '', name: 1 });
+  }
+  wrapperRefs.innerHTML = buttons;
 }
 
 function onButtonRenderingLogicDangerKeepOut(pageNumber) {
