@@ -1,7 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import 'firebase/database';
+import { getDatabase, ref, update } from 'firebase/database';
+
+// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
 import {
   getAuth,
+  updateProfile,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -17,14 +21,25 @@ const firebaseConfig = {
   messagingSenderId: '752565238788',
   appId: '1:752565238788:web:5f9744ba69c8ecc4964951',
   measurementId: 'G-VENZM40NT5',
+  databaseURL: 'https://project-filmoteka.firebaseio.com',
 };
 
 export async function init() {
-  return initializeApp(firebaseConfig, 'filmoteka');
+  const app = await initializeApp(firebaseConfig, 'filmoteka');
+
+  return app;
 }
 
-export function login(app, userName, password, email, newUser) {
-  if (!user) {
+export async function getDb(app) {
+  const db = getDatabase(
+    app,
+    'https://project-filmoteka-default-rtdb.europe-west1.firebasedatabase.app/',
+  );
+  return db;
+}
+
+export async function login(app, userName, password, email, newUser) {
+  if (!userName) {
     userName = 'test';
   }
   if (!email) {
@@ -35,20 +50,23 @@ export function login(app, userName, password, email, newUser) {
   }
   let userCredentauls;
 
-  let auth = getAuth(app);
+  let auth = await getAuth(app);
+  console.log('auth.currentUser', auth.currentUser);
+  console.log('auth.AdditionalUserInfo', auth.AdditionalUserInfo);
 
   if (newUser) {
-    userCredentauls = createNewUser(auth, email, password);
+    userCredentauls = await createNewUser(auth, email, password);
     updateProfile(auth.currentUser, {
       displayName: userName,
     }).catch(error => {
       console.log(error);
     });
   } else {
-    userCredentauls = signInWithExistingUser(auth, email, password);
+    userCredentauls = await signInWithExistingUser(auth, email, password);
   }
 
-  onAuthStateChanged(userData => {
+  onAuthStateChanged(auth, userData => {
+    console.log('userData', userData);
     if (userData) {
       onSignIn(userData);
     } else {
@@ -85,6 +103,12 @@ function onError(error) {
 }
 
 function onSignIn(userCredential) {
-  const user = userCredential.user;
-  return user;
+  console.log('userCredential.email', userCredential.email);
+  return userCredential;
+}
+
+export async function writeNewData(db, username, body) {
+  const updates = {};
+  updates[username] = body;
+  return await update(ref(db), updates);
 }

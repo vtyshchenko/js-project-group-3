@@ -1,13 +1,14 @@
-import { init, login } from '../common/api-firebase';
+import { init, login, getDb, writeNewData } from '../common/api-firebase';
 import { getLanguage } from '../common/api-data';
 import refs from '../common/refs';
-// import { title } from 'process';
+import { get } from '../common/api-data';
 
 const {
   backdropRefs,
   openModalAuthRefs,
   modalAuthRefs,
   confirmCheckboxRefs,
+  authTitleRefs,
   authNameGroupRefs,
   authNameRefs,
   authNameTextRefs,
@@ -22,10 +23,11 @@ const {
 } = refs.refs;
 
 let app;
-let userCredentauls;
+let userData;
 let theme;
 let signUpBtnText;
 let logInBtnText;
+let logOutText;
 
 let onmouseover = function () {
   if (theme === 'dark-theme') {
@@ -46,6 +48,7 @@ confirmCheckboxRefs.checked = true;
 authNameRefs.innerHTML = '';
 authEmailRefs.innerHTML = '';
 authPasswordRefs.value = '';
+translate();
 
 function styleThemeModal(bck, color, fill) {
   authFormRefs.style.backgroundColor = bck;
@@ -55,34 +58,51 @@ function styleThemeModal(bck, color, fill) {
 
 function translate() {
   let lang = getLanguage();
-  if (lang === 'en-US') {
-    // formTitle = '';
-    // mailTitle = -'';
-    // passwordTitle = '';
-    // nameTitle = '';
-    // checkboxText = '';
-    authFormRefs.password.placeholder = 'Enter password';
-    authFormRefs.name.placeholder = 'John Jonson';
-    // authFormRefs[5].innerText = 'Sign up';
-    // authFormRefs[6].innerText = 'Close';
-    authCancelBtnRefs.innerHTML = 'Close';
-    signUpBtnText = 'Sign Up';
-    logInBtnText = 'Log In';
-  } else {
-    // authFormRefs.name.placeholder = 'Козаченко Микола';
-    // formTitle = '';
-    // mailTitle = -'';
-    // mailPlaceholder = '';
-    // passwordTitle = '';
-    // passwordPlaceholder = '';
+  console.log(lang);
 
-    // nameTitle = '';
-    // namePlaceholder = '';
-    // checkboxText = '';
-    authCancelBtnRefs.innerHTML = 'Закрити';
-    signUpBtnText = 'Зареєструватися';
-    logInBtnText = 'Увійти';
+  if (lang === 'en-US') {
+    setText({
+      title: 'Please enter user details:',
+      email: 'Mail',
+      password: 'Password',
+      passwordPlaceholder: 'Enter password',
+      name: 'Name',
+      namePlaceholder: 'John Jonson',
+      checkboxText: 'Register a new user',
+      cancelBtn: 'Close',
+      signUpBtn: 'Sign Up',
+      logInBtn: 'Log In',
+      logOut: 'Log Out',
+    });
+  } else {
+    setText({
+      title: 'Будь ласка введіть дані користувача:',
+      email: 'Пошта',
+      password: 'Пароль',
+      passwordPlaceholder: 'Введіть пароль',
+      name: "Ім'я",
+      namePlaceholder: 'Козаченко Микола',
+      checkboxText: 'Зареєструвати нового користувача',
+      cancelBtn: 'Закрити',
+      signUpBtn: 'Реєстрація',
+      logInBtn: 'Увійти',
+      logOut: 'Вийти',
+    });
   }
+}
+
+function setText(data) {
+  authTitleRefs.innerHTML = data.title;
+  authEmailTextRefs.innerHTML = data.email;
+  authPasswordTextRefs.innerHTML = data.password;
+  authNameTextRefs.innerHTML = data.name;
+  authCheckboxText.innerHTML = data.checkboxText;
+  authFormRefs.password.placeholder = data.passwordPlaceholder;
+  authFormRefs.name.placeholder = data.namePlaceholder;
+  authCancelBtnRefs.innerHTML = data.cancelBtn;
+  signUpBtnText = data.signUpBtn;
+  logInBtnText = data.logInBtn;
+  logOutText = data.logOut;
 }
 
 function removeListeners() {
@@ -101,7 +121,7 @@ function classToggle() {
   closeModalAuthRefs.classList.toggle('auth__button-close');
 }
 
-function onOpen() {
+function onOpen(e) {
   theme = localStorage.getItem('theme');
   window.addEventListener('keydown', onKeyPress);
   closeModalAuthRefs.addEventListener('click', onClose);
@@ -120,6 +140,7 @@ function onOpen() {
   authSignUpBtnRefs.onmouseover = onmouseover;
   authSignUpBtnRefs.onmouseout = onmouseout;
   translate();
+  authSignUpBtnRefs.innerHTML = signUpBtnText;
 }
 
 function onKeyPress(e) {
@@ -158,16 +179,32 @@ function onCheckboxChange(e) {
   authSignUpBtnRefs.innerHTML = text;
 }
 
-function onConfirm() {
-  if (!app || !userCredentauls) {
-    app = init();
-    let userName = authNameRefs.value;
-    let userEmail = authEmailRefs.value;
-    let userPassword = authPasswordRefs.value;
-    let isNewUser = confirmCheckboxRefs.checked;
-    userCredentauls = login(app, userName, password, email, newUser);
-    if (userCredentauls) {
-      openModalAuthRefs.innerHTML = 'Log out';
+async function onConfirm(e) {
+  // e.preventDefault();
+  if (!app || !userData) {
+    app = await init();
+    const userName = authNameRefs.value;
+    const userEmail = authEmailRefs.value;
+    const userPassword = authPasswordRefs.value;
+    const isNewUser = confirmCheckboxRefs.checked;
+    console.log('userName', userName);
+    console.log('userName', userName);
+    console.log('userEmail', userEmail);
+    console.log('userPassword', userPassword);
+    console.log('isNewUser', isNewUser);
+    userData = await login(app, userName, userPassword, userEmail, isNewUser);
+    if (userData) {
+      if (userData.operationType === 'signIn') {
+        console.log(userData);
+        localStorage.setItem('loginUser', userData.user.email);
+      }
+      openModalAuthRefs.innerHTML = logOutText;
     }
+    let db = await getDb(app);
+    console.log('db', db);
+    let body = get();
+    let key = userData.user.email.split('@')[0];
+    let res = await writeNewData(db, key, body);
+    console.log('res', res);
   }
 }

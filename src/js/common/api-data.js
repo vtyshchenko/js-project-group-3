@@ -1,31 +1,71 @@
-export function getLanguage() {
-  let data = localStorage.getItem('language');
+import { fetchMovieByLang } from '../api-service.js';
+import { getDb, writeNewData } from '../common/api-firebase';
+
+console.log(fetchMovieByLang);
+
+function getData() {
+  console.log('getData');
+  let data = localStorage.getItem('themoviedb');
   if (!data) {
-    return 'en-US';
+    return {};
   }
 
+  try {
+    return JSON.parse(data);
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return {};
+  }
+}
+
+function checkUser(data, user) {
+  console.log('checkUser', data, user);
+  if (!data) {
+    data = { [user]: {} };
+  }
+  if (!data[user]) {
+    data[user] = {};
+  }
   return data;
 }
 
+// Language
+export function getLanguage() {
+  console.log('getLanguage');
+  let lang = localStorage.getItem('language');
+  if (!lang) {
+    return 'en-US';
+  }
+
+  return lang;
+}
+
 export function setLanguage(lang) {
+  console.log('setLanguage', lang);
   localStorage.setItem('language', String(lang));
 }
 
+// data operation
 export function del(user, key, data) {
-  if (!user) {
+  console.log('del', user, key, data);
+  if (!user || !key || !data) {
     return true;
   }
 
-  let tmp = getData();
-  if (!tmp || !tmp[user] || !tmp[user][key]) {
+  let lang = getLanguage();
+  let dataLS = getData();
+  if (!dataLS || !dataLS[user] || !dataLS[user][lang] || !dataLS[user][lang][key]) {
     return true;
   }
 
-  tmp[user][key] = tmp[user][key].filter(item => item.id != data.id);
-  return saveData(tmp);
+  dataLS[user]['uk-UA'][key] = dataLS[user]['uk-UA'][key].filter(item => item.id != data.id);
+  dataLS[user]['en-US'][key] = dataLS[user]['en-US'][key].filter(item => item.id != data.id);
+
+  return saveData(dataLS);
 }
 
 export function move(user, keyFrom, keyTo, data) {
+  console.log('move', user, keyFrom, keyTo, data);
   let res = del(user, keyFrom, data);
   if (res) {
     res = put(user, keyTo, data);
@@ -34,6 +74,7 @@ export function move(user, keyFrom, keyTo, data) {
 }
 
 export function get(user) {
+  console.log('get', user);
   let data = getData();
 
   if (!data) {
@@ -44,44 +85,91 @@ export function get(user) {
     return data;
   }
 
-  if (!data[user]) {
+  let lang = getLanguage();
+  if (!data[user] || !data[user][lang]) {
     return [];
   } else {
-    return data[user];
+    return data[user][lang];
   }
 }
 
-export function put(user, key, data) {
+//  дописати
+export async function put(user, key, data) {
+  console.log('put', user, key, data);
   if (!user) {
     return false;
   }
 
-  let tmp = getData();
-  tmp = checkUser(tmp, user);
-  tmp[user] = setKey(tmp[user], key, data);
-  return saveData(tmp);
+  let dataSL = getData();
+  let lang = getLanguage();
+
+  console.log('dataSL', dataSL);
+  console.log('lang', lang);
+  console.log('user', user);
+
+  dataSL = checkUser(dataSL, user);
+  if (!dataSL[user][lang]) {
+    dataSL[user][lang] = {};
+  }
+
+  dataSL[user][lang] = setKey(dataSL[user][lang], key, data);
+
+  let lang2 = lang === 'uk-UA' ? 'en-US' : 'uk-UA';
+  let movie = await fetchMovieByLang(data.id, lang2);
+  if (!dataSL[user][lang2]) {
+    dataSL[user][lang2] = {};
+  }
+  console.log('movie', movie);
+  dataSL[user][lang2] = setKey(dataSL[user][lang2], key, movie);
+
+  if (user != 'local') {
+    let db = await getDb(app);
+    console.log('db', db);
+    let body = get();
+    let key = user.split('@')[0];
+    let res = await writeNewData(db, key, body);
+  }
+  return saveData(dataSL);
 }
 
+function addData(data, value) {
+  console.log('addData', data, value);
+  let res = -1;
+  for (const obj of data) {
+    if (obj.id === value.id) {
+      res = 1;
+    }
+  }
+  if (res === -1) {
+    data.push(value);
+  }
+}
+
+function saveData(data) {
+  console.log('saveData', data);
+  try {
+    let tmp = JSON.stringify(data);
+    localStorage.setItem('themoviedb', tmp);
+    return true;
+  } catch (error) {
+    console.log(`Something happened: ${error}`);
+    return false;
+  }
+}
+
+// user
 export function getUser() {
-  let tmp = getData();
-  if (!tmp.loginUser) {
-    tmp.loginUser = 'local';
-    saveData(tmp);
+  console.log('getUser');
+  let loginUser = localStorage.getItem('loginUser');
+  if (!loginUser) {
+    loginUser = 'local';
+    localStorage.setItem('loginUser', loginUser);
   }
-  return tmp.loginUser;
-}
-
-function checkUser(data, user) {
-  if (!data) {
-    data = { [user]: {} };
-  }
-  if (!data[user]) {
-    data[user] = {};
-  }
-  return data;
+  return loginUser;
 }
 
 function setKey(data, key, value) {
+  console.log('setKey', data, key, value);
   if (!data[key] || !Array.isArray(data[key])) {
     data[key] = [];
   }
@@ -96,39 +184,9 @@ function setKey(data, key, value) {
   return data;
 }
 
-function addData(data, value) {
-  let res = -1;
-  for (const obj of data) {
-    if (obj.id === value.id) {
-      res = 1;
-    }
-  }
-  if (res === -1) {
-    data.push(value);
-  }
-}
-
-function getData() {
-  let data = localStorage.getItem('themoviedb');
-  if (!data) {
-    return {};
-  }
-
-  try {
-    return JSON.parse(data);
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return {};
-  }
-}
-
-function saveData(data) {
-  try {
-    let tmp = JSON.stringify(data);
-    localStorage.setItem('themoviedb', tmp);
-    return true;
-  } catch (error) {
-    console.log(`Something happened: ${error}`);
-    return false;
-  }
-}
+// function reloadMovieInfo() {
+//   let data = getData();
+//   let user = getUser();
+//   let lang = getLanguage();
+//   //
+// }
