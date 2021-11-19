@@ -11,7 +11,6 @@ function trackScroll() {
   if (scrolled < 100) {
     goTopBtn.classList.remove('up-button-show');
   }
-}
 
 function upButton() {
   if (window.pageYOffset > 0) {

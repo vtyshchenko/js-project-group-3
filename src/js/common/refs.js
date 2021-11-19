@@ -55,10 +55,16 @@ const refs = {
   WATCHED: 'watched',
   QUEUE: 'queue',
 
-  wrapper: document.querySelector('.pagination__wrapper-js'),
-  arrowLeft: document.querySelector('.arrow-left-js'),
-  arrowRight: document.querySelector('.arrow-right-js'),
-  listernerEvent: document.querySelector('.pagination__wrapper-js'),
+  wrapperRefs: document.querySelector('.pagination__wrapper-js'),
+  arrowLeftRefs: document.querySelector('.arrow-left-js'),
+  arrowRightRefs: document.querySelector('.arrow-right-js'),
+  listernerEventRefs: document.querySelector('.pagination__wrapper-js'),
+  emptyWatchedQueueRefs: document.querySelector('.watched-queue'),
+  errorPictureRefs: document.querySelector('.error'),
+  emptySearchRefs: document.querySelector('.empty-search'),
+  watchedQueueTextRefs: document.querySelector('.watched-queue-text'),
+  emptySearchTextRefs: document.querySelector('.empty-search-text'),
+  errorTextRefs: document.querySelector('.error-text'),
 };
 
 export default { refs };
