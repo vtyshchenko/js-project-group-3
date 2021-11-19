@@ -29,6 +29,11 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
     <title>Filmoteka</title>
     <link
       rel="stylesheet"
@@ -37,13 +42,25 @@
       crossorigin="anonymous"
     />
   </head>
+
   <body>
     <include src="./partials/header.html"></include>
     <main class="container">
-      <section class="film-list"></section>
-      <section class="pafination"></section>
+      <section class="film-list">
+        <h2 class="visually-hidden">Gallery of films</h2>
+        <include src="./partials/notification-picture.html"></include>
+        <ul class="gallery-film-list list"></ul>
+      </section>
+      <section class="pagination">
+        <h2 class="visually-hidden">Pagination</h2>
+        <include src="./partials/page-numbers.html"></include>
+      </section>
     </main>
     <include src="./partials/footer.html"></include>
+
+    <include src="./partials/backdrop.html"></include>
+    <include src="./partials/spinner.html"></include>
+    <include src="./partials/up-button.html"></include>
 
     <script src="./index.js"></script>
   </body>

@@ -1,0 +1,46 @@
+    {{#if poster_path}}
+    <img class="movie-image" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}">
+    {{else}}
+    <img class="movie-image" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png" alt="{{title}}">
+    {{/if}}
+    <div class="tablet-movie-container">
+        <div>
+    <h1 class="movie-title">{{title}}</h1>
+    <div class="movie-flex">
+    <ul class="movie-flex__list">
+        <li class="movie-flex__title movie-flex-vote">Vote / Votes</li>
+        <li class="movie-flex__title movie-flex-popularity">Popularity</li>
+        <li class="movie-flex__title movie-flex-title">Original Title</li>
+        <li class="movie-flex__title movie-flex-genre">Genre</li>
+    </ul>
+    <ul class="movie-flex__list">
+        <li class="movie-flex__value"><span class="movie-flex__vote">{{vote_average}}</span> <span class="movie-flex__slash">/</span><span class="movie-flex__votes">{{vote_count}}</span></li>
+        <li class="movie-flex__value">{{popularity}}</li>
+        <li class="movie-flex__value">{{original_title}}</li>
+        {{#each genres}}
+        <li class="movie-flex__value">{{name}}</li>
+        {{/each}}
+    </ul>
+    </div>
+    <h2 class="movie-title__desc">About</h2>
+    <p class="movie-overview">{{overview}}</p>
+    </div>
+    <div class="company-container">
+    <ul class="company list">
+        {{#each production_companies}}
+            {{#unless logo_path}}
+                <li class="company__list-item">{{name}} <span class="separator">|</span></li>
+            {{/unless}}
+        {{/each}}
+    </ul>
+    <ul class="company list">
+        {{#each production_companies}}
+            {{#if logo_path}}
+            <li class="company__list-item">
+                <img class="company__image" src="https://image.tmdb.org/t/p/w500{{logo_path}}" alt="{{name}}">
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>
+</div>

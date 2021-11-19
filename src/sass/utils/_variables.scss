@@ -5,6 +5,7 @@ $title-color: #000000;
 
 $main-background-color: #f7f7f7;
 $overlay-background-color: #ce1731;
+$up-button-background-color: #f5f5f5;
 
 $icon-color: #818181;
 $error-color: #ff001b;
@@ -12,7 +13,7 @@ $error-color: #ff001b;
 $main-orange-color: #ff6b01;
 $accent-orange-color: #ff6b08;
 $bg-image-darkening: rgba(0, 0, 0, 0.56);
-
+$b-image-darkening: rgb(5, 5, 5);
 $font-family: 'Roboto', sans-serif;
 
 $anim-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -26,3 +27,17 @@ $desktop: 1024px;
 $mobile-padding: 20px;
 $tablet-padding: 75px;
 $desktop-padding: 71px;
+
+$team-bg-color: rgba(5, 5, 5, 0.918);
+$team-shadow-color: rgba(170, 91, 0, 0.34);
+
+$spinner-color1: #ff0000;
+$spinner-color2: rgb(251, 211, 1);
+$spinner-color3: rgb(255, 50, 112);
+$spinner-color4: rgb(32, 139, 241);
+$spinner-color5: rgb(175, 225, 2);
+$spinner-mask-color: rgba(233, 167, 134, 0.75);
+$team-social-color: rgb(92, 210, 228);
+$team-sicial-bg-color: #05262b26;
+$box-shadow: 0px 3px 18px 2px rgba(204, 120, 63, 0.66);
+$overlay-color: rgba(204, 202, 202, 0.4);

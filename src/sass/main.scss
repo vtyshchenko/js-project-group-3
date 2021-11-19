@@ -1,5 +1,4 @@
 @import './utils/variables';
-@import './utils/visually-hidden';
 
 @import './common/common';
 @import './common/base';
@@ -13,7 +12,18 @@
 @import './components/backdrop';
 @import './components/modal';
 
+@import './components/auth';
+@import './components/about';
+@import './components/modal_film';
+@import './components/modal_trailer';
+@import './components/up-button';
+
 @import './layout/header';
 @import './layout/hero';
 @import './layout/pagination';
+@import './layout/video-card';
 @import './layout/footer';
+@import './components/spinner.scss';
+@import './components/notification_pictures';
+
+@import './utils/visually-hidden';

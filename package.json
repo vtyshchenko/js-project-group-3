@@ -3,31 +3,41 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://vtyshchenko.github.io/project-fimoteka",
+  "homepage": "https://vtyshchenko.github.io/project-filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /project-fimoteka/"
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build",
+    "build": "parcel build src/*.html --public-url /project-filmoteka/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vtyshchenko/project-fimoteka.git"
+    "url": "git+https://github.com/vtyshchenko/project-filmoteka.git"
   },
   "keywords": [],
   "author": "Volodymyr Tyshchenko <mamay.ukr.1977@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vtyshchenko/project-fimoteka/issues"
+    "url": "https://github.com/vtyshchenko/project-filmoteka/issues"
   },
   "dependencies": {
+    "@pnotify/desktop": "^5.2.0",
     "animate.css": "^4.1.1",
+    "auth": "^0.0.9",
+    "firebase": "^9.4.1",
+    "firebase-tools": "^9.22.0",
+    "lodash.debounce": "^4.0.8",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars": "^0.4.4",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
+    "pnotify": "^5.2.0",
     "posthtml-include": "^1.7.2",
     "saas": "^1.0.0"
   },
   "devDependencies": {
+    "@pnotify/core": "^5.2.0",
+    "gh-pages": "^3.2.3",
     "sass": "^1.43.4"
   }
 }

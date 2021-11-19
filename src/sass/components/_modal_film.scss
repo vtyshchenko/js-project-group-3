@@ -1,0 +1,231 @@
+.modals {
+  position: relative;
+}
+
+//  Button close svg
+.close__button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 500;
+  transform: rotateZ(360deg);
+  transition: transform $anim-duration $anim-timing-function,
+    color $anim-duration $anim-timing-function;
+
+  &:hover {
+    transform: rotateZ(0deg);
+  }
+}
+
+.close-film__position,
+.close-trailer__position {
+  top: 3px;
+  right: 20px;
+}
+.modal-wrapper-film,
+.modal-wrapper-trailer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+
+  @media screen and (min-width: $mobile-min) {
+    width: calc(100% - 2 * 10px);
+  }
+  @media screen and (min-width: $mobile) {
+    width: calc($mobile - 2 * 10px);
+  }
+  @media screen and (min-width: $tablet) {
+    max-width: calc($tablet - 2 * 15px);
+    width: calc(100% - 2 * 15px);
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 990px;
+    width: calc(100% - 2 * 15px);
+  }
+}
+
+//modal wimdow
+.modal-film,
+.modal-trailer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: $main-text-color;
+  border: 1px solid $third-text-color;
+  padding: 50px 20px 40px 20px;
+  width: calc(100% - 2 * 10px);
+
+  @media screen and (min-width: $mobile) {
+    width: calc($mobile - 2 * 10px);
+  }
+  @media screen and (min-width: $tablet) {
+    max-width: calc($tablet - 2 * 15px);
+    padding: 42px 30px 40px 28px;
+    width: calc(100% - 2 * 15px);
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 990px;
+    padding: 50px 30px 40px 30px;
+    width: calc(100% - 2 * 15px);
+    position: relative;
+  }
+}
+
+.is-open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.movie-container,
+.movie-container-film {
+  color: inherit;
+  font-size: 12px;
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+  }
+}
+
+.movie-image {
+  border-radius: 5px;
+  margin: 0 auto 30px auto;
+
+  @media screen and (min-width: $mobile) {
+    min-width: 264px;
+    height: 400px;
+  }
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 0;
+    min-width: unset;
+  }
+  @media screen and (min-width: $desktop) {
+    height: 600px;
+  }
+}
+
+.tablet-movie-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 32px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-left: 30px;
+  }
+}
+
+.movie-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  @media screen and (min-width: $tablet) {
+    font-size: 30px;
+    line-height: 1.17;
+  }
+}
+
+.movie-flex {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.movie-flex__list {
+  list-style: none;
+}
+
+.movie-flex__list:not(:last-child) {
+  margin-right: 40px;
+  @media screen and (min-width: $desktop) {
+    margin-right: 85px;
+  }
+}
+
+.movie-flex__title,
+.movie-flex__value {
+  line-height: 1.33;
+}
+
+.movie-flex__title {
+  color: $third-text-color;
+}
+
+.movie-flex__title:not(:last-child),
+.movie-flex__value:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.movie-flex__vote {
+  padding: 1px 10px;
+  background: $main-orange-color;
+  color: $main-text-color;
+  border-radius: 5px;
+}
+
+.movie-flex__votes {
+  padding: 1px 4px;
+  background: $main-background-color;
+  border-radius: 5px;
+}
+
+.movie-flex__slash {
+  color: $third-text-color;
+  margin-right: 2px;
+}
+
+.movie-title__desc {
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.movie-overview {
+  margin-bottom: 40px;
+  line-height: 1.67;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-watched {
+  margin-right: 15px;
+  @media screen and (max-width: calc($tablet - 1px)) {
+    margin-right: 10px;
+  }
+}
+
+.company {
+  display: flex;
+  justify-content: end;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+
+  .company__list-item {
+    margin-right: 10px;
+  }
+
+  .company__image {
+    max-height: 54px;
+    margin-right: 15px;
+    margin-bottom: 5px;
+  }
+}
+
+.separator {
+  color: $main-orange-color;
+}

@@ -1,0 +1,178 @@
+.auth-wrapper {
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0) scale(1);
+
+  transition: opacity $anim-duration $anim-timing-function,
+    transform $anim-duration $anim-timing-function;
+
+  @media screen and (max-width: $tablet - 1px) {
+    max-width: 350px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 500px;
+  }
+}
+
+.auth__button-close {
+  right: 1px;
+  top: 0px;
+
+  // @media screen and (max-width: calc($desktop - 1px)) {
+  //   top: 8px;
+  //   right: 8px;
+  // }
+
+  // @media screen and (min-width: $desktop) {
+  //   top: calc(50% - 105px);
+  //   left: calc(50% + 145px);
+  // }
+}
+// ################### form ###################
+.auth__form {
+  background: $main-background-color;
+
+  min-width: 280px;
+  padding: 20px;
+  box-shadow: 0px 1px 3px $main-orange-color, 0px 1px 1px $icon-color,
+    0px 2px 1px $accent-orange-color;
+  border-radius: 4px;
+  transform: translate(0, 20%) scale(1);
+
+  transition: opacity $anim-duration $anim-timing-function,
+    transform $anim-duration $anim-timing-function;
+
+  // @media screen and (min-width: $mobile) {
+  //   height: 360px;
+  // }
+}
+
+.auth__title {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: $secondary-text-color;
+  margin-bottom: 12px;
+
+  @media screen and (max-width: $desktop - 1px) {
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: $desktop) {
+    line-height: 1.15;
+  }
+}
+
+// ################### inputs ###################
+.auth__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__group {
+  margin-bottom: 10px;
+}
+
+.auth__label {
+  display: block;
+  font-size: 12px;
+  line-height: 1.167;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+
+.auth__input-group {
+  position: relative;
+}
+
+.auth__input-info {
+  font-size: 14px;
+  line-height: 1.143;
+  letter-spacing: 0.01em;
+  color: $secondary-text-color;
+  outline: $third-text-color;
+
+  width: 100%;
+  height: 40px;
+  padding: 12px 12px 12px 42px;
+  border: 1px solid $third-text-color;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px $main-orange-color;
+  transition: border $anim-duration $anim-timing-function;
+
+  .auth__input-group:focus-within > & {
+    border: 1px solid $main-orange-color;
+  }
+}
+
+.auth__input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  fill: $secondary-text-color;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  transition: fill $anim-duration $anim-timing-function;
+
+  .auth__input-group:focus-within > & {
+    fill: $main-orange-color;
+  }
+}
+// ################### checkbox ###################
+.auth__confirm {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.71;
+  color: $secondary-text-color;
+  margin-bottom: 30px;
+  transition: color $anim-duration $anim-timing-function;
+}
+
+.auth__checkbox-icon {
+  display: inline-block;
+  color: $secondary-text-color;
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  transition: color $anim-duration $anim-timing-function;
+
+  .auth__confirm-checkbox:checked + & {
+    background-image: url('../images/check.svg');
+    background-color: $main-orange-color;
+    background-size: contain;
+    background-origin: padding-box;
+    border-color: $main-orange-color;
+  }
+
+  .auth__confirm-checkbox:focus + &,
+  .auth__confirm:focus > &,
+  .auth__confirm:hover > & {
+    cursor: pointer;
+    color: $main-orange-color;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-left: 14px;
+    margin-right: 7px;
+  }
+}
+
+.auth__confirm-conditions {
+  font-size: 12px;
+  line-height: 1.167;
+  letter-spacing: 0.08em;
+  color: $secondary-text-color;
+}
+
+// ################### buttons ###################
+.auth__button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

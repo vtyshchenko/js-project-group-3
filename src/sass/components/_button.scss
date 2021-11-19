@@ -1,0 +1,46 @@
+.button-submit {
+  background-color: $main-background-color;
+  color: $main-orange-color;
+  padding: 10px 20px;
+  width: 110px;
+  box-shadow: 0px 4px 4px $main-orange-color;
+  border-radius: 4px;
+  transition: background-color $anim-duration $anim-timing-function;
+
+  @media screen and (min-width: $mobile) {
+    width: 140px;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: $main-orange-color;
+    color: $main-text-color;
+    box-shadow: 0px 4px 4px $main-background-color;
+    cursor: pointer;
+  }
+}
+.button-add {
+  font-size: 12px;
+  width: 112px;
+  height: 44px;
+  padding: 8px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  background: $main-text-color;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px $main-orange-color;
+  @media screen and (min-width: $tablet) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 136px;
+  }
+}
+.button-add:hover,
+.button-add:focus {
+  color: $main-text-color;
+  background: $main-orange-color;
+  border: none;
+  outline: none;
+  box-shadow: 0px 4px 4px $main-background-color;
+}
